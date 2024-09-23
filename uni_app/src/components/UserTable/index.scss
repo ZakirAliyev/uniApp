@@ -1,0 +1,31 @@
+#userTableForSecurity {
+  .tableBtn {
+    background-color: #459F3B;
+    height: 35px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    font-size: 16px;
+    color: white;
+    padding: 0 10px;
+
+    &:hover {
+      background-color: #33782c;
+    }
+  }
+
+  tr, td, table {
+    background-color: white;
+    text-align: center;
+  }
+
+  th {
+    text-align: center;
+  }
+
+  .userTableForSecurity {
+    overflow-x: auto;
+    padding: 0;
+    background-color: white;
+  }
+}

@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    font-family: 'Maven Pro', sans-serif !important;
+    transition: all .4s ease;
+}
+
+a, button {
+    cursor: pointer;
+}
+
+.container {
+    max-width: 1240px;
+    margin: 0 auto;
+}
+
+.container1 {
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.ant-menu {
+    margin-top: 50px;
+}
+
+@media screen and (max-width: 992px) {
+    #loginPage {
+        .col1 {
+            display: none;
+        }
+
+        .col2 {
+            .wrapper {
+                padding-top: 120px;
+            }
+        }
+    }
+
+    /*#leftMenu {*/
+
+    /*    .ant-layout-sider {*/
+    /*        display: none;*/
+    /*    }*/
+
+    /*    .ant-layout {*/
+    /*        margin-left: 0 !important;*/
+    /*    }*/
+
+    /*    .ant-btn-icon {*/
+    /*        display: none;*/
+    /*    }*/
+
+    /*    .img1 {*/
+    /*        display: block;*/
+    /*    }*/
+
+    /*    .ant-layout-header {*/
+    /*        background: #c3edec !important;*/
+    /*    }*/
+
+    /*    .ant-layout-content {*/
+    /*        margin: 0 !important;*/
+    /*    }*/
+    /*}*/
+}
+
+@media screen and (min-width: 993px) {
+    #loginPage {
+        .img {
+            img {
+                display: none;
+            }
+        }
+    }
+
+    /*#leftMenu {*/
+    /*    .img1 {*/
+    /*        display: none;*/
+    /*    }*/
+    /*}*/
+}

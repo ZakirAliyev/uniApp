@@ -1,0 +1,75 @@
+#leftMenu {
+  min-height: 100vh;
+  height: 100%;
+
+  .ant-layout-header {
+    height: 80px;
+    align-items: center;
+  }
+
+  .img {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 15px 0;
+
+    span {
+      margin: 10px 0;
+      font-weight: 700;
+    }
+
+    img {
+      margin-top: 50px;
+      height: 100%;
+    }
+
+    &.collapsed {
+      margin: 0;
+
+      img {
+        height: 60%;
+      }
+    }
+  }
+
+  .img1 {
+    padding: 10px 20px;
+    height: 100%;
+
+    img {
+      height: 100%;
+    }
+  }
+
+  .logOut {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+
+    span {
+      font-weight: bold;
+
+      span {
+        padding-right: 0;
+        color: #D7B56D;
+      }
+    }
+
+    button {
+      font-size: 20px;
+      border: none;
+      outline: none;
+      color: white;
+      background-color: red;
+      padding: 10px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

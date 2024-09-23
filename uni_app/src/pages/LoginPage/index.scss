@@ -1,0 +1,72 @@
+#loginPage {
+  background-image: url("bg.png");
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+
+  #simple-tab-1, #simple-tab-0 {
+    width: 50%;
+    color: #a99674;
+  }
+
+  .img {
+    position: relative;
+    width: 100%;
+    z-index: 999;
+
+    img {
+      position: absolute;
+      left: 50%;
+      top: -100px;
+      transform: translate(-50%, -50%);
+      max-width: 100%;
+    }
+  }
+
+
+  .lane {
+    width: 100%;
+    background-color: #004879;
+    height: 30px;
+    opacity: .7;
+  }
+
+  .col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 60px);
+  }
+
+  .col1 {
+    img {
+      height: 415px;
+    }
+  }
+
+  .col2 {
+
+    .wrapper {
+      box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
+      border-radius: 15px;
+      padding: 30px 0;
+      background-color: #F9EDED;
+      max-width: 450px;
+      width: 100%;
+      opacity: .95;
+
+      .bsu {
+        text-align: center;
+        width: 100%;
+        color: #a99674;
+        font-size: 26px;
+        line-height: 26px;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-right: auto;
+        margin-bottom: 20px;
+      }
+    }
+  }
+}
