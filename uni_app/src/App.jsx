@@ -7,14 +7,16 @@ const routes = createBrowserRouter(ROUTES);
 
 function App() {
 
-    const adminToken = Cookies.get("adminToken");
-    if (!adminToken) {
-        Cookies.set("adminToken", "null");
+    const token = Cookies.get("token");
+
+    if (!token) {
+        Cookies.set("token", "null");
     }
 
-    const securityToken = Cookies.get("securityToken");
-    if (!securityToken) {
-        Cookies.set("securityToken", "null");
+    const role = Cookies.get("role");
+
+    if (!role) {
+        Cookies.set("role", "null");
     }
 
     return (

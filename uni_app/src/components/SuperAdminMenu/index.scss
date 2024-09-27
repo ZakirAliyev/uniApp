@@ -94,12 +94,37 @@
         width: 100%;
       }
     }
+  }
 
-    .buttonWrapper {
-      margin-top: 60px;
+  .wrapper1 {
+    padding: 24px;
+  }
 
-      .buttonSave {
-        margin-left: 10px;
+  select {
+    height: 40px;
+    padding: 10px 20px;
+    outline: none;
+    border: 1px solid #d3d3d3;
+    background-color: #FAFAFA;
+    border-radius: 10px;
+  }
+
+  form {
+
+    .buttonSave {
+      padding: 0px 20px;
+    }
+    .box {
+
+      margin: 20px 0 40px;
+      display: flex;
+      justify-content: space-between;
+      gap: 50px;
+
+      .box1 {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
       }
     }
   }

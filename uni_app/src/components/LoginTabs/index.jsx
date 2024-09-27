@@ -75,7 +75,8 @@ export default function LoginTabs() {
                             theme: "light",
                             transition: Bounce,
                         });
-                        Cookies.set('adminToken', 'value', {expires: 7});
+                        Cookies.set('token', response?.data?.token, {expires: 7});
+                        Cookies.set('role', response?.data?.role, {expires: 7});
                         setTimeout(() => {
                             if (response?.data?.role === 'SuperAdmin') {
                                 navigate('/scp');
@@ -98,7 +99,7 @@ export default function LoginTabs() {
                             theme: "light",
                             transition: Bounce,
                         });
-                        Cookies.set('adminToken', `${response?.data?.token}`, {expires: 7});
+                        Cookies.set('token', response?.data?.token, {expires: 7});
                         setTimeout(() => {
                             navigate('/security');
                         }, 2500);
