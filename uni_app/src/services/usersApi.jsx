@@ -55,6 +55,39 @@ export const usersApi = createApi({
                 headers: {'Content-Type': 'application/json'}
             }),
         }),
+        getAllFaculties: builder.query({
+            query: () => `/SuperAdminFaculty/getAll`,
+        }),
+        putOneFaculty: builder.mutation({
+            query: (buildingData) => ({
+                url: `/SuperAdminFaculty/update`,
+                method: 'PUT',
+                body: buildingData,
+                headers: {'Content-Type': 'application/json'}
+            }),
+        }),
+        deleteFaculty: builder.mutation({
+            query: (id) => ({
+                url: `/SuperAdminFaculty/delete/${id}`,
+                method: 'DELETE',
+            }),
+        }),
+        postNewFaculty: builder.mutation({
+            query: (id) => ({
+                url: `/SuperAdminFaculty/add`,
+                method: 'POST',
+                body: id,
+                headers: {'Content-Type': 'application/json'}
+            }),
+        }),
+        changeAvailabilityBuilding: builder.mutation({
+            query: (data) => ({
+                url: `/SuperAdminFaculty/change/awiability`,
+                method: 'PUT',
+                body: data,
+                headers: {'Content-Type': 'application/json'}
+            }),
+        })
     }),
 });
 
@@ -64,5 +97,10 @@ export const {
     useGetAllBuildingsQuery,
     usePutOneBuildingMutation,
     useDeleteBuildingMutation,
-    usePostNewBuildingMutation
+    usePostNewBuildingMutation,
+    useGetAllFacultiesQuery,
+    usePutOneFacultyMutation,
+    useDeleteFacultyMutation,
+    usePostNewFacultyMutation,
+    useChangeAvailabilityBuildingMutation
 } = usersApi;

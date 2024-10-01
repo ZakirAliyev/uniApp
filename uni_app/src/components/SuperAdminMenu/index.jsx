@@ -4,7 +4,7 @@ import {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
 } from '@ant-design/icons';
-import {Button, Checkbox, Input, Layout, Menu, theme, Form} from 'antd';
+import {Button, Input, Layout, Menu, theme, Form} from 'antd';
 import {MdHomeRepairService, MdLogout, MdOutlineAdminPanelSettings, MdOutlineSecurity} from "react-icons/md";
 import Swal from "sweetalert2";
 import SuperAdminTable from "../SuperAdminTable/index.jsx";
@@ -13,13 +13,12 @@ import {FaBookOpen, FaBuilding, FaChalkboardTeacher} from "react-icons/fa";
 import {RiAdminFill} from "react-icons/ri";
 import {useFormik} from "formik";
 import * as Yup from 'yup';
-import BuildingsTable from "../BuildingsTable/index.jsx";
 import {useGetAllBuildingsQuery, usePostNewBuildingMutation} from "../../services/usersApi.jsx";
-import {ToastContainer, toast, Bounce} from 'react-toastify';
+import {toast, Bounce} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Cookies from "js-cookie";
+import BuildingsMenu from "../BuildingsMenu/index.jsx";
 
-const {TextArea} = Input;
 const {Header, Sider, Content} = Layout;
 
 const SuperAdminMenu = () => {
@@ -110,125 +109,7 @@ const SuperAdminMenu = () => {
             case '1':
                 return <SuperAdminTable/>;
             case '2':
-                return (
-                    <Form className={"wrapper"} onFinish={formik.handleSubmit}>
-                        <h2>Add new visitor</h2>
-                        <Form.Item
-                            name="visitorName"
-                            rules={[{required: true, message: 'Please input visitor name!'}]}
-                        >
-                            <div className={"box"}>
-                                <label>
-                                    <span style={{color: 'red'}}>* </span>Visitor name
-                                </label>
-                                <Input
-                                    className={"input"}
-                                    size="large"
-                                    name="firstName"
-                                    placeholder="Visitor name"
-                                    onChange={formik.handleChange}
-                                    value={formik.values.firstName}
-                                />
-                            </div>
-                        </Form.Item>
-                        <Form.Item
-                            name="visitorSurname"
-                            rules={[{required: true, message: 'Please input visitor surname!'}]}
-                        >
-                            <div className={"box"}>
-                                <label>
-                                    <span style={{color: 'red'}}>* </span>Visitor surname
-                                </label>
-                                <Input
-                                    className={"input"}
-                                    size="large"
-                                    name="lastName"
-                                    placeholder="Visitor surname"
-                                    onChange={formik.handleChange}
-                                    value={formik.values.lastName}
-                                />
-                            </div>
-                        </Form.Item>
-                        <Form.Item
-                            name="visitorEmail"
-                            rules={[{required: true, type: 'email', message: 'Please input a valid email!'}]}
-                        >
-                            <div className={"box"}>
-                                <label>
-                                    <span style={{color: 'red'}}>* </span>Visitor email
-                                </label>
-                                <Input
-                                    className={"input"}
-                                    size="large"
-                                    name="email"
-                                    placeholder="Visitor email"
-                                    onChange={formik.handleChange}
-                                    value={formik.values.email}
-                                />
-                            </div>
-                        </Form.Item>
-                        <Form.Item
-                            name="description"
-                            rules={[{required: true, message: 'Please provide a description!'}]}
-                        >
-                            <div className={"box"}>
-                                <label>
-                                    <span style={{color: 'red'}}>* </span>Description
-                                </label>
-                                <TextArea
-                                    className={"input"}
-                                    rows={4}
-                                    size={"large"}
-                                    name="description"
-                                    placeholder="Description"
-                                    style={{resize: "none"}}
-                                    onChange={formik.handleChange}
-                                    value={formik.values.description}
-                                />
-                            </div>
-                        </Form.Item>
-                        <Form.Item name="carCheck" valuePropName="checked">
-                            <div className={"box"}>
-                                <label>
-                                    <span style={{color: 'red'}}></span>Will he/she come by car?
-                                </label>
-                                <Checkbox onChange={handleCheckboxChange}/>
-                            </div>
-                        </Form.Item>
-                        {isCarChecked && (
-                            <Form.Item
-                                name="carNumber"
-                                rules={[{required: true, message: 'Please input car number!'}]}
-                            >
-                                <div className={"box"}>
-                                    <label>
-                                        <span style={{color: 'red'}}>* </span>Car number
-                                    </label>
-                                    <Input
-                                        className={"input"}
-                                        size="large"
-                                        name="carNumber"
-                                        placeholder="Car number"
-                                        onChange={formik.handleChange}
-                                        value={formik.values.carNumber}
-                                    />
-                                </div>
-                                {formik.errors.carNumber && formik.touched.carNumber ? <div style={{
-                                    color: "red",
-                                    marginTop: '10px'
-                                }}>{formik.errors.carNumber}</div> : null}
-                            </Form.Item>
-                        )}
-                        <div className={"buttonWrapper"} style={{
-                            display: 'flex',
-                            gap: '10px'
-                        }}>
-                            <Button size={"large"} type="primary" htmlType="submit">Save</Button>
-                            <Button size={"large"} className={"buttonSave"} type="primary">Save and exit</Button>
-                            <Button size={"large"} className={"buttonSave"} type="primary" danger>Cancel</Button>
-                        </div>
-                    </Form>
-                );
+                return <></>;
             case '3':
                 return <div>Content 3</div>;
             case '4':
@@ -236,90 +117,13 @@ const SuperAdminMenu = () => {
             case '5':
                 return <div>Content 5</div>;
             case '6':
-                return <div className={"wrapper1"}>
-                    <div style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between'
-                    }}>
-                        <h2>Buildings</h2>
-                        <select>
-                            <option selected disabled>Sort by</option>
-                            <option>Newest</option>
-                            <option>Oldest</option>
-                            <option>A-Z</option>
-                            <option>Z-A</option>
-                        </select>
-                    </div>
-                    <Form
-                        form={form}
-                        onFinish={handleAdd}
-                    >
-                        <div className={"box"}>
-                            <div style={{
-                                display: 'flex',
-                                alignItems: 'center',
-                            }}>
-                                <label style={{
-                                    minWidth: '120px'
-                                }}>Search building: </label>
-                                <Input
-                                    className={"input"}
-                                    size="large"
-                                />
-                            </div>
-                            <div className={"box1"}>
-                                {/*<Form.Item*/}
-                                {/*    label="Add new building"*/}
-                                {/*    name="building"*/}
-                                {/*    rules={[{*/}
-                                {/*        required: true,*/}
-                                {/*        message: 'Please enter a building name!'*/}
-                                {/*    }]}*/}
-                                {/*>*/}
-                                {/*    <Input*/}
-                                {/*        className={"input"}*/}
-                                {/*        size="large"*/}
-                                {/*        value={buildingName}*/}
-                                {/*        onChange={(e) => setBuildingName(e.target.value)}*/}
-                                {/*    />*/}
-                                {/*</Form.Item>*/}
-                                {/*<Button*/}
-                                {/*    size={"large"}*/}
-                                {/*    className={"buttonSave"}*/}
-                                {/*    type="primary"*/}
-                                {/*    htmlType="submit"*/}
-                                {/*>*/}
-                                {/*    Add*/}
-                                {/*</Button>*/}
-                                <div style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                }}>
-                                    <label style={{
-                                        minWidth: '120px'
-                                    }}>Add new building</label>
-                                    <Input
-                                        className={"input"}
-                                        size="large"
-                                    />
-                                    <Button style={{
-                                        marginLeft: '10px'
-                                    }} type={"primary"} size={"large"} htmlType={"submit"}>
-                                        Add
-                                    </Button>
-                                </div>
-                            </div>
-                        </div>
-                    </Form>
-                    <BuildingsTable/>
-                </div>
+                return <BuildingsMenu/>;
             case '7':
-                return <div>Content 7</div>;
+                return <></>;
             case '8':
-                return <div>Content 8</div>;
+                return <></>;
             case '9':
-                return <div>Content 9</div>;
+                return <></>;
             default:
                 return <SuperAdminTable/>;
         }
@@ -421,7 +225,7 @@ const SuperAdminMenu = () => {
                         <span>
                             <span>Role </span>
                             : {Cookies.get('role') === 'SuperAdmin' ? (<>Super Admin</>) : (
-                                <></>
+                            <></>
                         )}
                         </span>
                         <button onClick={() => handleLogOutBtn()}>

@@ -1,39 +1,42 @@
+import './index.scss'
 import './index.scss';
 import {Button, Input, Modal, Table, Form} from 'antd'; // Import Form
 import {useState} from "react";
-import {
-    useDeleteBuildingMutation,
-    useGetAllBuildingsQuery,
-    usePutOneBuildingMutation
-} from "../../services/usersApi.jsx";
+import {useDeleteFacultyMutation, useGetAllFacultiesQuery, usePutOneFacultyMutation} from "../../services/usersApi.jsx";
 import {Bounce, toast, ToastContainer} from "react-toastify";
 import Swal from "sweetalert2";
 
-const BuildingsTable = () => {
+const FacultiesTable = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [selectedBuilding, setSelectedBuilding] = useState(null);
-    const [form] = Form.useForm(); // Initialize the form
+    const [selectedFaculty, setselectedFaculty] = useState(null);
+    const [form] = Form.useForm();
 
-    const {data: response, refetch} = useGetAllBuildingsQuery();
+    const {data: response, refetch} = useGetAllFacultiesQuery();
     const dataSource = response?.data;
 
-    const [putOneBuilding] = usePutOneBuildingMutation();
-    const [deleteBuilding] = useDeleteBuildingMutation();
+    const [putOneFaculty] = usePutOneFacultyMutation();
+    const [deleteFaculty] = useDeleteFacultyMutation();
 
     async function handleChange(record) {
         refetch()
     }
 
     const showModal = (record) => {
-        setSelectedBuilding(record);
-        form.setFieldsValue({buildingName: record.name}); // Set the form field value
+        setselectedFaculty(record);
+        form.setFieldsValue({facultyName: record.name});
         setIsModalOpen(true);
     };
 
     const handleOk = async () => {
         try {
-            const values = await form.validateFields(); // Validate form fields
-            const response = await putOneBuilding({id: selectedBuilding.id, name: values.buildingName}).unwrap();
+            const values = await form.validateFields();
+            console.log(values)
+            console.log(selectedFaculty)
+            const response = await putOneFaculty({
+                id: selectedFaculty.id,
+                name: values.facultyName,
+                buildingId: selectedFaculty.buildingId
+            }).unwrap();
             toast.success(response?.message, {
                 position: "bottom-right",
                 autoClose: 2500,
@@ -79,7 +82,7 @@ const BuildingsTable = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const response = await deleteBuilding(id).unwrap();
+                    const response = await deleteFaculty(id).unwrap();
                     toast.success(response?.message, {
                         position: "bottom-right",
                         autoClose: 2500,
@@ -115,11 +118,11 @@ const BuildingsTable = () => {
                 dataIndex: 'id',
             },
             {
-                title: 'Building Name',
+                title: 'Faculty Name',
                 dataIndex: 'name',
             },
             {
-                title: 'Faculty Count',
+                title: 'Department Count',
                 dataIndex: 'facultyCount',
             },
             {
@@ -174,7 +177,7 @@ const BuildingsTable = () => {
     ;
 
     return (
-        <div id={"buildingsTable"}>
+        <div id={"facultiesTable"}>
             <Table
                 columns={columns}
                 dataSource={dataSource}
@@ -183,22 +186,22 @@ const BuildingsTable = () => {
                     pageSize: 5,
                 }}
             />
-            <Modal title="Change Building Info" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+            <Modal title="Change Faculty Info" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
                 <Form form={form} layout="vertical" style={{
                     margin: '30px 0'
                 }}>
                     <Form.Item
                         label={
                             <span>
-                                Building Name
+                                Faculty Name
                             </span>
                         }
-                        name="buildingName" // Name of the field
-                        rules={[{required: true, message: 'Building name is required'}]} // Required validation
+                        name="facultyName"
+                        rules={[{required: true, message: 'Faculty name is required'}]} // Required validation
                     >
                         <Input
                             className={"input"}
-                            placeholder="Building name"
+                            placeholder="Faculty name"
                             size={"large"}
                         />
                     </Form.Item>
@@ -209,4 +212,4 @@ const BuildingsTable = () => {
     );
 };
 
-export default BuildingsTable;
+export default FacultiesTable;
