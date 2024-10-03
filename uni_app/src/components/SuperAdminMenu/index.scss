@@ -43,11 +43,17 @@
     }
   }
 
-  .logOut {
+  .profile {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 20px 0;
+
+    .img1 {
+      width: 30px;
+      height: 30px;
+      border: 1px solid gray;
+    }
 
     span {
       padding-right: 20px;
@@ -115,11 +121,12 @@
     .buttonSave {
       padding: 0 20px;
     }
+
     .box {
 
       display: flex;
       justify-content: space-between;
-      gap: 50px;
+      gap: 5px;
 
       .box1 {
         display: flex;

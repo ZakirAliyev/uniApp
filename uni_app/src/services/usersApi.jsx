@@ -30,6 +30,7 @@ export const usersApi = createApi({
                 headers: {'Content-Type': 'application/json'}
             }),
         }),
+
         getAllBuildings: builder.query({
             query: () => `/SuperAdminBuilding/getAll`,
         }),
@@ -41,12 +42,6 @@ export const usersApi = createApi({
                 headers: {'Content-Type': 'application/json'}
             }),
         }),
-        deleteBuilding: builder.mutation({
-            query: (id) => ({
-                url: `/SuperAdminBuilding/delete/${id}`,
-                method: 'DELETE',
-            }),
-        }),
         postNewBuilding: builder.mutation({
             query: (id) => ({
                 url: `/SuperAdminBuilding/add`,
@@ -55,6 +50,15 @@ export const usersApi = createApi({
                 headers: {'Content-Type': 'application/json'}
             }),
         }),
+        changeAvailabilityBuilding: builder.mutation({
+            query: ({ id, data }) => ({
+                url: `/SuperAdminBuilding/change/availity?id=${id}`,
+                method: 'PUT',
+                body: data,
+                headers: { 'Content-Type': 'application/json' }
+            }),
+        }),
+
         getAllFaculties: builder.query({
             query: () => `/SuperAdminFaculty/getAll`,
         }),
@@ -66,12 +70,6 @@ export const usersApi = createApi({
                 headers: {'Content-Type': 'application/json'}
             }),
         }),
-        deleteFaculty: builder.mutation({
-            query: (id) => ({
-                url: `/SuperAdminFaculty/delete/${id}`,
-                method: 'DELETE',
-            }),
-        }),
         postNewFaculty: builder.mutation({
             query: (id) => ({
                 url: `/SuperAdminFaculty/add`,
@@ -80,27 +78,28 @@ export const usersApi = createApi({
                 headers: {'Content-Type': 'application/json'}
             }),
         }),
-        changeAvailabilityBuilding: builder.mutation({
-            query: (data) => ({
-                url: `/SuperAdminFaculty/change/awiability`,
+        changeAvailabilityFaculty: builder.mutation({
+            query: ({ id, data }) => ({
+                url: `/SuperAdminFaculty/change/availity?id=${id}`,
                 method: 'PUT',
                 body: data,
-                headers: {'Content-Type': 'application/json'}
+                headers: { 'Content-Type': 'application/json' }
             }),
-        })
+        }),
     }),
 });
 
 export const {
     usePostSecurityLoginMutation,
     usePostAdminLoginMutation,
+
     useGetAllBuildingsQuery,
     usePutOneBuildingMutation,
-    useDeleteBuildingMutation,
     usePostNewBuildingMutation,
+    useChangeAvailabilityBuildingMutation,
+
     useGetAllFacultiesQuery,
     usePutOneFacultyMutation,
-    useDeleteFacultyMutation,
     usePostNewFacultyMutation,
-    useChangeAvailabilityBuildingMutation
+    useChangeAvailabilityFacultyMutation
 } = usersApi;

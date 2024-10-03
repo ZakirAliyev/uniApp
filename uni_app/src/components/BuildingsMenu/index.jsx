@@ -35,7 +35,18 @@ function BuildingsMenu() {
     const [newBuildingName, setNewBuildingName] = useState("");
     const [sortOrder, setSortOrder] = useState("");
 
+    const [showAvailable, setShowAvailable] = useState(false);
+    const [showDeleted, setShowDeleted] = useState(false);
+
     const filteredData = dataSource
+        .filter(building => {
+            if (showAvailable) {
+                return !building.isDeleted;
+            } else if (showDeleted) {
+                return building.isDeleted;
+            }
+            return true;
+        })
         .filter(building => building.name.toLowerCase().includes(searchTerm.toLowerCase()))
         .sort((a, b) => {
             const parseDate = (dateString) => {
@@ -58,11 +69,13 @@ function BuildingsMenu() {
             }
         });
 
+
     const [postNewBuilding] = usePostNewBuildingMutation();
     const [updateBuilding] = usePutOneBuildingMutation();
     const [changeAvailabilityBuilding] = useChangeAvailabilityBuildingMutation();
 
     const [addLoading, setAddLoading] = useState(false);
+    const [loadingBuildings, setLoadingBuildings] = useState({});
 
     async function handleAdd() {
         if (newBuildingName !== "") {
@@ -155,6 +168,7 @@ function BuildingsMenu() {
     };
 
     const handleToggleAvailability = async (record) => {
+        setLoadingBuildings(prev => ({...prev, [record.id]: true}));
         const response = await changeAvailabilityBuilding({
             id: record.id,
         }).unwrap();
@@ -185,7 +199,9 @@ function BuildingsMenu() {
                 transition: Bounce,
             });
         }
+        setLoadingBuildings(prev => ({...prev, [record.id]: false}));
     };
+
 
     const columns = [
         {
@@ -215,10 +231,16 @@ function BuildingsMenu() {
         {
             title: 'Availability in the system',
             render: (text, record) => (
-                <Switch
-                    checked={!record.isDeleted}
-                    onChange={() => handleToggleAvailability(record)}
-                />
+                loadingBuildings[record.id] ? (
+                    <span>
+                        <PulseLoader size={8}/>
+                    </span>
+                ) : (
+                    <Switch
+                        checked={!record.isDeleted}
+                        onChange={() => handleToggleAvailability(record)}
+                    />
+                )
             )
         },
         {
@@ -248,34 +270,41 @@ function BuildingsMenu() {
             <div className={"wrapper1"}>
                 <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
                     <h2>Buildings</h2>
-                    <select onChange={(e) => setSortOrder(e.target.value)}>
+                    <select onChange={(e) => {
+                        const value = e.target.value;
+                        setSortOrder(value);
+                        setShowAvailable(value === "available");
+                        setShowDeleted(value === "deleted");
+                    }}>
                         <option value="" disabled selected>Sort by</option>
                         <option value="oldest">Oldest</option>
                         <option value="newest">Newest</option>
                         <option value="a-z">A-Z</option>
                         <option value="z-a">Z-A</option>
+                        <option value="available">Available</option>
+                        <option value="deleted">Deleted</option>
                     </select>
                 </div>
                 <Form form={form}>
                     <div className={"box"}>
                         <div style={{display: 'flex', alignItems: 'center'}}>
-                            <label style={{minWidth: '120px'}}>Search building: </label>
                             <Input
                                 className={"input"}
                                 size="large"
                                 name="search"
                                 value={searchTerm}
+                                placeholder={"Search building"}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                             />
                         </div>
                         <div className={"box1"}>
                             <div style={{display: 'flex', alignItems: 'center'}}>
-                                <label style={{minWidth: '120px'}}>Add new building</label>
                                 <Form.Item name="building">
                                     <Input
                                         className={"input"}
                                         size="large"
                                         value={newBuildingName}
+                                        placeholder={"Add new building"}
                                         onChange={(e) => setNewBuildingName(e.target.value)}
                                         style={{
                                             marginTop: '25px'

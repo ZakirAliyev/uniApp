@@ -4,7 +4,7 @@ import {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
 } from '@ant-design/icons';
-import {Button, Input, Layout, Menu, theme, Form} from 'antd';
+import {Button, Layout, Menu, theme, Form} from 'antd';
 import {MdHomeRepairService, MdLogout, MdOutlineAdminPanelSettings, MdOutlineSecurity} from "react-icons/md";
 import Swal from "sweetalert2";
 import SuperAdminTable from "../SuperAdminTable/index.jsx";
@@ -18,6 +18,9 @@ import {toast, Bounce} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Cookies from "js-cookie";
 import BuildingsMenu from "../BuildingsMenu/index.jsx";
+import {useNavigate} from "react-router";
+import FacultiesMenu from "../FacultiesMenu/index.jsx";
+import AddAVisitor from "../AddAVisitor/index.jsx";
 
 const {Header, Sider, Content} = Layout;
 
@@ -26,6 +29,8 @@ const SuperAdminMenu = () => {
     const [selectedMenuItem, setSelectedMenuItem] = useState('1');
     const [isCarChecked, setIsCarChecked] = useState(false);
     const {data: allBuildings, refetch} = useGetAllBuildingsQuery();
+
+    const navigate = useNavigate();
 
     const formik = useFormik({
         initialValues: {
@@ -109,7 +114,7 @@ const SuperAdminMenu = () => {
             case '1':
                 return <SuperAdminTable/>;
             case '2':
-                return <></>;
+                return <AddAVisitor/>;
             case '3':
                 return <div>Content 3</div>;
             case '4':
@@ -119,7 +124,7 @@ const SuperAdminMenu = () => {
             case '6':
                 return <BuildingsMenu/>;
             case '7':
-                return <></>;
+                return <FacultiesMenu/>;
             case '8':
                 return <></>;
             case '9':
@@ -198,6 +203,39 @@ const SuperAdminMenu = () => {
                             icon: <FaChalkboardTeacher className={"icon"}/>,
                             label: 'Teachers',
                         },
+                        {
+                            key: '10',
+                            icon: <MdLogout className={"icon"}/>,
+                            label: 'Log out',
+                            style: {
+                                position: 'absolute',
+                                bottom: 0,
+                            },
+                            onClick: () => {
+                                Swal.fire({
+                                    title: "Are you sure?",
+                                    text: "You won't be able to revert this!",
+                                    icon: "warning",
+                                    showCancelButton: true,
+                                    confirmButtonColor: "#3085d6",
+                                    cancelButtonColor: "#d33",
+                                    confirmButtonText: "Yes, delete it!"
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        Cookies.set("token", "null");
+                                        Cookies.set("role", "null");
+                                        setTimeout(() => {
+                                            navigate('/login')
+                                        }, 2000);
+                                        Swal.fire({
+                                            title: "Deleted!",
+                                            text: "Your file has been deleted.",
+                                            icon: "success"
+                                        });
+                                    }
+                                });
+                            }
+                        },
                     ]}
                 />
             </Sider>
@@ -221,16 +259,10 @@ const SuperAdminMenu = () => {
                             height: 64,
                         }}
                     />
-                    <div className={"logOut"}>
-                        <span>
-                            <span>Role </span>
-                            : {Cookies.get('role') === 'SuperAdmin' ? (<>Super Admin</>) : (
-                            <></>
-                        )}
-                        </span>
-                        <button onClick={() => handleLogOutBtn()}>
-                            <MdLogout/>
-                        </button>
+                    <div className={"profile"}>
+                        <div className={"img1"}>
+                            <img src={""} alt={""}/>
+                        </div>
                     </div>
                 </Header>
                 <Content
