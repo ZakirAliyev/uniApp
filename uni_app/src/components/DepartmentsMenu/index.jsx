@@ -3,15 +3,16 @@ import {Button, Form, Input, Modal, Switch, Table} from "antd";
 import {Bounce, toast, ToastContainer} from "react-toastify";
 import {FiEdit} from "react-icons/fi";
 import {
-    useChangeAvailabilityFacultyMutation, useGetAllBuildingsQuery,
+    useChangeAvailabilityDepartmentMutation,
+    useGetAllDepartmentsQuery,
     useGetAllFacultiesQuery,
-    usePostNewFacultyMutation,
-    usePutOneFacultyMutation
+    usePostNewDepartmentMutation,
+    usePutOneDepartmentMutation
 } from "../../services/usersApi.jsx";
 import {useState} from 'react';
 import {PulseLoader} from "react-spinners";
 
-function FacultiesMenu() {
+function DepartmentsMenu() {
     const [form] = Form.useForm();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedDepartment, setSelectedDepartment] = useState(null);
@@ -21,14 +22,14 @@ function FacultiesMenu() {
     const [showAvailable, setShowAvailable] = useState(false);
     const [showDeleted, setShowDeleted] = useState(false);
     const [addLoading, setAddLoading] = useState(false);
-    const [loadingFaculties, setLoadingFaculties] = useState({});
-    const [selectedBuildingId, setSelectedBuildingId] = useState("");
-    const [selectedBuildingForFilter, setSelectedBuildingForFilter] = useState("");
+    const [loadingDepartments, setLoadingDepartments] = useState({});
+    const [selectedFacultyId, setSelectedFacultyId] = useState("");
+    const [selectedFacultyForFilter, setSelectedFacultyForFilter] = useState("");
 
-    const {data: allFaculties, refetch} = useGetAllFacultiesQuery();
-    const {data: buildingsData} = useGetAllBuildingsQuery();
-    const buildings = buildingsData?.data || [];
-    const dataSource = allFaculties?.data || [];
+    const {data: allDepartments, refetch} = useGetAllDepartmentsQuery();
+    const {data: facultiesData} = useGetAllFacultiesQuery();
+    const faculties = facultiesData?.data || [];
+    const dataSource = allDepartments?.data || [];
 
     const [postNewDepartment] = usePostNewDepartmentMutation();
     const [updateDepartment] = usePutOneDepartmentMutation();
@@ -47,17 +48,17 @@ function FacultiesMenu() {
 
     const filteredData = dataSource
         .filter(department => {
-            if (selectedBuildingForFilter) {
-                return String(department.buildingId) === selectedBuildingForFilter;
+            if (selectedFacultyForFilter) {
+                return String(department.facultyId) === selectedFacultyForFilter;
             }
             return true;
         })
-        .filter(faculty => {
-            if (showAvailable) return !faculty.isDeleted;
-            if (showDeleted) return faculty.isDeleted;
+        .filter(department => {
+            if (showAvailable) return !department.isDeleted;
+            if (showDeleted) return department.isDeleted;
             return true;
         })
-        .filter(faculty => faculty.name.toLowerCase().includes(searchTerm.toLowerCase()))
+        .filter(department => department.name.toLowerCase().includes(searchTerm.toLowerCase()))
         .sort((a, b) => {
             const parseDate = (dateString) => {
                 const [datePart, timePart] = dateString.split(' ');
@@ -81,12 +82,12 @@ function FacultiesMenu() {
         });
 
     const handleAdd = async () => {
-        if (newFacultyName && selectedBuildingId) {
+        if (newDepartmentName && selectedFacultyId) {
             setAddLoading(true);
             try {
-                const response = await postNewFaculty({
-                    name: newFacultyName,
-                    buildingId: selectedBuildingId
+                const response = await postNewDepartment({
+                    name: newDepartmentName,
+                    facultyId: selectedFacultyId
                 }).unwrap();
 
                 if (response?.statusCode === 200) {
@@ -98,11 +99,12 @@ function FacultiesMenu() {
                     });
                     refetch();
                     form.resetFields();
-                    setNewFacultyName("");
-                    setSelectedBuildingId("");
+                    setNewDepartmentName("");
+                    setSelectedFacultyId("");
                 } else {
                     throw new Error();
                 }
+                // eslint-disable-next-line no-unused-vars
             } catch (error) {
                 toast.error('An error occurred', {
                     position: "bottom-right",
@@ -119,12 +121,12 @@ function FacultiesMenu() {
     const handleOk = async () => {
         try {
             const values = await form.validateFields();
-            const buildingIdToUse = selectedBuildingId || selectedFaculty.buildingId;
+            const facultyIdToUse = selectedFacultyId || selectedDepartment.facultyId;
 
-            const response = await updateFaculty({
-                id: selectedFaculty.id,
+            const response = await updateDepartment({
+                id: selectedDepartment.id,
                 name: values.name,
-                buildingId: buildingIdToUse
+                facultyId: facultyIdToUse
             }).unwrap();
 
             if (response?.statusCode === 200) {
@@ -136,10 +138,11 @@ function FacultiesMenu() {
                 });
                 refetch();
                 form.resetFields();
-                setNewFacultyName("");
+                setNewDepartmentName("");
             } else {
                 throw new Error();
             }
+            // eslint-disable-next-line no-unused-vars
         } catch (error) {
             toast.error('Please fill in the required fields.', {
                 position: "bottom-right",
@@ -154,9 +157,9 @@ function FacultiesMenu() {
     };
 
     const handleToggleAvailability = async (record) => {
-        setLoadingFaculties(prev => ({...prev, [record.id]: true}));
+        setLoadingDepartments(prev => ({...prev, [record.id]: true}));
         try {
-            const response = await changeAvailabilityFaculty({id: record.id}).unwrap();
+            const response = await changeAvailabilityDepartment({id: record.id}).unwrap();
             if (response?.statusCode === 200) {
                 toast.success(response?.message, {
                     position: "bottom-right",
@@ -168,6 +171,7 @@ function FacultiesMenu() {
             } else {
                 throw new Error();
             }
+            // eslint-disable-next-line no-unused-vars
         } catch (error) {
             toast.error('An error occurred while changing availability.', {
                 position: "bottom-right",
@@ -176,7 +180,7 @@ function FacultiesMenu() {
                 transition: Bounce,
             });
         } finally {
-            setLoadingFaculties(prev => ({...prev, [record.id]: false}));
+            setLoadingDepartments(prev => ({...prev, [record.id]: false}));
         }
     };
 
@@ -187,25 +191,25 @@ function FacultiesMenu() {
             render: text => <span style={{fontWeight: 500, textDecoration: "underline"}}>{text}</span>,
         },
         {
-            title: 'Faculty Name',
+            title: 'Department Name',
             dataIndex: 'name',
             render: text => <span
                 style={{color: '#1677FF', fontSize: "15px", fontWeight: 600, cursor: 'pointer'}}>{text}</span>,
         },
         {
-            title: 'Building ID',
-            dataIndex: 'buildingId',
+            title: 'Faculty ID',
+            dataIndex: 'facultyId',
             render: text => <span style={{fontWeight: 500, textDecoration: "underline"}}>{text}</span>,
         },
         {
-            title: 'Building Name',
-            dataIndex: 'buildingName',
+            title: 'Faculty Name',
+            dataIndex: 'facultyName',
             render: text => <span
                 style={{color: '#109eb1', fontSize: "15px", fontWeight: 600, cursor: 'pointer'}}>{text}</span>,
         },
         {
-            title: 'Department Count',
-            dataIndex: 'departmentCount',
+            title: 'Admin Count',
+            dataIndex: 'adminCount',
         },
         {
             title: 'Create Date',
@@ -219,7 +223,7 @@ function FacultiesMenu() {
         {
             title: 'Availability in the system',
             render: (text, record) => (
-                loadingFaculties[record.id] ? (
+                loadingDepartments[record.id] ? (
                     <span><PulseLoader size={8}/></span>
                 ) : (
                     <Switch
@@ -247,25 +251,22 @@ function FacultiesMenu() {
         <div id={"buildingsMenu"}>
             <div className={"wrapper1"}>
                 <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-                    <h2>Faculties</h2>
+                    <h2>Departments</h2>
                     <div style={{display: 'flex', gap: '10px'}}>
-                        {/* Filter by Building */}
                         <select
                             onChange={(e) => {
-                                setSelectedBuildingForFilter(e.target.value);
+                                setSelectedFacultyForFilter(e.target.value);
                             }}
-                            value={selectedBuildingForFilter}
+                            value={selectedFacultyForFilter}
                         >
-                            <option value="">All Buildings</option>
-                            {/* Optional: To show all faculties */}
-                            {buildings.map((building) => (
-                                <option key={building.id} value={String(building.id)}>
-                                    {building.name}
+                            <option value="">All Faculties</option>
+                            {faculties.map((faculty) => (
+                                <option key={faculty.id} value={String(faculty.id)}>
+                                    {faculty.name}
                                 </option>
                             ))}
                         </select>
 
-                        {/* Sort By */}
                         <select
                             onChange={(e) => {
                                 const value = e.target.value;
@@ -293,7 +294,7 @@ function FacultiesMenu() {
                                 size="large"
                                 name="search"
                                 value={searchTerm}
-                                placeholder={"Search faculty"}
+                                placeholder={"Search department"}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                             />
                         </div>
@@ -307,9 +308,9 @@ function FacultiesMenu() {
                                 <Input
                                     size={"large"}
                                     className={"input"}
-                                    value={newFacultyName}
-                                    placeholder="Add new faculty"
-                                    onChange={(e) => setNewFacultyName(e.target.value)}
+                                    value={newDepartmentName}
+                                    placeholder="Add new department"
+                                    onChange={(e) => setNewDepartmentName(e.target.value)}
                                 />
                             </div>
                             <div style={{
@@ -319,13 +320,13 @@ function FacultiesMenu() {
                                 justifyContent: 'flex-start'
                             }}>
                                 <select
-                                    value={selectedBuildingId}
-                                    onChange={(e) => setSelectedBuildingId(e.target.value)}
+                                    value={selectedFacultyId}
+                                    onChange={(e) => setSelectedFacultyId(e.target.value)}
                                 >
-                                    <option value="" disabled>Select a building</option>
-                                    {buildings.map((building) => (
-                                        <option key={building.id} value={String(building.id)}>
-                                            {building.name}
+                                    <option value="" disabled>Select a faculty</option>
+                                    {faculties.map((faculty) => (
+                                        <option key={faculty.id} value={String(faculty.id)}>
+                                            {faculty.name}
                                         </option>
                                     ))}
                                 </select>
@@ -333,7 +334,7 @@ function FacultiesMenu() {
                             <Button
                                 type={"primary"}
                                 loading={addLoading}
-                                disabled={!newFacultyName || !selectedBuildingId}
+                                disabled={!newDepartmentName || !selectedFacultyId}
                                 onClick={handleAdd}
                                 className={"addFacultyButton"}
                                 size={"large"}
@@ -356,19 +357,19 @@ function FacultiesMenu() {
             </div>
             <ToastContainer/>
             <Modal
-                title="Edit Faculty"
+                title="Edit Department"
                 open={isModalOpen}
                 onOk={handleOk}
                 onCancel={handleCancel}
             >
                 <Form form={form}>
                     <Form.Item
-                        label="Faculty Name"
+                        label="Department Name"
                         name="name"
                         rules={[
                             {
                                 required: true,
-                                message: 'Please input the faculty name!',
+                                message: 'Please input the department name!',
                             },
                         ]}
                     >
@@ -380,4 +381,4 @@ function FacultiesMenu() {
     );
 }
 
-export default FacultiesMenu;
+export default DepartmentsMenu;

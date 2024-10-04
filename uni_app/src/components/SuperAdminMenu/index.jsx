@@ -21,6 +21,7 @@ import BuildingsMenu from "../BuildingsMenu/index.jsx";
 import {useNavigate} from "react-router";
 import FacultiesMenu from "../FacultiesMenu/index.jsx";
 import AddAVisitor from "../AddAVisitor/index.jsx";
+import DepartmentsMenu from "../DepartmentsMenu/index.jsx";
 
 const {Header, Sider, Content} = Layout;
 
@@ -126,7 +127,7 @@ const SuperAdminMenu = () => {
             case '7':
                 return <FacultiesMenu/>;
             case '8':
-                return <></>;
+                return <DepartmentsMenu/>;
             case '9':
                 return <></>;
             default:

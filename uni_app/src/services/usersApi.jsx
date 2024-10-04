@@ -86,6 +86,34 @@ export const usersApi = createApi({
                 headers: { 'Content-Type': 'application/json' }
             }),
         }),
+
+        getAllDepartments: builder.query({
+            query: () => `/SuperAdminDepartment/getAll`,
+        }),
+        putOneDepartment: builder.mutation({
+            query: (buildingData) => ({
+                url: `/SuperAdminDepartment/update`,
+                method: 'PUT',
+                body: buildingData,
+                headers: {'Content-Type': 'application/json'}
+            }),
+        }),
+        postNewDepartment: builder.mutation({
+            query: (id) => ({
+                url: `/SuperAdminDepartment/add`,
+                method: 'POST',
+                body: id,
+                headers: {'Content-Type': 'application/json'}
+            }),
+        }),
+        changeAvailabilityDepartment: builder.mutation({
+            query: ({ id, data }) => ({
+                url: `/SuperAdminDepartment/change/availity?id=${id}`,
+                method: 'PUT',
+                body: data,
+                headers: { 'Content-Type': 'application/json' }
+            }),
+        }),
     }),
 });
 
@@ -101,5 +129,10 @@ export const {
     useGetAllFacultiesQuery,
     usePutOneFacultyMutation,
     usePostNewFacultyMutation,
-    useChangeAvailabilityFacultyMutation
+    useChangeAvailabilityFacultyMutation,
+
+    useGetAllDepartmentsQuery,
+    usePutOneDepartmentMutation,
+    usePostNewDepartmentMutation,
+    useChangeAvailabilityDepartmentMutation
 } = usersApi;
