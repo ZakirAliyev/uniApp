@@ -32,6 +32,10 @@ tr, th, td, thead {
     margin-top: 50px;
 }
 
+body {
+    scrollbar-color: #f4f4f4 white;
+}
+
 @media screen and (max-width: 992px) {
     #loginPage {
         .col1 {

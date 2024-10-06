@@ -3,7 +3,8 @@ import {Button, Form, Input, Modal, Switch, Table} from "antd";
 import {Bounce, toast, ToastContainer} from "react-toastify";
 import {FiEdit} from "react-icons/fi";
 import {
-    useChangeAvailabilityFacultyMutation, useGetAllBuildingsQuery,
+    useChangeAvailabilityFacultyMutation,
+    useGetAllBuildingsQuery,
     useGetAllFacultiesQuery,
     usePostNewFacultyMutation,
     usePutOneFacultyMutation

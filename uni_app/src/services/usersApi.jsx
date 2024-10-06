@@ -51,11 +51,11 @@ export const usersApi = createApi({
             }),
         }),
         changeAvailabilityBuilding: builder.mutation({
-            query: ({ id, data }) => ({
+            query: ({id, data}) => ({
                 url: `/SuperAdminBuilding/change/availity?id=${id}`,
                 method: 'PUT',
                 body: data,
-                headers: { 'Content-Type': 'application/json' }
+                headers: {'Content-Type': 'application/json'}
             }),
         }),
 
@@ -79,11 +79,11 @@ export const usersApi = createApi({
             }),
         }),
         changeAvailabilityFaculty: builder.mutation({
-            query: ({ id, data }) => ({
+            query: ({id, data}) => ({
                 url: `/SuperAdminFaculty/change/availity?id=${id}`,
                 method: 'PUT',
                 body: data,
-                headers: { 'Content-Type': 'application/json' }
+                headers: {'Content-Type': 'application/json'}
             }),
         }),
 
@@ -107,13 +107,39 @@ export const usersApi = createApi({
             }),
         }),
         changeAvailabilityDepartment: builder.mutation({
-            query: ({ id, data }) => ({
+            query: ({id, data}) => ({
                 url: `/SuperAdminDepartment/change/availity?id=${id}`,
                 method: 'PUT',
                 body: data,
-                headers: { 'Content-Type': 'application/json' }
+                headers: {'Content-Type': 'application/json'}
             }),
         }),
+
+        getAllTeachers: builder.query({
+            query: () => `/Admin/admin/getAll`,
+        }),
+        putOneTeacher: builder.mutation({
+            query: (buildingData) => ({
+                url: `/Admin/update`,
+                method: 'PUT',
+                body: buildingData,
+                headers: {'Content-Type': 'application/json'}
+            }),
+        }),
+        postNewTeacher: builder.mutation({
+            query: (id) => ({
+                url: `/Admin/add/admin`,
+                method: 'POST',
+                body: id,
+                headers: {'Content-Type': 'application/json'}
+            }),
+        }),
+        deleteTeacher: builder.mutation({
+            query: (id) => ({
+                url: `/Admin/delete/${id}`,
+                method: 'DELETE',
+            }),
+        })
     }),
 });
 
@@ -134,5 +160,10 @@ export const {
     useGetAllDepartmentsQuery,
     usePutOneDepartmentMutation,
     usePostNewDepartmentMutation,
-    useChangeAvailabilityDepartmentMutation
+    useChangeAvailabilityDepartmentMutation,
+
+    useGetAllTeachersQuery,
+    usePutOneTeacherMutation,
+    usePostNewTeacherMutation,
+    useDeleteTeacherMutation
 } = usersApi;

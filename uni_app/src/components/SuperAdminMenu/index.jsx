@@ -4,17 +4,12 @@ import {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
 } from '@ant-design/icons';
-import {Button, Layout, Menu, theme, Form} from 'antd';
+import {Button, Layout, Menu, theme} from 'antd';
 import {MdHomeRepairService, MdLogout, MdOutlineAdminPanelSettings, MdOutlineSecurity} from "react-icons/md";
 import Swal from "sweetalert2";
 import SuperAdminTable from "../SuperAdminTable/index.jsx";
 import {IoPeople, IoPersonAddSharp} from "react-icons/io5";
 import {FaBookOpen, FaBuilding, FaChalkboardTeacher} from "react-icons/fa";
-import {RiAdminFill} from "react-icons/ri";
-import {useFormik} from "formik";
-import * as Yup from 'yup';
-import {useGetAllBuildingsQuery, usePostNewBuildingMutation} from "../../services/usersApi.jsx";
-import {toast, Bounce} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Cookies from "js-cookie";
 import BuildingsMenu from "../BuildingsMenu/index.jsx";
@@ -22,93 +17,19 @@ import {useNavigate} from "react-router";
 import FacultiesMenu from "../FacultiesMenu/index.jsx";
 import AddAVisitor from "../AddAVisitor/index.jsx";
 import DepartmentsMenu from "../DepartmentsMenu/index.jsx";
+import TeachersMenu from "../TeachersMenu/index.jsx";
 
 const {Header, Sider, Content} = Layout;
 
 const SuperAdminMenu = () => {
     const [collapsed, setCollapsed] = useState(false);
     const [selectedMenuItem, setSelectedMenuItem] = useState('1');
-    const [isCarChecked, setIsCarChecked] = useState(false);
-    const {data: allBuildings, refetch} = useGetAllBuildingsQuery();
 
     const navigate = useNavigate();
-
-    const formik = useFormik({
-        initialValues: {
-            firstName: '',
-            lastName: '',
-            email: '',
-            description: '',
-            carNumber: null
-        },
-        validationSchema: Yup.object({
-            carNumber: Yup.string().matches(/^[0-9]{2}-[A-Z]{2}-[0-9]{3}$/, 'Invalid car number format! Example: 77-AA-777').nullable(),
-        }),
-        onSubmit: values => {
-            console.log(values);
-        },
-    });
 
     const {
         token: {colorBgContainer, borderRadiusLG},
     } = theme.useToken();
-
-    function handleLogOutBtn() {
-        Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire({
-                    title: "Deleted!",
-                    text: "Your file has been deleted.",
-                    icon: "success"
-                });
-            }
-        });
-    }
-
-    function handleCheckboxChange(e) {
-        setIsCarChecked(e.target.checked);
-        if (!e.target.checked) {
-            formik.setFieldValue('carNumber', null);
-        }
-    }
-
-    const [postNewBuilding] = usePostNewBuildingMutation();
-
-    const [buildingName, setBuildingName] = useState('');
-    const [form] = Form.useForm();
-
-    async function handleAdd(values) {
-        const buildingData = {
-            name: values.building,
-        };
-
-        const response = await postNewBuilding(buildingData).unwrap()
-        if (response && response?.statusCode === 200) {
-            toast.success(response.message, {
-                position: "bottom-right",
-                autoClose: 2500,
-                hideProgressBar: false,
-                closeOnClick: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-                transition: Bounce,
-            });
-            refetch()
-
-        }
-
-        setBuildingName('')
-        form.resetFields()
-    }
 
     const renderContent = () => {
         switch (selectedMenuItem) {
@@ -117,19 +38,17 @@ const SuperAdminMenu = () => {
             case '2':
                 return <AddAVisitor/>;
             case '3':
-                return <div>Content 3</div>;
-            case '4':
                 return <div>Content 4</div>;
-            case '5':
+            case '4':
                 return <div>Content 5</div>;
-            case '6':
+            case '5':
                 return <BuildingsMenu/>;
-            case '7':
+            case '6':
                 return <FacultiesMenu/>;
-            case '8':
+            case '7':
                 return <DepartmentsMenu/>;
-            case '9':
-                return <></>;
+            case '8':
+                return <TeachersMenu/>;
             default:
                 return <SuperAdminTable/>;
         }
@@ -176,36 +95,31 @@ const SuperAdminMenu = () => {
                         },
                         {
                             key: '4',
-                            icon: <RiAdminFill className={"icon"}/>,
-                            label: 'Admins',
-                        },
-                        {
-                            key: '5',
                             icon: <MdOutlineSecurity className={"icon"}/>,
                             label: 'Guardians',
                         },
                         {
-                            key: '6',
+                            key: '5',
                             icon: <FaBuilding className={"icon"}/>,
                             label: 'Buildings',
                         },
                         {
-                            key: '7',
+                            key: '6',
                             icon: <FaBookOpen className={"icon"}/>,
                             label: 'Faculties',
                         },
                         {
-                            key: '8',
+                            key: '7',
                             icon: <MdHomeRepairService className={"icon"}/>,
                             label: 'Departments',
                         },
                         {
-                            key: '9',
+                            key: '8',
                             icon: <FaChalkboardTeacher className={"icon"}/>,
                             label: 'Teachers',
                         },
                         {
-                            key: '10',
+                            key: '9',
                             icon: <MdLogout className={"icon"}/>,
                             label: 'Log out',
                             style: {
