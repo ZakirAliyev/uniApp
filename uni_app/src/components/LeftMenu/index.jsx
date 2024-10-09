@@ -1,5 +1,5 @@
-import {useState} from 'react';
-import './index.scss'
+import { useState } from 'react';
+import './index.scss';
 import {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
@@ -7,16 +7,18 @@ import {
     UserOutlined,
     VideoCameraOutlined,
 } from '@ant-design/icons';
-import {Button, Layout, Menu, theme} from 'antd';
+import { Button, Layout, Menu, theme } from 'antd';
 import UserTable from "../UserTable/index.jsx";
-import {MdLogout} from "react-icons/md";
+import { MdLogout } from "react-icons/md";
 import Swal from "sweetalert2";
+import { useGetFileQuery } from "../../services/usersApi.jsx";
 
-const {Header, Sider, Content} = Layout;
+const { Header, Sider, Content } = Layout;
+
 const LeftMenu = () => {
     const [collapsed, setCollapsed] = useState(false);
     const {
-        token: {colorBgContainer, borderRadiusLG},
+        token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
 
     function handleLogOutBtn() {
@@ -39,6 +41,28 @@ const LeftMenu = () => {
         });
     }
 
+    const { data: fileData, error, isLoading } = useGetFileQuery();
+
+    async function handleGet() {
+        // Check if the data is loaded and available
+        if (fileData) {
+            // Create a Blob from the fileContents
+            const blob = new Blob([new Uint8Array(atob(fileData.data.fileContents).split('').map(char => char.charCodeAt(0)))], { type: fileData.data.contentType });
+            const url = URL.createObjectURL(blob);
+
+            // Create a link element for downloading
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'file.xlsx'); // Dosya adı
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url); // Bellekten URL'yi kaldır
+        } else if (error) {
+            console.error("Error fetching file:", error);
+        }
+    }
+
     return (
         <Layout id={"leftMenu"}>
             <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -52,10 +76,16 @@ const LeftMenu = () => {
                         textAlign: 'center',
                         fontSize: '16px'
                     }}>
-                    {collapsed ? "BSU" : "Baku State University"}
+                        {collapsed ? "BSU" : "Baku State University"}
                     </span>
+                    <div>
+                        <button onClick={handleGet} disabled={isLoading}>
+                            {isLoading ? 'Loading...' : 'GET FILE'}
+                        </button>
+                        {error && <p>Error loading file: {error.message}</p>}
+                    </div>
                 </div>
-                <div className="demo-logo-vertical"/>
+                <div className="demo-logo-vertical" />
                 <Menu
                     theme="dark"
                     mode="inline"
@@ -63,17 +93,17 @@ const LeftMenu = () => {
                     items={[
                         {
                             key: '1',
-                            icon: <UserOutlined/>,
+                            icon: <UserOutlined />,
                             label: 'nav 1',
                         },
                         {
                             key: '2',
-                            icon: <VideoCameraOutlined/>,
+                            icon: <VideoCameraOutlined />,
                             label: 'nav 2',
                         },
                         {
                             key: '3',
-                            icon: <UploadOutlined/>,
+                            icon: <UploadOutlined />,
                             label: 'nav 3',
                         },
                     ]}
@@ -91,7 +121,7 @@ const LeftMenu = () => {
                 >
                     <Button
                         type="text"
-                        icon={collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
+                        icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
                         onClick={() => setCollapsed(!collapsed)}
                         style={{
                             fontSize: '16px',
@@ -105,7 +135,7 @@ const LeftMenu = () => {
                             : Security
                         </span>
                         <button onClick={() => handleLogOutBtn()}>
-                            <MdLogout/>
+                            <MdLogout />
                         </button>
                     </div>
                 </Header>
@@ -118,10 +148,11 @@ const LeftMenu = () => {
                         borderRadius: borderRadiusLG,
                     }}
                 >
-                    <UserTable/>
+                    <UserTable />
                 </Content>
             </Layout>
         </Layout>
     );
 };
+
 export default LeftMenu;

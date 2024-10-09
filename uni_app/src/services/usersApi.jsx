@@ -139,7 +139,29 @@ export const usersApi = createApi({
                 url: `/Admin/delete/${id}`,
                 method: 'DELETE',
             }),
-        })
+        }),
+
+        getAdminProfileData: builder.query({
+            query: () => `/Admin/profil`,
+        }),
+        putAdminProfileData: builder.mutation({
+            query: (buildingData) => ({
+                url: `/Admin/profil/update`,
+                method: 'PUT',
+                body: buildingData,
+                headers: {'Content-Type': 'application/json'}
+            }),
+        }),
+
+        getAllSecurity: builder.query({
+            query: () => `/Admin/admin/security`,
+        }),
+
+        getFile: builder.query({
+            query: () => ({
+                url: `/Security/exportExcel/visitors`,
+            }),
+        }),
     }),
 });
 
@@ -165,5 +187,12 @@ export const {
     useGetAllTeachersQuery,
     usePutOneTeacherMutation,
     usePostNewTeacherMutation,
-    useDeleteTeacherMutation
+    useDeleteTeacherMutation,
+
+    useGetAdminProfileDataQuery,
+    usePutAdminProfileDataMutation,
+
+    useGetAllSecurityQuery,
+
+    useGetFileQuery
 } = usersApi;

@@ -1,0 +1,35 @@
+#superAdminProfile {
+  padding: 20px;
+  border-radius: 8px;
+
+  strong {
+    width: 200px;
+  }
+
+  h2 {
+    margin-bottom: 20px;
+  }
+
+  .input-field {
+    max-width: 600px;
+    width: 100%;
+  }
+
+  .profile-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .profile-item {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #333;
+    display: flex;
+    align-items: center;
+
+    strong {
+      color: #555;
+    }
+  }
+
+}

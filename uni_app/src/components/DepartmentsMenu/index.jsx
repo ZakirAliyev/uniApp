@@ -9,7 +9,7 @@ import {
     usePostNewDepartmentMutation,
     usePutOneDepartmentMutation
 } from "../../services/usersApi.jsx";
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {PulseLoader} from "react-spinners";
 
 function DepartmentsMenu() {
@@ -34,6 +34,10 @@ function DepartmentsMenu() {
     const [postNewDepartment] = usePostNewDepartmentMutation();
     const [updateDepartment] = usePutOneDepartmentMutation();
     const [changeAvailabilityDepartment] = useChangeAvailabilityDepartmentMutation();
+
+    useEffect(() => {
+        refetch();
+    }, []);
 
     const showModal = (department) => {
         setSelectedDepartment(department);

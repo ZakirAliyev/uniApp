@@ -8,7 +8,7 @@ import {
     usePostNewBuildingMutation,
     usePutOneBuildingMutation
 } from "../../services/usersApi.jsx";
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {PulseLoader} from "react-spinners";
 
 function BuildingsMenu() {
@@ -16,6 +16,7 @@ function BuildingsMenu() {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedBuilding, setSelectedBuilding] = useState(null);
+
 
     const showModal = (building) => {
         setSelectedBuilding(building);
@@ -37,6 +38,10 @@ function BuildingsMenu() {
 
     const [showAvailable, setShowAvailable] = useState(false);
     const [showDeleted, setShowDeleted] = useState(false);
+
+    useEffect(() => {
+        refetch();
+    }, []);
 
     const filteredData = dataSource
         .filter(building => {

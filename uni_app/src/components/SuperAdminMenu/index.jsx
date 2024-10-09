@@ -18,6 +18,11 @@ import FacultiesMenu from "../FacultiesMenu/index.jsx";
 import AddAVisitor from "../AddAVisitor/index.jsx";
 import DepartmentsMenu from "../DepartmentsMenu/index.jsx";
 import TeachersMenu from "../TeachersMenu/index.jsx";
+import AddATeacher from "../AddATeacher/index.jsx";
+import {useGetAdminProfileDataQuery} from "../../services/usersApi.jsx";
+import SuperAdminProfile from "../SuperAdminProfile/index.jsx";
+import {FaCircleUser} from "react-icons/fa6";
+import GuardiansMenu from "../GuardiansMenu/index.jsx";
 
 const {Header, Sider, Content} = Layout;
 
@@ -40,7 +45,7 @@ const SuperAdminMenu = () => {
             case '3':
                 return <div>Content 4</div>;
             case '4':
-                return <div>Content 5</div>;
+                return <GuardiansMenu/>;
             case '5':
                 return <BuildingsMenu/>;
             case '6':
@@ -49,10 +54,17 @@ const SuperAdminMenu = () => {
                 return <DepartmentsMenu/>;
             case '8':
                 return <TeachersMenu/>;
+            case '9':
+                return <AddATeacher/>
+            case '11':
+                return <SuperAdminProfile/>
             default:
                 return <SuperAdminTable/>;
         }
     };
+
+    const {data: adminProfileData} = useGetAdminProfileDataQuery()
+    console.log(adminProfileData)
 
     return (
         <Layout id={"superAdminMenu"}>
@@ -119,7 +131,19 @@ const SuperAdminMenu = () => {
                             label: 'Teachers',
                         },
                         {
-                            key: '9',
+                            key: '11',
+                            icon: <FaCircleUser className={"icon"}/>,
+                            label: 'Profile',
+                            style: {
+                                position: 'absolute',
+                                bottom: '42px',
+                            },
+                            onClick: () => {
+
+                            }
+                        },
+                        {
+                            key: '10',
                             icon: <MdLogout className={"icon"}/>,
                             label: 'Log out',
                             style: {
@@ -151,6 +175,11 @@ const SuperAdminMenu = () => {
                                 });
                             }
                         },
+                        {
+                            key: '9',
+                            icon: <IoPersonAddSharp className={"icon"}/>,
+                            label: 'Add a teacher',
+                        },
                     ]}
                 />
             </Sider>
@@ -175,8 +204,16 @@ const SuperAdminMenu = () => {
                         }}
                     />
                     <div className={"profile"}>
+                        <span style={{
+                            color: 'red',
+                            padding: '5px'
+                        }}>Role:</span>
+                        <span>
+                            {adminProfileData?.name}
+                            {adminProfileData?.surname}
+                        </span>
                         <div className={"img1"}>
-                            <img src={""} alt={""}/>
+                            <img src={adminProfileData?.imgUrl} alt={"Image"}/>
                         </div>
                     </div>
                 </Header>

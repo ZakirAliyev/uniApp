@@ -9,7 +9,7 @@ import {
     usePostNewFacultyMutation,
     usePutOneFacultyMutation
 } from "../../services/usersApi.jsx";
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {PulseLoader} from "react-spinners";
 
 function FacultiesMenu() {
@@ -34,6 +34,10 @@ function FacultiesMenu() {
     const [postNewFaculty] = usePostNewFacultyMutation();
     const [updateFaculty] = usePutOneFacultyMutation();
     const [changeAvailabilityFaculty] = useChangeAvailabilityFacultyMutation();
+
+    useEffect(() => {
+        refetch();
+    }, []);
 
     const showModal = (faculty) => {
         setSelectedFaculty(faculty);

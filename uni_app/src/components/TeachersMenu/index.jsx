@@ -9,7 +9,7 @@ import {
     useGetAllTeachersQuery,
     usePutOneTeacherMutation,
 } from "../../services/usersApi.jsx";
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {FaRegTrashAlt} from "react-icons/fa";
 import Swal from "sweetalert2";
 import 'react-toastify/dist/ReactToastify.css';
@@ -34,6 +34,10 @@ function TeachersMenu() {
 
     const [updateTeacher] = usePutOneTeacherMutation();
     const [deleteTeacher] = useDeleteTeacherMutation();
+
+    useEffect(() => {
+        refetch();
+    }, []);
 
     const showModal = (teacher) => {
         setSelectedTeacher(teacher);
@@ -119,7 +123,6 @@ function TeachersMenu() {
             } else {
                 throw new Error();
             }
-            // eslint-disable-next-line no-unused-vars
         } catch (error) {
             toast.error('Please fill in the required fields.', {
                 position: "bottom-right",
@@ -284,11 +287,14 @@ function TeachersMenu() {
                             value={selectedDepartmentForFilter}
                         >
                             <option value="">All Departments</option>
-                            {departments.map((department) => (
-                                <option key={department.id} value={String(department.id)}>
-                                    {department.name}
-                                </option>
-                            ))}
+                            {departments
+                                .filter(department => !department.isDeleted) // Only include departments where isDeleted is false
+                                .map((department) => (
+                                    <option key={department.id} value={String(department.id)}>
+                                        {department.name}
+                                    </option>
+                                ))}
+
                         </select>
 
                         <select
