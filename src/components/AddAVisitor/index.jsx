@@ -26,7 +26,6 @@ function AddAVisitor() {
             }),
         }),
         onSubmit: (values) => {
-            // Handle form submission
             console.log(values);
         },
     });
@@ -34,7 +33,7 @@ function AddAVisitor() {
     const handleCheckboxChange = (e) => {
         formik.setFieldValue('carCheck', e.target.checked);
         if (!e.target.checked) {
-            formik.setFieldValue('carNumber', ''); // Reset car number if checkbox is unchecked
+            formik.setFieldValue('carNumber', '');
         }
     };
 

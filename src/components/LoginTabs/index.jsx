@@ -65,14 +65,14 @@ export default function LoginTabs() {
                     response = await postAdminLogin(values).unwrap();
                     if (response?.statusCode === 200) {
                         toast.success('Admin login successful!', {
-                            position: "top-right",
-                            autoClose: 1500,
+                            position: "bottom-right",
+                            autoClose: 2500,
                             hideProgressBar: false,
                             closeOnClick: true,
                             pauseOnHover: true,
                             draggable: true,
                             progress: undefined,
-                            theme: "light",
+                            theme: "dark",
                             transition: Bounce,
                         });
                         Cookies.set('token', response?.data?.token, {expires: 7});
@@ -83,20 +83,20 @@ export default function LoginTabs() {
                             } else if (response?.data?.role === 'Admin') {
                                 navigate('/cp');
                             }
-                        }, 2500);
+                        }, 3500);
                     }
                 } else {
                     response = await postSecurityLogin(values).unwrap();
                     if (response?.statusCode === 200) {
                         toast.success('Security login successful!', {
-                            position: "top-right",
-                            autoClose: 1500,
+                            position: "bottom-right",
+                            autoClose: 2500,
                             hideProgressBar: false,
                             closeOnClick: true,
                             pauseOnHover: true,
                             draggable: true,
                             progress: undefined,
-                            theme: "light",
+                            theme: "dark",
                             transition: Bounce,
                         });
                         Cookies.set('token', response?.data?.token, {expires: 7});
@@ -107,14 +107,14 @@ export default function LoginTabs() {
                 }
             } catch (error) {
                 toast.error(`${error?.data?.error}`, {
-                    position: "top-right",
-                    autoClose: 1500,
+                    position: "bottom-right",
+                    autoClose: 2500,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
                     draggable: true,
                     progress: undefined,
-                    theme: "light",
+                    theme: "dark",
                     transition: Bounce,
                 });
             }

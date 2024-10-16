@@ -4,7 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="961267e0-c208-4c58-8422-ddfcc3e85879" name="Changes" comment="" />
+    <list default="true" id="961267e0-c208-4c58-8422-ddfcc3e85879" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/AddAGuardian/index.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/AddAGuardian/index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/SecurityTable/index.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/SecurityTable/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AddATeacher/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddATeacher/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AddAVisitor/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddAVisitor/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LeftMenu/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SecurityMenu/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LeftMenu/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SecurityMenu/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LoginTabs/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LoginTabs/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SuperAdminProfile/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SuperAdminProfile/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TeachersMenu/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TeachersMenu/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/LoginPage/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/LoginPage/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/LoginPage/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/LoginPage/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/SecurityPage/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SecurityPage/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/SecurityPage/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SecurityPage/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/usersApi.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/usersApi.jsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,6 +43,8 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/MSI/Desktop/uniApp/src/components&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -32,10 +52,18 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;npm.dev.executor&quot;: &quot;Run&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2024.2.1\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2024.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\MSI\Desktop\uniApp\src\components" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\MSI\Desktop\uniApp\src\pages\LoginPage" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="dev" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
@@ -51,7 +79,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-WS-242.21829.149" />
+        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-WS-242.20224.342" />
       </set>
     </attachedChunks>
   </component>
@@ -64,6 +92,8 @@
       <option name="presentableId" value="Default" />
       <updated>1728540477588</updated>
       <workItem from="1728540479726" duration="6238000" />
+      <workItem from="1729069405458" duration="3501000" />
+      <workItem from="1729083796054" duration="16720000" />
     </task>
     <servers />
   </component>

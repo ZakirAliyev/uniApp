@@ -8,13 +8,6 @@ function LoginPage() {
             <div className={"lane"}></div>
             <div className={"container"}>
                 <Row gutter={[16, 16]} justify="center" align="middle">
-                    <Col xs={24} sm={24} md={12} className={"col col1"}>
-                        <img
-                            src={"https://bdu.info.az/storage/photos/44/MED%C4%B0AK%C4%B0T/0-Baki%20Dovlet%20Universiteti.png"}
-                            alt={"Image"}
-                            className="responsive-image"
-                        />
-                    </Col>
                     <Col xs={24} sm={24} md={12} className={"col col2"}>
                         <div className={"wrapper"}>
                             <div className={"img"}>
@@ -27,6 +20,13 @@ function LoginPage() {
                             <div className={"bsu"}>Baku State University</div>
                             <LoginTabs/>
                         </div>
+                    </Col>
+                    <Col xs={24} sm={24} md={12} className={"col col1"}>
+                        <img
+                            src={"https://bdu.info.az/storage/photos/44/MED%C4%B0AK%C4%B0T/0-Baki%20Dovlet%20Universiteti.png"}
+                            alt={"Image"}
+                            className="responsive-image"
+                        />
                     </Col>
                 </Row>
             </div>

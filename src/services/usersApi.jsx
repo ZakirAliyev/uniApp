@@ -153,14 +153,25 @@ export const usersApi = createApi({
             }),
         }),
 
+
+        getSecurityProfileData: builder.query({
+            query: () => `/Admin/profil`,
+        }),
+
         getAllSecurity: builder.query({
             query: () => `/Admin/admin/security`,
         }),
-
-        getFile: builder.query({
-            query: () => ({
-                url: `/Security/exportExcel/visitors`,
+        postNewGuardians: builder.mutation({
+            query: (id) => ({
+                url: `/Admin/add/security`,
+                method: 'POST',
+                body: id,
+                headers: {'Content-Type': 'application/json'}
             }),
+        }),
+
+        getVisitorsDataForSecurity: builder.query({
+            query: () => `/Security/getAll/visitors`,
         }),
     }),
 });
@@ -192,7 +203,10 @@ export const {
     useGetAdminProfileDataQuery,
     usePutAdminProfileDataMutation,
 
-    useGetAllSecurityQuery,
+    useGetSecurityProfileDataQuery,
 
-    useGetFileQuery
+    useGetAllSecurityQuery,
+    usePostNewGuardiansMutation,
+
+    useGetVisitorsDataForSecurityQuery
 } = usersApi;

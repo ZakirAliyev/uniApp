@@ -1,12 +1,10 @@
 import './index.scss'
-import LeftMenu from "../../components/LeftMenu/index.jsx";
+import SecurityMenu from "../../components/SecurityMenu/index.jsx";
 
 function SecurityPage() {
     return (
-        <section id={"homePage"}>
-            {/*<SecurityNavbar/>*/}
-                <LeftMenu/>
-                {/*<UserTable/>*/}
+        <section id={"securityPage"}>
+            <SecurityMenu/>
         </section>
     );
 }

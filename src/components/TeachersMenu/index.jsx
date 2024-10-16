@@ -52,10 +52,13 @@ function TeachersMenu() {
 
     const filteredData = dataSource
         .filter(teacher => {
-            if (selectedDepartmentForFilter) {
-                return String(teacher.departmentId) === selectedDepartmentForFilter;
+            if (selectedDepartmentForFilter === "withoutDepartment") {
+                return !teacher.departmentId; // Filter for teachers with null department
             }
-            return true;
+            if (selectedDepartmentForFilter) {
+                return String(teacher.departmentId) === selectedDepartmentForFilter; // Filter for selected department
+            }
+            return true; // No department filter applied
         })
         .filter(teacher =>
             teacher.name.toLowerCase().startsWith(searchTerm.toLowerCase()) ||
@@ -224,7 +227,7 @@ function TeachersMenu() {
             title: 'Department Name',
             dataIndex: 'departmentName',
             render: text => <span
-                style={{color: '#13a608', fontSize: "15px", fontWeight: 600, cursor: 'pointer'}}>{text}</span>,
+                style={{color: '#13a608', fontSize: "15px", fontWeight: 600, cursor: 'pointer'}}>{text  || 'N/A'}</span>,
         },
         {
             title: 'Position',
@@ -287,6 +290,8 @@ function TeachersMenu() {
                             value={selectedDepartmentForFilter}
                         >
                             <option value="">All Departments</option>
+                            <option value="withoutDepartment">Without a department</option>
+                            {/* New option */}
                             {departments
                                 .filter(department => !department.isDeleted) // Only include departments where isDeleted is false
                                 .map((department) => (
@@ -294,9 +299,7 @@ function TeachersMenu() {
                                         {department.name}
                                     </option>
                                 ))}
-
                         </select>
-
                         <select
                             onChange={(e) => {
                                 const value = e.target.value;
