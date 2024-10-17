@@ -43,18 +43,16 @@ const SuperAdminMenu = () => {
             case '2':
                 return <AddAVisitor/>;
             case '3':
-                return <div>Content 4</div>;
-            case '4':
                 return <GuardiansMenu/>;
-            case '5':
+            case '4':
                 return <BuildingsMenu/>;
-            case '6':
+            case '5':
                 return <FacultiesMenu/>;
-            case '7':
+            case '6':
                 return <DepartmentsMenu/>;
-            case '8':
+            case '7':
                 return <TeachersMenu/>;
-            case '9':
+            case '8':
                 return <AddATeacher/>
             case '11':
                 return <SuperAdminProfile/>
@@ -102,33 +100,33 @@ const SuperAdminMenu = () => {
                         },
                         {
                             key: '3',
-                            icon: <MdOutlineAdminPanelSettings className={"icon"}/>,
-                            label: 'Roles',
-                        },
-                        {
-                            key: '4',
                             icon: <MdOutlineSecurity className={"icon"}/>,
                             label: 'Guardians',
                         },
                         {
-                            key: '5',
+                            key: '4',
                             icon: <FaBuilding className={"icon"}/>,
                             label: 'Buildings',
                         },
                         {
-                            key: '6',
+                            key: '5',
                             icon: <FaBookOpen className={"icon"}/>,
                             label: 'Faculties',
                         },
                         {
-                            key: '7',
+                            key: '6',
                             icon: <MdHomeRepairService className={"icon"}/>,
                             label: 'Departments',
                         },
                         {
-                            key: '8',
+                            key: '7',
                             icon: <FaChalkboardTeacher className={"icon"}/>,
                             label: 'Teachers',
+                        },
+                        {
+                            key: '8',
+                            icon: <IoPersonAddSharp className={"icon"}/>,
+                            label: 'Add a teacher',
                         },
                         {
                             key: '11',
@@ -169,11 +167,6 @@ const SuperAdminMenu = () => {
                                     }
                                 });
                             }
-                        },
-                        {
-                            key: '9',
-                            icon: <IoPersonAddSharp className={"icon"}/>,
-                            label: 'Add a teacher',
                         },
                     ]}
                 />

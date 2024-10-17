@@ -7,7 +7,6 @@ import {
 import {Button, Layout, Menu, theme} from 'antd';
 import {MdLogout} from "react-icons/md";
 import Swal from "sweetalert2";
-import SuperAdminTable from "../SuperAdminTable/index.jsx";
 import {IoPeople} from "react-icons/io5";
 import 'react-toastify/dist/ReactToastify.css';
 import Cookies from "js-cookie";
@@ -15,6 +14,8 @@ import {useNavigate} from "react-router";
 import {useGetAdminProfileDataQuery} from "../../services/usersApi.jsx";
 import {FaCircleUser} from "react-icons/fa6";
 import SecurityTable from "../SecurityTable/index.jsx";
+import {FaFileCsv, FaFileExcel, FaFilePdf} from "react-icons/fa";
+import {IoMdPrint} from "react-icons/io";
 
 const {Header, Sider, Content} = Layout;
 
@@ -31,6 +32,14 @@ const SuperAdminMenu = () => {
     const renderContent = () => {
         switch (selectedMenuItem) {
             case '1':
+                return <SecurityTable/>;
+            case '2':
+                return <SecurityTable/>;
+            case '3':
+                return <SecurityTable/>;
+            case '4':
+                return <SecurityTable/>;
+            case '5':
                 return <SecurityTable/>;
             default:
                 return <SecurityTable/>;
@@ -66,10 +75,30 @@ const SuperAdminMenu = () => {
                         {
                             key: '1',
                             icon: <IoPeople className={"icon"}/>,
-                            label: 'Visitors',
+                            label: 'All visitors',
                         },
                         {
                             key: '2',
+                            icon: <FaFileExcel className={"icon"}/>,
+                            label: 'Export as Excel',
+                        },
+                        {
+                            key: '3',
+                            icon: <FaFileCsv className={"icon"}/>,
+                            label: 'Export as CSV',
+                        },
+                        {
+                            key: '4',
+                            icon: <FaFilePdf className={"icon"}/>,
+                            label: 'Export as PDF',
+                        },
+                        {
+                            key: '5',
+                            icon: <IoMdPrint className={"icon"}/>,
+                            label: 'Print',
+                        },
+                        {
+                            key: '6',
                             icon: <FaCircleUser className={"icon"}/>,
                             label: 'Profile',
                             style: {
@@ -78,7 +107,7 @@ const SuperAdminMenu = () => {
                             }
                         },
                         {
-                            key: '3',
+                            key: '7',
                             icon: <MdLogout className={"icon"}/>,
                             label: 'Log out',
                             style: {

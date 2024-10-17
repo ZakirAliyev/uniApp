@@ -32,6 +32,10 @@ tr, th, td, thead {
     margin-top: 50px;
 }
 
+.ant-table-wrapper {
+    overflow-x: auto;
+}
+
 body {
     scrollbar-color: #f4f4f4 white;
 }
