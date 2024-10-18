@@ -173,6 +173,19 @@ export const usersApi = createApi({
         getVisitorsDataForSecurity: builder.query({
             query: () => `/Security/getAll/visitors`,
         }),
+
+
+
+
+        getExcelFile: builder.query(({
+            query: () => `/Security/exportExcel/visitors`,
+        })),
+        getPdfFile: builder.query(({
+            query: () => `/Security/exportPdf/visitors`,
+        })),
+        getPrintFile: builder.query(({
+            query: () => `/Security/print/today/visitors`,
+        }))
     }),
 });
 
@@ -208,5 +221,12 @@ export const {
     useGetAllSecurityQuery,
     usePostNewGuardiansMutation,
 
-    useGetVisitorsDataForSecurityQuery
+    useGetVisitorsDataForSecurityQuery,
+
+
+
+
+    useGetExcelFileQuery,
+    useGetPdfFileQuery,
+    useGetPrintFileQuery,
 } = usersApi;

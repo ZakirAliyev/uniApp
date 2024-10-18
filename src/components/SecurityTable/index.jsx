@@ -1,10 +1,12 @@
-import './index.scss'
+import './index.scss';
 
 import {Input, Table} from 'antd';
+import {useState} from 'react';
 import {useGetVisitorsDataForSecurityQuery} from "../../services/usersApi.jsx";
-import {FiEdit} from "react-icons/fi";
 
 const SecurityTable = () => {
+    const [searchTerm, setSearchTerm] = useState('');
+    const [filterBy, setFilterBy] = useState(''); // Filtreleme için state
 
     const columns = [
         {
@@ -15,8 +17,6 @@ const SecurityTable = () => {
         {
             title: 'Name',
             dataIndex: 'name',
-            sorter: (a, b) => a.name.length - b.name.length,
-            sortDirections: ['descend'],
         },
         {
             title: 'Surname',
@@ -35,26 +35,25 @@ const SecurityTable = () => {
             dataIndex: 'comingDate',
         },
         {
-            title: 'Email',
-            dataIndex: 'email',
-        },
-        {
             title: 'Visited Date',
             dataIndex: 'visitedDate',
-            sorter: (a, b) => new Date(a.visitedDate) - new Date(b.visitedDate),
         },
         {
             title: 'Actions',
+            dataIndex: 'isVisited',
             render: (text, record) => (
                 <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '17px'}}>
-                    <FiEdit
-                        className={"buildingEditIcons"}
-                        style={{
-                            fontSize: '20px',
-                            color: 'gray',
-                            cursor: record.isDeleted ? 'not-allowed' : 'pointer'
-                        }}
-                    />
+                    <button>
+                        {record.isVisited === 1 ? (
+                            <>1</>
+                        ) : record.isVisited === 2 ? (
+                            <>2</>
+                        ) : record.isVisited === 3 ? (
+                            <>3</>
+                        ) : (
+                            <>else</>
+                        )}
+                    </button>
                 </div>
             )
         }
@@ -63,7 +62,7 @@ const SecurityTable = () => {
     const {data} = useGetVisitorsDataForSecurityQuery();
     const dataSource = data?.data?.map(item => ({
         adminId: item.adminId,
-        carNumber: item.carNumber || 'N/A',  // Defaulting to 'N/A' if empty
+        carNumber: item.carNumber || 'N/A',
         comingDate: item.comingDate || 'N/A',
         createdDate: item.createdDate,
         description: item.description || 'N/A',
@@ -74,9 +73,30 @@ const SecurityTable = () => {
         name: item.name,
         surname: item.surname,
         visitedDate: item.visitedDate,
-    }));
+    })) || [];
 
-    console.log(dataSource);
+    // Arama ve filtreleme kriterlerine göre verileri filtreleme
+    const filteredDataSource = dataSource.filter(item => {
+        const matchesSearchTerm =
+            item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            item.surname.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            item.email.toLowerCase().includes(searchTerm.toLowerCase());
+
+        const matchesFilterBy =
+            filterBy === 'With car' ? item.carNumber !== 'N/A' :
+                filterBy === 'Without car' ? item.carNumber === 'N/A' :
+                    true; // Hiçbir filtre yoksa hepsini göster
+
+        return matchesSearchTerm && matchesFilterBy;
+    });
+
+    const onSearchChange = (e) => {
+        setSearchTerm(e.target.value);
+    };
+
+    const onFilterChange = (e) => {
+        setFilterBy(e.target.value);
+    };
 
     const onChange = (pagination, filters, sorter, extra) => {
         console.log('params', pagination, filters, sorter, extra);
@@ -90,19 +110,25 @@ const SecurityTable = () => {
                 justifyContent: 'space-between',
                 padding: '20px 16px'
             }}>
-                <Input size={"large"} placeHolder={"Search visitor"} style={{
-                    maxWidth: '300px',
-                    width: '100%',
-                }}/>
-                <select>
-                    <option>asdasd</option>
-                    <option>asdasd</option>
-                    <option>asdasd</option>
+                <Input
+                    size={"large"}
+                    placeholder={"Search visitor"}
+                    style={{
+                        maxWidth: '300px',
+                        width: '100%',
+                    }}
+                    value={searchTerm}
+                    onChange={onSearchChange}
+                />
+                <select onChange={onFilterChange} value={filterBy}>
+                    <option value="">All visitors</option>
+                    <option value="With car">With car</option>
+                    <option value="Without car">Without car</option>
                 </select>
             </div>
             <Table
                 columns={columns}
-                dataSource={dataSource}
+                dataSource={filteredDataSource}
                 onChange={onChange}
                 rowKey={'id'}
             />
