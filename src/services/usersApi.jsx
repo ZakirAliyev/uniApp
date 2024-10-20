@@ -175,8 +175,6 @@ export const usersApi = createApi({
         }),
 
 
-
-
         getExcelFile: builder.query(({
             query: () => `/Security/exportExcel/visitors`,
         })),
@@ -185,7 +183,16 @@ export const usersApi = createApi({
         })),
         getPrintFile: builder.query(({
             query: () => `/Security/print/today/visitors`,
-        }))
+        })),
+
+        putChangeIsVisited: builder.mutation({
+            query: ({id, data}) => ({
+                url: `/Security/change/isVisited?id=${id}`,
+                method: 'PUT',
+                body: data,
+                headers: {'Content-Type': 'application/json'}
+            }),
+        }),
     }),
 });
 
@@ -224,9 +231,9 @@ export const {
     useGetVisitorsDataForSecurityQuery,
 
 
-
-
     useGetExcelFileQuery,
     useGetPdfFileQuery,
     useGetPrintFileQuery,
+
+    usePutChangeIsVisitedMutation
 } = usersApi;

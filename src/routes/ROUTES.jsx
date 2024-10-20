@@ -2,6 +2,7 @@ import LoginPage from "../pages/LoginPage/index.jsx";
 import SecurityPage from "../pages/SecurityPage/index.jsx";
 import Pages from "../pages/index.jsx";
 import SuperAdminPage from "../pages/SuperAdminPage/index.jsx";
+import UserPage from "../pages/UserPage/index.jsx";
 
 export const ROUTES = [
     {
@@ -10,7 +11,7 @@ export const ROUTES = [
         children: [
             {
                 index: true,
-                element: <></>
+                element: <UserPage/>
             },
             {
                 path: 'login',

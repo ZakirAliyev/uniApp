@@ -5,12 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="961267e0-c208-4c58-8422-ddfcc3e85879" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/SecurityProfileSection/index.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/SecurityProfileSection/index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/UserBanner/index.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/UserBanner/index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/UserFooter/index.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/UserFooter/index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/UserForm/index.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/UserForm/index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/UserNavbar/index.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/UserNavbar/index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/UserPage/index.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/UserPage/index.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/SecurityMenu/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SecurityMenu/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/SecurityTable/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SecurityTable/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SecurityTable/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SecurityTable/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/ROUTES.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/ROUTES.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/services/usersApi.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/usersApi.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -42,7 +54,7 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;npm.dev.executor&quot;: &quot;Run&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2024.2.1\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2024.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -69,7 +81,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-WS-242.21829.149" />
+        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-WS-242.20224.342" />
       </set>
     </attachedChunks>
   </component>
@@ -87,6 +99,8 @@
       <workItem from="1729143737492" duration="220000" />
       <workItem from="1729143970130" duration="4394000" />
       <workItem from="1729227442434" duration="8710000" />
+      <workItem from="1729276078498" duration="1554000" />
+      <workItem from="1729419781585" duration="21356000" />
     </task>
     <servers />
   </component>

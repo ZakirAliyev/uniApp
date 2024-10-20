@@ -2,17 +2,47 @@ import './index.scss';
 
 import {Input, Table} from 'antd';
 import {useState} from 'react';
-import {useGetVisitorsDataForSecurityQuery} from "../../services/usersApi.jsx";
+import {useGetVisitorsDataForSecurityQuery, usePutChangeIsVisitedMutation} from "../../services/usersApi.jsx";
+import {Bounce, toast, ToastContainer} from "react-toastify";
+import Swal from 'sweetalert2'; // Missing import for Swal
 
 const SecurityTable = () => {
     const [searchTerm, setSearchTerm] = useState('');
-    const [filterBy, setFilterBy] = useState(''); // Filtreleme için state
+    const [filterBy, setFilterBy] = useState('');
+
+    const [putChangeIsVisited] = usePutChangeIsVisitedMutation();
+    const {data, refetch} = useGetVisitorsDataForSecurityQuery();
+
+    const handleActionClick = async (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!",
+        }).then(async (result) => {
+            const response = await putChangeIsVisited({id}).unwrap();
+            if (result.isConfirmed) {
+                if (response?.statusCode === 200) {
+                    toast.success(response?.message, {
+                        position: "bottom-right",
+                        autoClose: 2500,
+                        theme: "dark",
+                        transition: Bounce,
+                    });
+                }
+                refetch();
+            }
+        });
+    };
 
     const columns = [
         {
             title: 'ID',
             dataIndex: 'count',
-            render: (text, record, index) => index + 1
+            render: (text, record, index) => index + 1,
         },
         {
             title: 'Name',
@@ -42,25 +72,21 @@ const SecurityTable = () => {
             title: 'Actions',
             dataIndex: 'isVisited',
             render: (text, record) => (
-                <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '17px'}}>
-                    <button>
-                        {record.isVisited === 1 ? (
-                            <>1</>
-                        ) : record.isVisited === 2 ? (
-                            <>2</>
-                        ) : record.isVisited === 3 ? (
-                            <>3</>
-                        ) : (
-                            <>else</>
-                        )}
-                    </button>
+                <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '17px'}}
+                     className={"isVisited"}>
+                    {record.isVisited === 1 ? (
+                        <button onClick={() => handleActionClick(record.id)}>Gəldi</button>
+                    ) : record.isVisited === 2 ? (
+                        <button className="yel" onClick={() => handleActionClick(record.id)}>İçəridə</button>
+                    ) : record.isVisited === 3 ? (
+                        <button className="re">Getdi</button>
+                    ) : null}
                 </div>
-            )
-        }
+            ),
+        },
     ];
 
-    const {data} = useGetVisitorsDataForSecurityQuery();
-    const dataSource = data?.data?.map(item => ({
+    const dataSource = data?.data?.map((item) => ({
         adminId: item.adminId,
         carNumber: item.carNumber || 'N/A',
         comingDate: item.comingDate || 'N/A',
@@ -75,8 +101,7 @@ const SecurityTable = () => {
         visitedDate: item.visitedDate,
     })) || [];
 
-    // Arama ve filtreleme kriterlerine göre verileri filtreleme
-    const filteredDataSource = dataSource.filter(item => {
+    const filteredDataSource = dataSource.filter((item) => {
         const matchesSearchTerm =
             item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
             item.surname.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -85,38 +110,26 @@ const SecurityTable = () => {
         const matchesFilterBy =
             filterBy === 'With car' ? item.carNumber !== 'N/A' :
                 filterBy === 'Without car' ? item.carNumber === 'N/A' :
-                    true; // Hiçbir filtre yoksa hepsini göster
+                    true;
 
         return matchesSearchTerm && matchesFilterBy;
     });
 
-    const onSearchChange = (e) => {
-        setSearchTerm(e.target.value);
-    };
-
-    const onFilterChange = (e) => {
-        setFilterBy(e.target.value);
-    };
-
-    const onChange = (pagination, filters, sorter, extra) => {
-        console.log('params', pagination, filters, sorter, extra);
-    };
+    const onSearchChange = (e) => setSearchTerm(e.target.value);
+    const onFilterChange = (e) => setFilterBy(e.target.value);
 
     return (
-        <section id={"securityTable"}>
+        <section id="securityTable">
             <div style={{
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                padding: '20px 16px'
+                padding: '20px 16px',
             }}>
                 <Input
-                    size={"large"}
-                    placeholder={"Search visitor"}
-                    style={{
-                        maxWidth: '300px',
-                        width: '100%',
-                    }}
+                    size="large"
+                    placeholder="Search visitor"
+                    style={{maxWidth: '300px', width: '100%'}}
                     value={searchTerm}
                     onChange={onSearchChange}
                 />
@@ -129,9 +142,9 @@ const SecurityTable = () => {
             <Table
                 columns={columns}
                 dataSource={filteredDataSource}
-                onChange={onChange}
-                rowKey={'id'}
+                rowKey="id"
             />
+            <ToastContainer/>
         </section>
     );
 }

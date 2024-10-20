@@ -1,0 +1,23 @@
+.isVisited {
+  button {
+    background-color: #459F3B;
+    padding: 10px 20px;
+    outline: none;
+    border: 1px solid transparent;
+    font-size: 16px;
+    border-radius: 10px;
+    color: white;
+
+    &:hover {
+      background-color: #7a7a7a;
+    }
+  }
+
+  .yel {
+    background-color: #D7B56D;
+  }
+
+  .re {
+    background-color: #F70E0D;
+  }
+}

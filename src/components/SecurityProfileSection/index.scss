@@ -1,0 +1,26 @@
+#securityProfileSection {
+  padding: 16px;
+
+  h2 {
+    margin-bottom: 30px;
+  }
+
+  .labelWrapper {
+    display: flex;
+
+    label {
+      min-width: 250px;
+      margin-top: 7px;
+
+      span {
+        color: #F70E0D;
+        margin-left: 5px;
+      }
+    }
+
+    .profileInput {
+      min-width: 600px;
+      width: 100%;
+    }
+  }
+}

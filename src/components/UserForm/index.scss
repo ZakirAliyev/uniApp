@@ -1,0 +1,30 @@
+#userForm {
+  margin: 50px 0;
+
+  h2 {
+    text-align: center;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      margin-bottom: 7px;
+      color: #004879;
+      font-weight: 500;
+    }
+
+    input, textarea {
+      padding: 10px 20px;
+      border: 1px solid #a99674;
+      outline: none;
+      border-radius: 10px;
+
+      &::placeholder {
+        color: #a99674;
+        font-weight: 500;
+      }
+    }
+  }
+}

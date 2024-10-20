@@ -1,29 +1,30 @@
 import './index.scss';
-import { useState } from 'react';
+import {useState} from 'react';
 import {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
 } from '@ant-design/icons';
-import { Button, Layout, Menu, theme } from 'antd';
-import { MdLogout } from "react-icons/md";
+import {Button, Layout, Menu, theme} from 'antd';
+import {MdLogout} from "react-icons/md";
 import Swal from "sweetalert2";
-import { IoPeople } from "react-icons/io5";
+import {IoPeople} from "react-icons/io5";
 import 'react-toastify/dist/ReactToastify.css';
 import Cookies from "js-cookie";
-import { useNavigate } from "react-router";
+import {useNavigate} from "react-router";
 import {
     useGetAdminProfileDataQuery,
     useGetExcelFileQuery,
     useGetPdfFileQuery,
     useGetPrintFileQuery
 } from "../../services/usersApi.jsx";
-import { FaCircleUser } from "react-icons/fa6";
+import {FaCircleUser} from "react-icons/fa6";
 import SecurityTable from "../SecurityTable/index.jsx";
-import { FaFileCsv, FaFileExcel, FaFilePdf } from "react-icons/fa";
-import { IoMdPrint } from "react-icons/io";
-import { saveAs } from 'file-saver';
+import {FaFileCsv, FaFileExcel, FaFilePdf} from "react-icons/fa";
+import {IoMdPrint} from "react-icons/io";
+import {saveAs} from 'file-saver';
+import SecurityProfileSection from "../SecurityProfileSection/index.jsx";
 
-const { Header, Sider, Content } = Layout;
+const {Header, Sider, Content} = Layout;
 
 const SuperAdminMenu = () => {
     const [collapsed, setCollapsed] = useState(false);
@@ -32,7 +33,7 @@ const SuperAdminMenu = () => {
     const navigate = useNavigate();
 
     const {
-        token: { colorBgContainer, borderRadiusLG },
+        token: {colorBgContainer, borderRadiusLG},
     } = theme.useToken();
 
     const resetMenuItem = () => {
@@ -48,22 +49,24 @@ const SuperAdminMenu = () => {
             case '3':
             case '4':
             case '5':
-                return <SecurityTable />;
+                return <SecurityTable/>;
+            case '6':
+                return <SecurityProfileSection/>
             default:
-                return <SecurityTable />;
+                return <SecurityTable/>;
         }
     };
 
-    const { data: excelFile } = useGetExcelFileQuery();
+    const {data: excelFile} = useGetExcelFileQuery();
     const excelFile1 = excelFile?.data;
 
-    const { data: pdfFile } = useGetPdfFileQuery();
+    const {data: pdfFile} = useGetPdfFileQuery();
     const pdfFile1 = pdfFile?.data;
 
-    const { data: printFile } = useGetPrintFileQuery();
+    const {data: printFile} = useGetPrintFileQuery();
     const printFile1 = printFile?.data;
 
-    const { data: adminProfileData } = useGetAdminProfileDataQuery();
+    const {data: adminProfileData} = useGetAdminProfileDataQuery();
 
     return (
         <Layout id={"superAdminMenu"}>
@@ -81,13 +84,13 @@ const SuperAdminMenu = () => {
                         {collapsed ? "BSU" : "Baku State University"}
                     </span>
                 </div>
-                <div className="demo-logo-vertical" />
+                <div className="demo-logo-vertical"/>
                 <Menu
                     theme="dark"
                     mode="inline"
                     defaultSelectedKeys={['1']}
                     selectedKeys={[selectedMenuItem]}
-                    onClick={({ key }) => {
+                    onClick={({key}) => {
                         setSelectedMenuItem(key);
                         if (key === '2' || key === '3' || key === '4') {
                             resetMenuItem();
@@ -96,12 +99,12 @@ const SuperAdminMenu = () => {
                     items={[
                         {
                             key: '1',
-                            icon: <IoPeople className={"icon"} />,
+                            icon: <IoPeople className={"icon"}/>,
                             label: 'All visitors',
                         },
                         {
                             key: '2',
-                            icon: <FaFileExcel className={"icon"} />,
+                            icon: <FaFileExcel className={"icon"}/>,
                             label: 'Export as Excel',
                             onClick: () => {
                                 if (excelFile1 && excelFile1.fileContents) {
@@ -111,7 +114,7 @@ const SuperAdminMenu = () => {
                                         byteNumbers[i] = byteCharacters.charCodeAt(i);
                                     }
                                     const byteArray = new Uint8Array(byteNumbers);
-                                    const blob = new Blob([byteArray], { type: excelFile1.contentType });
+                                    const blob = new Blob([byteArray], {type: excelFile1.contentType});
                                     saveAs(blob, excelFile1.fileDownloadName || 'export.xlsx');
                                     Swal.fire("Success", "Excel file downloaded successfully!", "success");
                                     resetMenuItem(); // Reset after download
@@ -122,7 +125,7 @@ const SuperAdminMenu = () => {
                         },
                         {
                             key: '3',
-                            icon: <FaFilePdf className={"icon"} />,
+                            icon: <FaFilePdf className={"icon"}/>,
                             label: 'Export as PDF',
                             onClick: () => {
                                 if (pdfFile1 && pdfFile1.fileContents) {
@@ -132,7 +135,7 @@ const SuperAdminMenu = () => {
                                         byteNumbers[i] = byteCharacters.charCodeAt(i);
                                     }
                                     const byteArray = new Uint8Array(byteNumbers);
-                                    const blob = new Blob([byteArray], { type: pdfFile1.contentType });
+                                    const blob = new Blob([byteArray], {type: pdfFile1.contentType});
                                     saveAs(blob, pdfFile1.fileDownloadName || 'export.pdf');
                                     Swal.fire("Success", "PDF file downloaded successfully!", "success");
                                     resetMenuItem(); // Reset after download
@@ -143,7 +146,7 @@ const SuperAdminMenu = () => {
                         },
                         {
                             key: '4',
-                            icon: <IoMdPrint className={"icon"} />,
+                            icon: <IoMdPrint className={"icon"}/>,
                             label: 'Print',
                             onClick: () => {
                                 if (printFile1 && printFile1.content) {
@@ -191,8 +194,8 @@ const SuperAdminMenu = () => {
                             }
                         },
                         {
-                            key: '5',
-                            icon: <FaCircleUser className={"icon"} />,
+                            key: '6',
+                            icon: <FaCircleUser className={"icon"}/>,
                             label: 'Profile',
                             style: {
                                 position: 'absolute',
@@ -201,7 +204,7 @@ const SuperAdminMenu = () => {
                         },
                         {
                             key: '7',
-                            icon: <MdLogout className={"icon"} />,
+                            icon: <MdLogout className={"icon"}/>,
                             label: 'Log out',
                             style: {
                                 position: 'absolute',
@@ -242,7 +245,7 @@ const SuperAdminMenu = () => {
                 >
                     <Button
                         type="text"
-                        icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+                        icon={collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
                         onClick={() => setCollapsed(!collapsed)}
                         style={{
                             fontSize: '16px',
@@ -259,7 +262,7 @@ const SuperAdminMenu = () => {
                             {adminProfileData?.name} {adminProfileData?.surname}
                         </span>
                         <div className={"img1"}>
-                            <img src={adminProfileData?.imgUrl} alt={"Image"} />
+                            <img src={adminProfileData?.imgUrl} alt={"Image"}/>
                         </div>
                     </div>
                 </Header>
