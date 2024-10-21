@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="961267e0-c208-4c58-8422-ddfcc3e85879" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/UserBanner/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserBanner/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/UserNavbar/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserNavbar/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UserForm/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserForm/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +37,7 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;npm.dev.executor&quot;: &quot;Run&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2024.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2024.2.1\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -101,6 +100,9 @@
       <workItem from="1729475753439" duration="1603000" />
       <workItem from="1729477364248" duration="4000" />
       <workItem from="1729487538324" duration="1806000" />
+      <workItem from="1729489437095" duration="1672000" />
+      <workItem from="1729491751883" duration="864000" />
+      <workItem from="1729494383128" duration="1950000" />
     </task>
     <servers />
   </component>

@@ -27,15 +27,41 @@ function UserForm() {
             visitedDate: formattedDate,
             adminId: '',
             isRepeated: false,
+            phoneNumber: '',
+            finCode: '',
+        },
+        validate: values => {
+            const errors = {};
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@bsu\.edu\.az$/;
+
+            if (!values.email) {
+                errors.email = 'Email is required';
+            } else if (!emailRegex.test(values.email)) {
+                errors.email = 'Only @bsu.edu.az emails are allowed';
+                toast.error(errors.email, {
+                    position: "bottom-right",
+                    autoClose: 2500,
+                    theme: "dark",
+                    transition: Bounce,
+                });
+            }
+
+            return errors;
         },
         onSubmit: async values => {
-            setLoading(true)
+            setLoading(true);
             const date = new Date(values.visitedDate);
             const formattedDate = date.toLocaleDateString('tr-TR') + ' ' + date.toLocaleTimeString('tr-TR', {
                 hour: '2-digit',
                 minute: '2-digit'
             });
+
             try {
+                let isRepeated;
+                if (values.isRepeated === 'true') {
+                    isRepeated = true;
+                }
+
                 const response = await postNewVisitor({
                     name: values.name,
                     surname: values.surname,
@@ -43,8 +69,10 @@ function UserForm() {
                     description: values.description,
                     carNumber: values.carNumber,
                     adminId: values.adminId,
-                    isRepeated: values.isRepeated,
+                    isRepeated: isRepeated,
                     visitedDate: formattedDate,
+                    phoneNumber: values.phoneNumber,
+                    finCode: values.finCode,
                 }).unwrap();
 
                 if (response?.statusCode === 200) {
@@ -64,10 +92,10 @@ function UserForm() {
                     transition: Bounce,
                 });
             }
-            setLoading(false)
+
+            setLoading(false);
         },
     });
-
 
     return (
         <section id={"userForm"}>
@@ -144,6 +172,31 @@ function UserForm() {
                             </div>
                             <div className={"row"}>
                                 <div className={"col-6 col-md-6 col-sm-12 col-xs-12 wrapper"}>
+                                    <label>FIN</label>
+                                    <input
+                                        placeholder={"Fin"}
+                                        required
+                                        name="finCode"
+                                        onChange={formik.handleChange}
+                                        value={formik.values.finCode}
+                                        maxLength={7}
+                                        minLength={7}
+                                    />
+                                </div>
+                                <div className={"col-6 col-md-6 col-sm-12 col-xs-12 wrapper"}>
+                                    <label>Mobil nömrə</label>
+                                    <input
+                                        placeholder={"Mobil nömrə"}
+                                        required
+                                        name="phoneNumber"
+                                        maxLength={13}
+                                        onChange={formik.handleChange}
+                                        value={formik.values.phoneNumber}
+                                    />
+                                </div>
+                            </div>
+                            <div className={"row"}>
+                                <div className={"col-6 col-md-6 col-sm-12 col-xs-12 wrapper"}>
                                     <label>Gəliş tarixi və saatı</label>
                                     <input
                                         type={"datetime-local"}
@@ -179,6 +232,11 @@ function UserForm() {
                                         onChange={formik.handleChange}
                                         value={formik.values.description}
                                     />
+                                </div>
+                            </div>
+                            <div className={"row"}>
+                                <div className={"col-6"}>
+                                    Zakir
                                 </div>
                             </div>
                             <div className={"row"}>
