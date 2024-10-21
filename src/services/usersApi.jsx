@@ -193,6 +193,20 @@ export const usersApi = createApi({
                 headers: {'Content-Type': 'application/json'}
             }),
         }),
+
+        getAllAdmins: builder.query({
+            query: () => `/Visitor/admin/getAll/forVisitors`,
+        }),
+
+        postNewVisitor: builder.mutation({
+            query: (id) => ({
+                url: `/Visitor/register/visitor`,
+                method: 'POST',
+                body: id,
+                headers: {'Content-Type': 'application/json'}
+            }),
+        }),
+
     }),
 });
 
@@ -235,5 +249,7 @@ export const {
     useGetPdfFileQuery,
     useGetPrintFileQuery,
 
-    usePutChangeIsVisitedMutation
+    usePutChangeIsVisitedMutation,
+    useGetAllAdminsQuery,
+    usePostNewVisitorMutation
 } = usersApi;

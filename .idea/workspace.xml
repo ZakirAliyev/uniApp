@@ -5,24 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="961267e0-c208-4c58-8422-ddfcc3e85879" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/SecurityProfileSection/index.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/SecurityProfileSection/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/UserBanner/index.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/UserBanner/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/UserFooter/index.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/UserFooter/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/UserForm/index.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/UserForm/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/UserNavbar/index.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/UserNavbar/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/UserPage/index.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/UserPage/index.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SecurityMenu/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SecurityMenu/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SecurityTable/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SecurityTable/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SecurityTable/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SecurityTable/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/ROUTES.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/ROUTES.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UserBanner/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserBanner/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UserBanner/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserBanner/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UserForm/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserForm/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UserForm/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserForm/index.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/services/usersApi.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/usersApi.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -101,6 +88,21 @@
       <workItem from="1729227442434" duration="8710000" />
       <workItem from="1729276078498" duration="1554000" />
       <workItem from="1729419781585" duration="21356000" />
+      <workItem from="1729448616481" duration="940000" />
+      <workItem from="1729453236458" duration="4598000" />
+      <workItem from="1729459834686" duration="320000" />
+      <workItem from="1729460199651" duration="305000" />
+      <workItem from="1729460576681" duration="127000" />
+      <workItem from="1729460711598" duration="39000" />
+      <workItem from="1729460756836" duration="94000" />
+      <workItem from="1729460859070" duration="23000" />
+      <workItem from="1729460887634" duration="41000" />
+      <workItem from="1729460936029" duration="107000" />
+      <workItem from="1729501176876" duration="59000" />
+      <workItem from="1729518688185" duration="30000" />
+      <workItem from="1729475525128" duration="222000" />
+      <workItem from="1729475753439" duration="1603000" />
+      <workItem from="1729477364248" duration="4000" />
     </task>
     <servers />
   </component>

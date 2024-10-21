@@ -2,9 +2,9 @@ import './index.scss'
 
 function UserBanner() {
     return (
-        <section id={"userBanner"}>
+            <section id={"userBanner"}>
 
-        </section>
+            </section>
     );
 }
 
