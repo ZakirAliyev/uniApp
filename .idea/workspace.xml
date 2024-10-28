@@ -5,7 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="961267e0-c208-4c58-8422-ddfcc3e85879" name="Changes" comment="3">
-      <change beforePath="$PROJECT_DIR$/src/components/UserNavbar/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserNavbar/index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/AdminMenu/index.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/AdminMenu/index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/AdminTable/index.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/AdminTable/index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/AdminVisitorRequests/index.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/AdminVisitorRequests/index.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/AdminPage/index.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/AdminPage/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SecurityProfileSection/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SecurityProfileSection/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SecurityProfileSection/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SecurityProfileSection/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UserForm/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserForm/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/ROUTES.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/ROUTES.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/usersApi.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/usersApi.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,6 +116,7 @@
       <workItem from="1729491751883" duration="864000" />
       <workItem from="1729494383128" duration="1950000" />
       <workItem from="1730094539114" duration="236000" />
+      <workItem from="1730095291431" duration="9401000" />
     </task>
     <servers />
   </component>

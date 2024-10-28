@@ -3,6 +3,7 @@ import SecurityPage from "../pages/SecurityPage/index.jsx";
 import Pages from "../pages/index.jsx";
 import SuperAdminPage from "../pages/SuperAdminPage/index.jsx";
 import UserPage from "../pages/UserPage/index.jsx";
+import AdminPage from "../pages/AdminPage/index.jsx";
 
 export const ROUTES = [
     {
@@ -23,7 +24,7 @@ export const ROUTES = [
             },
             {
                 path: 'cp',
-                element: <></>
+                element: <AdminPage/>
             },
             {
                 path: 'scp',

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './index.scss';
 import { Button, Form, Input } from "antd";
 import { useGetSecurityProfileDataQuery, usePutAdminProfileDataMutation } from "../../services/usersApi.jsx";
-import { Bounce, toast } from "react-toastify";
+import {Bounce, toast, ToastContainer} from "react-toastify";
 
 const SecurityProfileSection = () => {
     const [form] = Form.useForm(); // Create form instance
@@ -49,6 +49,7 @@ const SecurityProfileSection = () => {
                 onFinish={handleSave}
                 layout="vertical"
                 initialValues={{
+                    id: '', // ID alanı eklendi
                     name: '',
                     surname: '',
                     fatherName: '',
@@ -59,13 +60,18 @@ const SecurityProfileSection = () => {
                     createdDateFormatted: ''
                 }}
             >
+                {/* ID alanı - hidden */}
+                <Form.Item name="id" hidden>
+                    <Input type="hidden" />
+                </Form.Item>
+
                 <div className="labelWrapper">
                     <label>Name</label>
                     <Form.Item
                         name="name"
                         rules={[{ required: true, message: 'Name is required' }]}
                     >
-                        <Input size="large" placeholder="Name" className={"profileInput"}/>
+                        <Input size="large" placeholder="Name" className="profileInput"/>
                     </Form.Item>
                 </div>
 
@@ -75,7 +81,7 @@ const SecurityProfileSection = () => {
                         name="surname"
                         rules={[{ required: true, message: 'Surname is required' }]}
                     >
-                        <Input size="large" placeholder="Surname" className={"profileInput"}/>
+                        <Input size="large" placeholder="Surname" className="profileInput"/>
                     </Form.Item>
                 </div>
 
@@ -85,7 +91,7 @@ const SecurityProfileSection = () => {
                         name="fatherName"
                         rules={[{ required: true, message: "Father's name is required" }]}
                     >
-                        <Input size="large" placeholder="Father's Name" className={"profileInput"}/>
+                        <Input size="large" placeholder="Father's Name" className="profileInput"/>
                     </Form.Item>
                 </div>
 
@@ -98,7 +104,7 @@ const SecurityProfileSection = () => {
                             { type: 'email', message: 'Email format is invalid' },
                         ]}
                     >
-                        <Input size="large" placeholder="Email" className={"profileInput"}/>
+                        <Input size="large" placeholder="Email" className="profileInput"/>
                     </Form.Item>
                 </div>
 
@@ -108,7 +114,7 @@ const SecurityProfileSection = () => {
                         name="phoneNumber"
                         rules={[{ required: true, message: 'Phone number is required' }]}
                     >
-                        <Input size="large" placeholder="Phone Number" className={"profileInput"}/>
+                        <Input size="large" placeholder="Phone Number" className="profileInput"/>
                     </Form.Item>
                 </div>
 
@@ -118,7 +124,7 @@ const SecurityProfileSection = () => {
                         name="position"
                         rules={[{ required: true, message: 'Position is required' }]}
                     >
-                        <Input size="large" placeholder="Position" className={"profileInput"}/>
+                        <Input size="large" placeholder="Position" className="profileInput"/>
                     </Form.Item>
                 </div>
 
@@ -128,7 +134,7 @@ const SecurityProfileSection = () => {
                         name="imgUrl"
                         rules={[{ required: true, message: 'Image URL is required' }]}
                     >
-                        <Input size="large" placeholder="Image URL" className={"profileInput"}/>
+                        <Input size="large" placeholder="Image URL" className="profileInput"/>
                     </Form.Item>
                 </div>
 
@@ -137,7 +143,7 @@ const SecurityProfileSection = () => {
                     <Form.Item
                         name="createdDateFormatted"
                     >
-                        <Input size="large" disabled placeholder="Created Date" className={"profileInput"}/>
+                        <Input size="large" disabled placeholder="Created Date" className="profileInput"/>
                     </Form.Item>
                 </div>
 
@@ -151,7 +157,8 @@ const SecurityProfileSection = () => {
                         Save
                     </Button>
                 </Form.Item>
-            </Form>
+            </Form>\
+            <ToastContainer/>
         </section>
     );
 };

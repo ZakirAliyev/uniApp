@@ -1,20 +1,19 @@
 import './index.scss';
-import {useGetAllAdminsQuery, usePostNewVisitorMutation} from "../../services/usersApi.jsx";
-import {useFormik} from "formik";
-import {Bounce, toast, ToastContainer} from "react-toastify";
+import { useGetAllAdminsQuery, usePostNewVisitorMutation } from "../../services/usersApi.jsx";
+import { useFormik } from "formik";
+import { Bounce, toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import {useState} from "react";
-import {PulseLoader} from "react-spinners";
+import { useState } from "react";
+import { PulseLoader } from "react-spinners";
 
 function UserForm() {
-    const {data: getAllAdmins} = useGetAllAdminsQuery();
+    const { data: getAllAdmins } = useGetAllAdminsQuery();
     const dataSource = getAllAdmins?.data;
 
     const currentDate = new Date();
     const formattedDate = currentDate.toISOString().slice(0, 16);
 
-    const [postNewVisitor] = usePostNewVisitorMutation()
-
+    const [postNewVisitor] = usePostNewVisitorMutation();
     const [loading, setLoading] = useState(false);
 
     const formik = useFormik({
@@ -36,19 +35,23 @@ function UserForm() {
 
             if (!values.email) {
                 errors.email = 'Email is required';
-            } else if (!emailRegex.test(values.email)) {
-                errors.email = 'Only @bsu.edu.az emails are allowed';
-                toast.error(errors.email, {
-                    position: "bottom-right",
-                    autoClose: 2500,
-                    theme: "dark",
-                    transition: Bounce,
-                });
             }
 
             return errors;
         },
         onSubmit: async values => {
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@bsu\.edu\.az$/;
+            if (!emailRegex.test(values.email)) {
+                toast.error('Only @bsu.edu.az emails are allowed', {
+                    position: "bottom-right",
+                    autoClose: 2500,
+                    theme: "dark",
+                    transition: Bounce,
+                });
+                setLoading(false);
+                return;
+            }
+
             setLoading(true);
             const date = new Date(values.visitedDate);
             const formattedDate = date.toLocaleDateString('tr-TR') + ' ' + date.toLocaleTimeString('tr-TR', {
@@ -57,11 +60,7 @@ function UserForm() {
             });
 
             try {
-                let isRepeated;
-                if (values.isRepeated === 'true') {
-                    isRepeated = true;
-                }
-
+                let isRepeated = values.isRepeated === 'true';
                 const response = await postNewVisitor({
                     name: values.name,
                     surname: values.surname,
@@ -69,7 +68,7 @@ function UserForm() {
                     description: values.description,
                     carNumber: values.carNumber,
                     adminId: values.adminId,
-                    isRepeated: isRepeated,
+                    isRepeated,
                     visitedDate: formattedDate,
                     phoneNumber: values.phoneNumber,
                     finCode: values.finCode,
@@ -235,11 +234,6 @@ function UserForm() {
                                 </div>
                             </div>
                             <div className={"row"}>
-                                <div className={"col-6"}>
-                                    Zakir
-                                </div>
-                            </div>
-                            <div className={"row"}>
                                 <div className={"col-12 wrapper"}>
                                     <button type="submit">
                                         {loading ? (
@@ -260,3 +254,4 @@ function UserForm() {
 }
 
 export default UserForm;
+

@@ -207,6 +207,27 @@ export const usersApi = createApi({
             }),
         }),
 
+        getAllAdminsVisitors: builder.query({
+            query: () => `/Admin/admin/getAll/visitors`,
+        }),
+
+        postVisitorAccept: builder.mutation({
+            query: (id) => ({
+                url: `/Visitor/accept/visitor`,
+                method: 'POST',
+                body: id,
+                headers: {'Content-Type': 'application/json'}
+            }),
+        }),
+
+        postVisitorReject: builder.mutation({
+            query: (id) => ({
+                url: `/Visitor/reject/visitor`,
+                method: 'POST',
+                body: id,
+                headers: {'Content-Type': 'application/json'}
+            }),
+        }),
     }),
 });
 
@@ -251,5 +272,11 @@ export const {
 
     usePutChangeIsVisitedMutation,
     useGetAllAdminsQuery,
-    usePostNewVisitorMutation
+    usePostNewVisitorMutation,
+
+
+    useGetAllAdminsVisitorsQuery,
+
+    usePostVisitorAcceptMutation,
+    usePostVisitorRejectMutation
 } = usersApi;
