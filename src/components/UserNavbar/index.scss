@@ -83,8 +83,9 @@
 @media screen and (max-width: 992px) {
   #userNavbar {
     nav {
-      flex-direction: column;
       justify-content: center;
+      align-items: center;
+      gap: 20px;
 
       .logo, .logo1 {
         display: none;
@@ -94,21 +95,20 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-bottom: 16px;
-        width: 40px;
+        width: 60px;
       }
 
       .name {
         .first {
-          font-size: 12.2px;
+          font-size: 10px;
         }
 
         .first1 {
-          font-size: 19px;
+          font-size: 12px;
         }
 
         .last {
-          font-size: 26px;
+          font-size: 21.2px;
         }
       }
     }
