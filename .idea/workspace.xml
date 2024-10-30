@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="961267e0-c208-4c58-8422-ddfcc3e85879" name="Changes" comment="3">
+      <change afterPath="$PROJECT_DIR$/src/components/UserForm/banner.jpeg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UserForm/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserForm/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UserForm/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserForm/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +49,7 @@
       <recent name="C:\Users\MSI\Desktop\uniApp\src\components" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\afsanamustafazada\Desktop\uniApp\src\components\UserForm" />
       <recent name="C:\Users\MSI\Desktop\uniApp\src\pages\LoginPage" />
     </key>
   </component>
@@ -105,7 +110,7 @@
       <workItem from="1730094539114" duration="236000" />
       <workItem from="1730095291431" duration="9401000" />
       <workItem from="1730181465138" duration="711000" />
-      <workItem from="1730271450952" duration="597000" />
+      <workItem from="1730271450952" duration="4943000" />
     </task>
     <servers />
   </component>

@@ -1,13 +1,14 @@
 import './index.scss';
-import { useGetAllAdminsQuery, usePostNewVisitorMutation } from "../../services/usersApi.jsx";
-import { useFormik } from "formik";
-import { Bounce, toast, ToastContainer } from "react-toastify";
+import banner from './banner.jpeg';
+import {useGetAllAdminsQuery, usePostNewVisitorMutation} from "../../services/usersApi.jsx";
+import {useFormik} from "formik";
+import {Bounce, toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { useState } from "react";
-import { PulseLoader } from "react-spinners";
+import {useState} from "react";
+import {PulseLoader} from "react-spinners";
 
 function UserForm() {
-    const { data: getAllAdmins } = useGetAllAdminsQuery();
+    const {data: getAllAdmins} = useGetAllAdminsQuery();
     const dataSource = getAllAdmins?.data;
 
     const currentDate = new Date();
@@ -98,154 +99,172 @@ function UserForm() {
 
     return (
         <section id={"userForm"}>
-            <div className={"container1"}>
-                <div className={"row"}>
-                    <div className={"col-6 col-md-6 col-sm-12 col-xs-12"}>
-                        <div className={"image"}>
-                            <h2>Giriş və icazə sisteminə qeydiyyat</h2>
-                            <div className={"span"}>
-                                Giriş sistemi, müasir təhlükəsizlik tələblərinə cavab verən innovativ bir həll yoludur.
-                                Giriş-çıxış fəaliyyətləri sistem tərəfindən izlənilir, bu da təhlükəsizlik vəziyyətinin
-                                real vaxtda monitorinqinə imkan tanıyır. İstifadəçi dostu interfeysi ilə, qapıdan giriş
-                                sistemimiz asanlıqla idarə olunur. Daha təhlükəsiz və rahat bir mühit
-                                üçün bizim "Giriş və icazə" sistemimizdən istifadə edin!
-                            </div>
+            <div className={"row"}>
+                <div className={"col-2 banner"}>
+                    <img
+                        src={banner}
+                        alt={"Image"} style={{
+                        width: '100%',
+                        height: '100%'
+                    }}/>
+                </div>
+                <div className={"col-4 col-md-6 col-sm-12 col-xs-12"}>
+                    <div className={"image"}>
+                        <h2>Giriş və icazə sisteminə qeydiyyat</h2>
+                        <div className={"span"}>
+                            Giriş sistemi, müasir təhlükəsizlik tələblərinə cavab verən innovativ bir həll yoludur.
+                            Giriş-çıxış fəaliyyətləri sistem tərəfindən izlənilir, bu da təhlükəsizlik vəziyyətinin
+                            real vaxtda monitorinqinə imkan tanıyır. İstifadəçi dostu interfeysi ilə, qapıdan giriş
+                            sistemimiz asanlıqla idarə olunur. Daha təhlükəsiz və rahat bir mühit
+                            üçün bizim "Giriş və icazə" sistemimizdən istifadə edin!
                         </div>
                     </div>
-                    <div className={"col-6 col-md-6 col-sm-12 col-xs-12"}>
-                        <form onSubmit={formik.handleSubmit}>
-                            <div className={"row"}>
-                                <div className={"col-6 col-md-6 col-sm-12 col-xs-12 wrapper"}>
-                                    <label>Ad</label>
-                                    <input
-                                        placeholder={"Ad"}
-                                        required
-                                        name="name"
-                                        onChange={formik.handleChange}
-                                        value={formik.values.name}
-                                    />
-                                </div>
-                                <div className={"col-6 col-md-6 col-sm-12 col-xs-12 wrapper"}>
-                                    <label>Soyad</label>
-                                    <input
-                                        placeholder={"Soyad"}
-                                        required
-                                        name="surname"
-                                        onChange={formik.handleChange}
-                                        value={formik.values.surname}
-                                    />
-                                </div>
+                </div>
+                <div className={"col-5 col-md-6 col-sm-12 col-xs-12"} style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                }}>
+                    <form onSubmit={formik.handleSubmit}>
+                        <div className={"row"}>
+                            <div className={"col-6 col-md-6 col-sm-12 col-xs-12 wrapper"}>
+                                <label>Ad</label>
+                                <input
+                                    placeholder={"Ad"}
+                                    required
+                                    name="name"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.name}
+                                />
                             </div>
-                            <div className={"row"}>
-                                <div className={"col-6 col-md-6 col-sm-12 col-xs-12 wrapper"}>
-                                    <label>Email</label>
-                                    <input
-                                        placeholder={"Email"}
-                                        type={"email"}
-                                        required
-                                        name="email"
-                                        onChange={formik.handleChange}
-                                        value={formik.values.email}
-                                    />
-                                </div>
-                                <div className={"col-6 col-md-6 col-sm-12 col-xs-12 wrapper"}>
-                                    <label>Müəllim</label>
-                                    <select
-                                        required
-                                        name="adminId"
-                                        onChange={formik.handleChange}
-                                        value={formik.values.adminId}
-                                    >
-                                        <option value="">Müəllim seçin</option>
-                                        {dataSource && dataSource.map((admin) => (
-                                            <option key={admin.id}
-                                                    value={admin.id}>{admin.name}
-                                                {" " + admin.surname}
-                                                {" " + admin.fatherName}
-                                                {" - " + admin.facultyName || ""}
-                                                {" - " + admin.departmentName || ""}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </div>
+                            <div className={"col-6 col-md-6 col-sm-12 col-xs-12 wrapper"}>
+                                <label>Soyad</label>
+                                <input
+                                    placeholder={"Soyad"}
+                                    required
+                                    name="surname"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.surname}
+                                />
                             </div>
-                            <div className={"row"}>
-                                <div className={"col-6 col-md-6 col-sm-12 col-xs-12 wrapper"}>
-                                    <label>FIN</label>
-                                    <input
-                                        placeholder={"Fin"}
-                                        required
-                                        name="finCode"
-                                        onChange={formik.handleChange}
-                                        value={formik.values.finCode}
-                                        maxLength={7}
-                                        minLength={7}
-                                    />
-                                </div>
-                                <div className={"col-6 col-md-6 col-sm-12 col-xs-12 wrapper"}>
-                                    <label>Mobil nömrə</label>
-                                    <input
-                                        placeholder={"Mobil nömrə"}
-                                        required
-                                        name="phoneNumber"
-                                        maxLength={13}
-                                        onChange={formik.handleChange}
-                                        value={formik.values.phoneNumber}
-                                    />
-                                </div>
+                        </div>
+                        <div className={"row"}>
+                            <div className={"col-6 col-md-6 col-sm-12 col-xs-12 wrapper"}>
+                                <label>Email</label>
+                                <input
+                                    placeholder={"Email"}
+                                    type={"email"}
+                                    required
+                                    name="email"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.email}
+                                />
                             </div>
-                            <div className={"row"}>
-                                <div className={"col-6 col-md-6 col-sm-12 col-xs-12 wrapper"}>
-                                    <label>Gəliş tarixi və saatı</label>
-                                    <input
-                                        type={"datetime-local"}
-                                        required
-                                        name="visitedDate"
-                                        onChange={formik.handleChange}
-                                        value={formik.values.visitedDate}
-                                        min={formattedDate.slice(0, 10) + "T08:00"}
-                                        max={formattedDate.slice(0, 10) + "T17:00"}
-                                    />
-                                </div>
-                                <div className={"col-6 col-md-6 col-sm-12 col-xs-12 wrapper"}>
-                                    <label>Təkrarla</label>
-                                    <select
-                                        required
-                                        name="isRepeated"
-                                        onChange={formik.handleChange}
-                                        value={formik.values.isRepeated ? "true" : "false"}
-                                    >
-                                        <option value="false">Bir dəfə</option>
-                                        <option value="true">Hər həftə</option>
-                                    </select>
-                                </div>
+                            <div className={"col-6 col-md-6 col-sm-12 col-xs-12 wrapper"}>
+                                <label>Müəllim</label>
+                                <select
+                                    required
+                                    name="adminId"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.adminId}
+                                >
+                                    <option value="">Müəllim seçin</option>
+                                    {dataSource && dataSource.map((admin) => (
+                                        <option key={admin.id}
+                                                value={admin.id}>{admin.name}
+                                            {" " + admin.surname}
+                                            {" " + admin.fatherName}
+                                            {" - " + admin.facultyName || ""}
+                                            {" - " + admin.departmentName || ""}
+                                        </option>
+                                    ))}
+                                </select>
                             </div>
-                            <div className={"row"}>
-                                <div className={"col-12 col-md-12 col-sm-12 col-xs-12 wrapper"}>
-                                    <label>Gəliş səbəbi</label>
-                                    <textarea
-                                        placeholder={"Təsvir"}
-                                        rows={5}
-                                        required
-                                        name="description"
-                                        onChange={formik.handleChange}
-                                        value={formik.values.description}
-                                    />
-                                </div>
+                        </div>
+                        <div className={"row"}>
+                            <div className={"col-6 col-md-6 col-sm-12 col-xs-12 wrapper"}>
+                                <label>FIN</label>
+                                <input
+                                    placeholder={"Fin"}
+                                    required
+                                    name="finCode"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.finCode}
+                                    maxLength={7}
+                                    minLength={7}
+                                />
                             </div>
-                            <div className={"row"}>
-                                <div className={"col-12 wrapper"}>
-                                    <button type="submit">
-                                        {loading ? (
-                                            <PulseLoader size={8} color={'white'}/>
-                                        ) : (
-                                            <>Göndər</>
-                                        )}
-                                    </button>
-                                </div>
+                            <div className={"col-6 col-md-6 col-sm-12 col-xs-12 wrapper"}>
+                                <label>Mobil nömrə</label>
+                                <input
+                                    placeholder={"Mobil nömrə"}
+                                    required
+                                    name="phoneNumber"
+                                    maxLength={13}
+                                    onChange={formik.handleChange}
+                                    value={formik.values.phoneNumber}
+                                />
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                        <div className={"row"}>
+                            <div className={"col-6 col-md-6 col-sm-12 col-xs-12 wrapper"}>
+                                <label>Gəliş tarixi və saatı</label>
+                                <input
+                                    type={"datetime-local"}
+                                    required
+                                    name="visitedDate"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.visitedDate}
+                                    min={formattedDate.slice(0, 10) + "T08:00"}
+                                    max={formattedDate.slice(0, 10) + "T17:00"}
+                                />
+                            </div>
+                            <div className={"col-6 col-md-6 col-sm-12 col-xs-12 wrapper"}>
+                                <label>Təkrarla</label>
+                                <select
+                                    required
+                                    name="isRepeated"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.isRepeated ? "true" : "false"}
+                                >
+                                    <option value="false">Bir dəfə</option>
+                                    <option value="true">Hər həftə</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div className={"row"}>
+                            <div className={"col-12 col-md-12 col-sm-12 col-xs-12 wrapper"}>
+                                <label>Gəliş səbəbi</label>
+                                <textarea
+                                    placeholder={"Təsvir"}
+                                    rows={5}
+                                    required
+                                    name="description"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.description}
+                                />
+                            </div>
+                        </div>
+                        <div className={"row"}>
+                            <div className={"col-12 wrapper"}>
+                                <button type="submit">
+                                    {loading ? (
+                                        <PulseLoader size={8} color={'white'}/>
+                                    ) : (
+                                        <>Göndər</>
+                                    )}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div className={"col-2 banner"}>
+                    <img
+                        src={banner}
+                        alt={"Image"} style={{
+                        width: '100%',
+                        height: '100%'
+                    }}/>
                 </div>
             </div>
             <ToastContainer/>

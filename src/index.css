@@ -102,8 +102,7 @@ body {
 }
 
 .col-2 {
-    width: calc(100% / 12 * 2);
-    padding: 16px;
+    width: calc(100% / 12 * 1.5);
 }
 
 .col-3 {
