@@ -228,6 +228,32 @@ export const usersApi = createApi({
                 headers: {'Content-Type': 'application/json'}
             }),
         }),
+
+        getAllSuperAdminsVisitors: builder.query({
+            query: () => `/Visitor/superAdmin/getAll/visitors`,
+        }),
+
+        postSubAdminLogin: builder.mutation({
+            query: (id) => ({
+                url: `/SubAdmin/login`,
+                method: 'POST',
+                body: id,
+                headers: {'Content-Type': 'application/json'}
+            }),
+        }),
+
+        getAllVisitorRequests: builder.query({
+            query: () => `/Visitor/getAll/visitor-requests`,
+        }),
+
+        createVisitorPost: builder.mutation({
+            query: (id) => ({
+                url: `/Visitor/create/visitor`,
+                method: 'POST',
+                body: id,
+                headers: {'Content-Type': 'application/json'}
+            }),
+        }),
     }),
 });
 
@@ -278,5 +304,13 @@ export const {
     useGetAllAdminsVisitorsQuery,
 
     usePostVisitorAcceptMutation,
-    usePostVisitorRejectMutation
+    usePostVisitorRejectMutation,
+
+    useGetAllSuperAdminsVisitorsQuery,
+
+    usePostSubAdminLoginMutation,
+
+    useGetAllVisitorRequestsQuery,
+
+    useCreateVisitorPostMutation
 } = usersApi;

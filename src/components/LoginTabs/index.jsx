@@ -3,18 +3,23 @@ import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import {Button, TextField} from "@mui/material";
-import {usePostAdminLoginMutation, usePostSecurityLoginMutation} from "../../services/usersApi.jsx";
-import {useFormik} from "formik";
-import {Bounce, toast, ToastContainer} from "react-toastify";
+import { Button, TextField } from "@mui/material";
+import {
+    usePostAdminLoginMutation,
+    usePostSecurityLoginMutation,
+    usePostSubAdminLoginMutation
+} from "../../services/usersApi.jsx";
+import { useFormik } from "formik";
+import { Bounce, toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import {useNavigate} from "react-router";
+import { useNavigate } from "react-router";
 import Cookies from 'js-cookie';
-import {PulseLoader} from "react-spinners";
-import './index.scss'
+import { PulseLoader } from "react-spinners";
+import './index.scss';
 
+// Reusable TabPanel component for displaying tab content conditionally
 function CustomTabPanel(props) {
-    const {children, value, index, ...other} = props;
+    const { children, value, index, ...other } = props;
 
     return (
         <div
@@ -24,7 +29,7 @@ function CustomTabPanel(props) {
             aria-labelledby={`simple-tab-${index}`}
             {...other}
         >
-            {value === index && <Box sx={{p: 3}}>{children}</Box>}
+            {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
         </div>
     );
 }
@@ -35,6 +40,7 @@ CustomTabPanel.propTypes = {
     value: PropTypes.number.isRequired,
 };
 
+// Helper function to generate accessibility props for tabs
 function a11yProps(index) {
     return {
         id: `simple-tab-${index}`,
@@ -42,243 +48,166 @@ function a11yProps(index) {
     };
 }
 
+// Main LoginTabs component
 export default function LoginTabs() {
-    const [value, setValue] = React.useState(0);
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
-
-    const [postAdminLogin, {isLoading: isAdminLoading}] = usePostAdminLoginMutation();
-    const [postSecurityLogin, {isLoading: isSecurityLoading}] = usePostSecurityLoginMutation();
-
+    const [value, setValue] = React.useState(0); // State to track selected tab
     const navigate = useNavigate();
 
+    // API mutation hooks for login actions
+    const [postAdminLogin, { isLoading: isAdminLoading }] = usePostAdminLoginMutation();
+    const [postSecurityLogin, { isLoading: isSecurityLoading }] = usePostSecurityLoginMutation();
+    const [postSubAdminLogin, { isLoading: isSubAdminLoading }] = usePostSubAdminLoginMutation();
+
+    // Formik setup for form handling
     const formik = useFormik({
-        initialValues: {
-            email: '',
-            password: '',
-        },
-        onSubmit: async (values) => {
-            try {
-                let response;
-                if (value === 0) {
-                    response = await postAdminLogin(values).unwrap();
-                    if (response?.statusCode === 200) {
-                        toast.success('Admin login successful!', {
-                            position: "bottom-right",
-                            autoClose: 2500,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                            theme: "dark",
-                            transition: Bounce,
-                        });
-                        Cookies.set('token', response?.data?.token, {expires: 7});
-                        Cookies.set('role', response?.data?.role, {expires: 7});
-                        setTimeout(() => {
-                            if (response?.data?.role === 'SuperAdmin') {
-                                navigate('/scp');
-                            } else if (response?.data?.role === 'Admin') {
-                                navigate('/cp');
-                            }
-                        }, 3500);
-                    }
-                } else {
-                    response = await postSecurityLogin(values).unwrap();
-                    if (response?.statusCode === 200) {
-                        toast.success('Security login successful!', {
-                            position: "bottom-right",
-                            autoClose: 2500,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                            theme: "dark",
-                            transition: Bounce,
-                        });
-                        Cookies.set('token', response?.data?.token, {expires: 7});
-                        setTimeout(() => {
-                            navigate('/security');
-                        }, 2500);
-                    }
-                }
-            } catch (error) {
-                toast.error(`${error?.data?.error}`, {
-                    position: "bottom-right",
-                    autoClose: 2500,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "dark",
-                    transition: Bounce,
-                });
-            }
-        },
+        initialValues: { email: '', password: '' },
+        onSubmit: async (values) => handleLoginSubmit(values),
     });
 
-    const isLoading = value === 0 ? isAdminLoading : isSecurityLoading;
+    // Determine loading state based on selected tab
+    const isLoading = value === 0 ? isAdminLoading : value === 1 ? isSecurityLoading : isSubAdminLoading;
+
+    // Function to handle tab change
+    const handleChange = (event, newValue) => setValue(newValue);
+
+    // Login submission handler with toast notifications and role-based navigation
+    const handleLoginSubmit = async (values) => {
+        try {
+            let response;
+            switch (value) {
+                case 0: // Admin login
+                    response = await postAdminLogin(values).unwrap();
+                    handleLoginSuccess(response, '/scp', '/cp');
+                    break;
+                case 1: // Security login
+                    response = await postSecurityLogin(values).unwrap();
+                    handleLoginSuccess(response, '/security');
+                    break;
+                case 2: // SubAdmin login
+                    response = await postSubAdminLogin(values).unwrap();
+                    handleLoginSuccess(response, '/main');
+                    break;
+                default:
+                    break;
+            }
+        } catch (error) {
+            handleLoginError(error);
+        }
+    };
+
+    // Success handler for login with role-based redirection
+    const handleLoginSuccess = (response, superAdminPath, adminPath) => {
+        if (response?.statusCode === 200) {
+            toast.success('Login successful!', toastOptions());
+            Cookies.set('token', response?.data?.token, { expires: 7 });
+            Cookies.set('role', response?.data?.role, { expires: 7 });
+            setTimeout(() => {
+                const path = response?.data?.role === 'SuperAdmin' ? superAdminPath : adminPath;
+                navigate(path);
+            }, 3500);
+        }
+    };
+
+    // Error handler for login
+    const handleLoginError = (error) => {
+        toast.error(`${error?.data?.error}`, toastOptions());
+    };
+
+    // Toast notification options
+    const toastOptions = () => ({
+        position: "bottom-right",
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+    });
 
     return (
-        <Box sx={{width: '100%'}}>
-            <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
-                <Tabs value={value} onChange={handleChange} aria-label="basic tabs example"
-                      TabIndicatorProps={{
-                          style: {
-                              backgroundColor: "#a99674"
-                          }
-                      }}>
-                    <Tab label="Login as admin" {...a11yProps(0)} />
-                    <Tab label="Login as security" {...a11yProps(1)} />
+        <Box sx={{ width: '100%' }}>
+            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                <Tabs
+                    value={value}
+                    onChange={handleChange}
+                    aria-label="login tabs"
+                    TabIndicatorProps={{ style: { backgroundColor: "#a99674" } }}
+                >
+                    <Tab label="ADMİN KİMİ" {...a11yProps(0)} />
+                    <Tab label="MÜHAVİZƏ KİMİ" {...a11yProps(1)} />
+                    <Tab label="İŞÇİ KİMİ" {...a11yProps(2)} />
                 </Tabs>
             </Box>
             <CustomTabPanel value={value} index={0}>
-                <form onSubmit={formik.handleSubmit}>
-                    <TextField
-                        required
-                        id="outlined-required-email"
-                        label="Email"
-                        className="input"
-                        fullWidth
-                        margin="normal"
-                        name="email"
-                        onChange={formik.handleChange}
-                        value={formik.values.email}
-                        sx={{
-                            '& .MuiInputLabel-root': {
-                                color: '#a99674',
-                            },
-                            '& .MuiOutlinedInput-root': {
-                                '&.Mui-focused fieldset': {
-                                    borderColor: '#a99674',
-                                },
-                            },
-                            '& .MuiInputLabel-root.Mui-focused': {
-                                color: '#a99674',
-                            },
-                            '&:hover .MuiInputLabel-root': {
-                                color: '#a99674',
-                            },
-                        }}
-                    />
-                    <TextField
-                        required
-                        id="outlined-required-password"
-                        label="Password"
-                        type="password"
-                        className="input"
-                        fullWidth
-                        margin="normal"
-                        name="password"
-                        onChange={formik.handleChange}
-                        value={formik.values.password}
-                        sx={{
-                            '& .MuiInputLabel-root': {
-                                color: '#a99674',
-                            },
-                            '& .MuiOutlinedInput-root': {
-                                '&.Mui-focused fieldset': {
-                                    borderColor: '#a99674',
-                                },
-                            },
-                            '& .MuiInputLabel-root.Mui-focused': {
-                                color: '#a99674',
-                            },
-                            '&:hover .MuiInputLabel-root': {
-                                color: '#a99674',
-                            },
-                        }}
-                    />
-                    <Button
-                        type="submit"
-                        className="buttonForLoginTabs"
-                        variant="contained"
-                        fullWidth
-                        style={{marginTop: '16px', backgroundColor: '#a99674'}}
-                        disabled={isLoading}
-                    >
-                        {isLoading ? <PulseLoader size={10} color={'white'} style={{
-                            margin: '0'
-                        }}/> : "Login"}
-                    </Button>
-                </form>
+                <LoginForm isLoading={isLoading} formik={formik} />
             </CustomTabPanel>
             <CustomTabPanel value={value} index={1}>
-                <form onSubmit={formik.handleSubmit}>
-                    <TextField
-                        required
-                        id="outlined-required-email"
-                        label="Email"
-                        className="input"
-                        fullWidth
-                        margin="normal"
-                        name="email"
-                        onChange={formik.handleChange}
-                        value={formik.values.email}
-                        sx={{
-                            '& .MuiInputLabel-root': {
-                                color: '#a99674',
-                            },
-                            '& .MuiOutlinedInput-root': {
-                                '&.Mui-focused fieldset': {
-                                    borderColor: '#a99674',
-                                },
-                            },
-                            '& .MuiInputLabel-root.Mui-focused': {
-                                color: '#a99674',
-                            },
-                            '&:hover .MuiInputLabel-root': {
-                                color: '#a99674',
-                            },
-                        }}
-                    />
-                    <TextField
-                        required
-                        id="outlined-required-password"
-                        label="Password"
-                        type="password"
-                        className="input"
-                        fullWidth
-                        margin="normal"
-                        name="password"
-                        onChange={formik.handleChange}
-                        value={formik.values.password}
-                        sx={{
-                            '& .MuiInputLabel-root': {
-                                color: '#a99674',
-                            },
-                            '& .MuiOutlinedInput-root': {
-                                '&.Mui-focused fieldset': {
-                                    borderColor: '#a99674',
-                                },
-                            },
-                            '& .MuiInputLabel-root.Mui-focused': {
-                                color: '#a99674',
-                            },
-                            '&:hover .MuiInputLabel-root': {
-                                color: '#a99674',
-                            },
-                        }}
-                    />
-                    <Button
-                        type="submit"
-                        className="button"
-                        variant="contained"
-                        fullWidth
-                        style={{marginTop: '16px', backgroundColor: '#a99674'}}
-                        disabled={isLoading}
-                    >
-                        {isLoading ? <PulseLoader size={10} color={'white'} style={{
-                            margin: '0'
-                        }}/> : "Login"}
-                    </Button>
-                </form>
+                <LoginForm isLoading={isLoading} formik={formik} />
             </CustomTabPanel>
-            <ToastContainer/>
+            <CustomTabPanel value={value} index={2}>
+                <LoginForm isLoading={isLoading} formik={formik} />
+            </CustomTabPanel>
+            <ToastContainer />
         </Box>
     );
 }
+
+// Reusable LoginForm component to reduce redundancy
+function LoginForm({ isLoading, formik }) {
+    return (
+        <form onSubmit={formik.handleSubmit}>
+            <TextField
+                required
+                id="outlined-required-email"
+                label="Email"
+                className="input"
+                fullWidth
+                margin="normal"
+                name="email"
+                onChange={formik.handleChange}
+                value={formik.values.email}
+                sx={inputStyles}
+            />
+            <TextField
+                required
+                id="outlined-required-password"
+                label="Password"
+                type="password"
+                className="input"
+                fullWidth
+                margin="normal"
+                name="password"
+                onChange={formik.handleChange}
+                value={formik.values.password}
+                sx={inputStyles}
+            />
+            <Button
+                type="submit"
+                className="buttonForLoginTabs"
+                variant="contained"
+                fullWidth
+                style={{ marginTop: '16px', backgroundColor: '#a99674' }}
+                disabled={isLoading}
+            >
+                {isLoading ? <PulseLoader size={10} color={'white'} style={{ margin: '0' }} /> : "Login"}
+            </Button>
+        </form>
+    );
+}
+
+// Input field styling
+const inputStyles = {
+    '& .MuiInputLabel-root': { color: '#a99674' },
+    '& .MuiOutlinedInput-root': {
+        '&.Mui-focused fieldset': { borderColor: '#a99674' },
+    },
+    '& .MuiInputLabel-root.Mui-focused': { color: '#a99674' },
+    '&:hover .MuiInputLabel-root': { color: '#a99674' },
+};
+
+LoginForm.propTypes = {
+    isLoading: PropTypes.bool.isRequired,
+    formik: PropTypes.object.isRequired,
+};

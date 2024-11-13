@@ -1,172 +1,250 @@
-import { Form, Input, Checkbox, Button } from 'antd';
-import { useFormik } from 'formik';
+import { Button } from 'antd';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import './index.scss';
-
-const { TextArea } = Input;
+import { useCreateVisitorPostMutation } from "../../services/usersApi.jsx";
+import { Bounce, toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function AddAVisitor() {
-    const formik = useFormik({
-        initialValues: {
-            visitorName: '',
-            visitorSurname: '',
-            visitorEmail: '',
-            description: '',
-            carCheck: false,
-            carNumber: '',
-        },
-        validationSchema: Yup.object({
-            visitorName: Yup.string().required('Please input visitor name!'),
-            visitorSurname: Yup.string().required('Please input visitor surname!'),
-            visitorEmail: Yup.string().email('Please input a valid email!').required('Please input a valid email!'),
-            description: Yup.string().required('Please provide a description!'),
-            carNumber: Yup.string().when('carCheck', {
-                is: true,
-                then: Yup.string().required('Please input car number!'),
-            }),
-        }),
-        onSubmit: (values) => {
-            console.log(values);
-        },
+    const validationSchema = Yup.object({
+        name: Yup.string().required('Visitor Name is required'),
+        surname: Yup.string().required('Visitor Surname is required'),
+        email: Yup.string().email('Invalid email format').required('Visitor Email is required'),
+        description: Yup.string().required('Description is required'),
+        visitedDate: Yup.string().required('Visited Date is required'),
+        finCode: Yup.string()
+            .length(7, 'FIN Code must be exactly 7 characters')
+            .required('FIN Code is required'),
+        phoneNumber: Yup.string()
+            .matches(/^\d{9}$/, 'Phone number must be a 9-digit number')
+            .required('Phone number is required'),
+        isRepeated: Yup.boolean().required('Is this a repeated visit? is required'),
+        carNumber: Yup.string()
+            .matches(/^[0-9]{2}-[A-Za-z]{2}-[0-9]{3}$/, 'Car number must be in the format XX-XX-XXX')
     });
 
-    const handleCheckboxChange = (e) => {
-        formik.setFieldValue('carCheck', e.target.checked);
-        if (!e.target.checked) {
-            formik.setFieldValue('carNumber', '');
+    const initialValues = {
+        name: '',
+        surname: '',
+        email: '',
+        description: '',
+        carCheck: false,
+        carNumber: '',
+        visitedDate: '',
+        adminId: '',
+        isRepeated: false,
+        phoneNumber: '',
+        finCode: '',
+    };
+
+    const [postVisitor] = useCreateVisitorPostMutation();
+
+    const handleSubmit = async (values) => {
+        // Format the visitedDate manually
+        const visitedDate = new Date(values.visitedDate);
+
+        const day = String(visitedDate.getDate()).padStart(2, '0');
+        const month = String(visitedDate.getMonth() + 1).padStart(2, '0');
+        const year = visitedDate.getFullYear();
+        const hours = String(visitedDate.getHours()).padStart(2, '0');
+        const minutes = String(visitedDate.getMinutes()).padStart(2, '0');
+
+        const formattedVisitedDate = `${day}.${month}.${year} ${hours}:${minutes}`;
+
+        values.visitedDate = formattedVisitedDate;
+
+        values.phoneNumber = '+994' + values.phoneNumber;  // Ensure phone number is formatted
+        try {
+            const response = await postVisitor(values).unwrap();
+            if (response?.statusCode === 200) {
+                toast.success(response.message, {
+                    position: "bottom-right",
+                    autoClose: 2500,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                    transition: Bounce,
+                });
+            }
+        } catch (error) {
+            toast.error('Error', {
+                position: "bottom-right",
+                autoClose: 2500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Bounce,
+            });
         }
     };
 
+    const handleCancel = (resetForm) => {
+        // Reset the form values when Cancel button is clicked
+        resetForm();
+    };
+
     return (
-        <Form className="wrapper" onFinish={formik.handleSubmit}>
-            <h2>Add new visitor</h2>
-            <Form.Item
-                name="visitorName"
-                validateStatus={formik.touched.visitorName && formik.errors.visitorName ? 'error' : ''}
-                help={formik.touched.visitorName && formik.errors.visitorName}
+        <div className="wrapper zakirWrapper">
+            <h2>Add New Visitor</h2>
+
+            <Formik
+                initialValues={initialValues}
+                validationSchema={validationSchema}
+                onSubmit={handleSubmit}
             >
-                <div className="box" style={{ marginTop: '30px' }}>
-                    <label>
-                        <span style={{ color: 'red' }}>* </span>Visitor name
-                    </label>
-                    <Input
-                        className="input"
-                        size="large"
-                        name="visitorName"
-                        placeholder="Visitor name"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.visitorName}
-                    />
-                </div>
-            </Form.Item>
+                {({ values, handleChange, handleBlur, setFieldValue, errors, touched, resetForm }) => (
+                    <Form>
+                        <div className="row">
+                            <div className="col-6">
+                                <label>Visitor Name <span style={{ color: 'red' }}>*</span></label>
+                                <Field
+                                    type="text"
+                                    name="name"
+                                    placeholder="Visitor Name"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.name}
+                                />
+                                <ErrorMessage name="name" component="div" style={{ color: 'red', marginTop: '5px' }} />
+                            </div>
+                            <div className="col-6">
+                                <label>Visitor Surname <span style={{ color: 'red' }}>*</span></label>
+                                <Field
+                                    type="text"
+                                    name="surname"
+                                    placeholder="Visitor Surname"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.surname}
+                                />
+                                <ErrorMessage name="surname" component="div" style={{ color: 'red', marginTop: '5px' }} />
+                            </div>
+                        </div>
 
-            <Form.Item
-                name="visitorSurname"
-                validateStatus={formik.touched.visitorSurname && formik.errors.visitorSurname ? 'error' : ''}
-                help={formik.touched.visitorSurname && formik.errors.visitorSurname}
-            >
-                <div className="box">
-                    <label>
-                        <span style={{ color: 'red' }}>* </span>Visitor surname
-                    </label>
-                    <Input
-                        className="input"
-                        size="large"
-                        name="visitorSurname"
-                        placeholder="Visitor surname"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.visitorSurname}
-                    />
-                </div>
-            </Form.Item>
+                        <div className="row">
+                            <div className="col-6">
+                                <label>Visitor Email <span style={{ color: 'red' }}>*</span></label>
+                                <Field
+                                    type="email"
+                                    name="email"
+                                    placeholder="Visitor Email"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.email}
+                                />
+                                <ErrorMessage name="email" component="div" style={{ color: 'red', marginTop: '5px' }} />
+                            </div>
+                            <div className="col-6">
+                                <label>Description <span style={{ color: 'red' }}>*</span></label>
+                                <Field
+                                    type="text"
+                                    name="description"
+                                    placeholder="Description"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.description}
+                                />
+                                <ErrorMessage name="description" component="div" style={{ color: 'red', marginTop: '5px' }} />
+                            </div>
+                        </div>
 
-            <Form.Item
-                name="visitorEmail"
-                validateStatus={formik.touched.visitorEmail && formik.errors.visitorEmail ? 'error' : ''}
-                help={formik.touched.visitorEmail && formik.errors.visitorEmail}
-            >
-                <div className="box">
-                    <label>
-                        <span style={{ color: 'red' }}>* </span>Visitor email
-                    </label>
-                    <Input
-                        className="input"
-                        size="large"
-                        name="visitorEmail"
-                        placeholder="Visitor email"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.visitorEmail}
-                    />
-                </div>
-            </Form.Item>
+                        <div className="row">
+                            <div className="col-6">
+                                <label>Visited Date <span style={{ color: 'red' }}>*</span></label>
+                                <Field
+                                    type="datetime-local"
+                                    name="visitedDate"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.visitedDate}
+                                    min={new Date().toISOString().slice(0, 16)} // Prevent past dates
+                                />
+                                <ErrorMessage name="visitedDate" component="div" style={{ color: 'red', marginTop: '5px' }} />
+                            </div>
+                            <div className="col-6">
+                                <label>FIN Code <span style={{ color: 'red' }}>*</span></label>
+                                <Field
+                                    type="text"
+                                    name="finCode"
+                                    placeholder="FIN Code"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.finCode}
+                                />
+                                <ErrorMessage name="finCode" component="div" style={{ color: 'red', marginTop: '5px' }} />
+                            </div>
+                        </div>
 
-            <Form.Item
-                name="description"
-                validateStatus={formik.touched.description && formik.errors.description ? 'error' : ''}
-                help={formik.touched.description && formik.errors.description}
-            >
-                <div className="box">
-                    <label>
-                        <span style={{ color: 'red' }}>* </span>Description
-                    </label>
-                    <TextArea
-                        className="input"
-                        rows={4}
-                        size="large"
-                        name="description"
-                        placeholder="Description"
-                        style={{ resize: 'none' }}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.description}
-                    />
-                </div>
-            </Form.Item>
+                        <div className="row">
+                            <div className="col-6">
+                                <label>Is this a repeated visit?</label>
+                                <Field
+                                    as="select"
+                                    name="isRepeated"
+                                    onChange={handleChange}
+                                    value={values.isRepeated}
+                                >
+                                    <option value={false}>Bir dəfə</option>
+                                    <option value={true}>Hər həftə</option>
+                                </Field>
+                                <ErrorMessage name="isRepeated" component="div" style={{ color: 'red', marginTop: '5px' }} />
+                            </div>
+                            <div className="col-6">
+                                <label>Phone Number <span style={{ color: 'red' }}>*</span></label>
+                                <Field
+                                    type="text"
+                                    name="phoneNumber"
+                                    placeholder="Phone number"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.phoneNumber}
+                                />
+                                <ErrorMessage name="phoneNumber" component="div" style={{ color: 'red', marginTop: '5px' }} />
+                            </div>
+                        </div>
 
-            <Form.Item name="carCheck" valuePropName="checked">
-                <div className="box">
-                    <label>
-                        Will he/she come by car?
-                    </label>
-                    <Checkbox
-                        onChange={handleCheckboxChange}
-                        checked={formik.values.carCheck}
-                    />
-                </div>
-            </Form.Item>
+                        <div className="row">
+                            <div className="col-6" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '20px' }}>
+                                <Field
+                                    type="checkbox"
+                                    name="carCheck"
+                                    checked={values.carCheck}
+                                    onChange={handleChange}
+                                    style={{ width: 'max-content' }}
+                                />
+                                <label style={{ marginTop: '5px' }}>Will they come by car?</label>
+                            </div>
+                            {values.carCheck && (
+                                <div className="col-6">
+                                    <label>Car Number <span style={{ color: 'red' }}>*</span></label>
+                                    <Field
+                                        type="text"
+                                        name="carNumber"
+                                        placeholder="Car number"
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        value={values.carNumber}
+                                    />
+                                    <ErrorMessage name="carNumber" component="div" style={{ color: 'red', marginTop: '5px' }} />
+                                </div>
+                            )}
+                        </div>
 
-            {formik.values.carCheck && (
-                <Form.Item
-                    name="carNumber"
-                    validateStatus={formik.touched.carNumber && formik.errors.carNumber ? 'error' : ''}
-                    help={formik.touched.carNumber && formik.errors.carNumber}
-                >
-                    <div className="box">
-                        <label>
-                            <span style={{ color: 'red' }}>* </span>Car number
-                        </label>
-                        <Input
-                            className="input"
-                            size="large"
-                            name="carNumber"
-                            placeholder="Car number"
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            value={formik.values.carNumber}
-                        />
-                    </div>
-                </Form.Item>
-            )}
-
-            <div className="buttonWrapper" style={{ display: 'flex', gap: '10px' }}>
-                <Button size="large" type="primary" htmlType="submit">Save</Button>
-                <Button size="large" className="buttonSave" type="primary">Save and exit</Button>
-                <Button size="large" className="buttonSave" type="primary" danger>Cancel</Button>
-            </div>
-        </Form>
+                        <div className="buttonWrapper" style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
+                            <Button type="primary" size="large" htmlType="submit">Save</Button>
+                        </div>
+                    </Form>
+                )}
+            </Formik>
+            <ToastContainer />
+        </div>
     );
 }
 

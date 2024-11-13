@@ -19,6 +19,7 @@
     "@mui/styled-engine-sc": "^6.1.1",
     "@reduxjs/toolkit": "^2.2.7",
     "antd": "^5.20.6",
+    "date-fns": "^4.1.0",
     "file-saver": "^2.0.5",
     "formik": "^2.4.6",
     "js-cookie": "^3.0.5",

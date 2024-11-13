@@ -157,7 +157,7 @@ const SecurityProfileSection = () => {
                         Save
                     </Button>
                 </Form.Item>
-            </Form>\
+            </Form>
             <ToastContainer/>
         </section>
     );

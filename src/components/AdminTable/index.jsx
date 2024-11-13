@@ -65,8 +65,8 @@ const AdminTable = () => {
             dataIndex: 'carNumber',
         },
         {
-            title: 'Coming Date',
-            dataIndex: 'comingDate',
+            title: 'E-mail',
+            dataIndex: 'email',
         },
         {
             title: 'Visited Date',
@@ -79,11 +79,21 @@ const AdminTable = () => {
                 <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '17px'}}
                      className={"isVisited"}>
                     {record.isVisited === 1 ? (
-                        <button>Gəldi</button>
+                        <button style={{
+                            width: '125px'
+                        }}>Gəlir</button>
                     ) : record.isVisited === 2 ? (
-                        <button className="yel">İçəridə</button>
+                        <button style={{
+                            width: '125px'
+                        }} className="yel">İçəridə</button>
                     ) : record.isVisited === 3 ? (
-                        <button className="re">Getdi</button>
+                        <button style={{
+                            width: '125px'
+                        }} className="re">Getdi</button>
+                    ) : record.isVisited === -1 ? (
+                        <button style={{
+                            width: '125px'
+                        }} className="re">Rədd edildi</button>
                     ) : null}
                 </div>
             ),
@@ -147,6 +157,9 @@ const AdminTable = () => {
                 columns={columns}
                 dataSource={filteredDataSource}
                 rowKey="id"
+                pagination={{
+                    pageSize: 7
+                }}
             />
             <ToastContainer/>
         </section>

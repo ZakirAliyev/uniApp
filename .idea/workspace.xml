@@ -5,11 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="961267e0-c208-4c58-8422-ddfcc3e85879" name="Changes" comment="3">
-      <change afterPath="$PROJECT_DIR$/src/components/UserForm/banner.jpeg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AddAVisitor/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddAVisitor/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AddAVisitor/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddAVisitor/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AdminMenu/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AdminMenu/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AdminTable/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AdminTable/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AdminVisitorRequests/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AdminVisitorRequests/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LoginTabs/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LoginTabs/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SecurityProfileSection/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SecurityProfileSection/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SuperAdminMenu/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SuperAdminMenu/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SuperAdminTable/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SuperAdminTable/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SuperAdminTable/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SuperAdminTable/index.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/UserForm/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserForm/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/UserForm/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserForm/index.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/LoginPage/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/LoginPage/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/LoginPage/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/LoginPage/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/UserPage/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/UserPage/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/ROUTES.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/ROUTES.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/usersApi.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/usersApi.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +56,7 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;npm.dev.executor&quot;: &quot;Run&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2024.2.1\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2024.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -68,7 +84,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-WS-242.21829.149" />
+        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-WS-242.20224.342" />
       </set>
     </attachedChunks>
   </component>
@@ -111,6 +127,11 @@
       <workItem from="1730095291431" duration="9401000" />
       <workItem from="1730181465138" duration="711000" />
       <workItem from="1730271450952" duration="4943000" />
+      <workItem from="1731177611626" duration="8210000" />
+      <workItem from="1731267423613" duration="1845000" />
+      <workItem from="1731353754059" duration="5780000" />
+      <workItem from="1731435229636" duration="8647000" />
+      <workItem from="1731535454425" duration="16000" />
     </task>
     <servers />
   </component>

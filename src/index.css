@@ -344,4 +344,8 @@ body {
     }
 }
 
+:where(.css-dev-only-do-not-override-qnu6hi).ant-checkbox-checked .ant-checkbox-inner:after {
+    margin-top: 5px;
+}
+
 

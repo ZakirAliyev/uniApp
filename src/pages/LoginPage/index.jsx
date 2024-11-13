@@ -24,7 +24,7 @@ function LoginPage() {
                                     height={130}
                                 />
                             </div>
-                            <div className={"bsu"}>Baku State University</div>
+                            <div className={"bsu"}>BAKI DÖVLƏT UNİVERSİTETİ</div>
                             <LoginTabs/>
                         </div>
                     </Col>

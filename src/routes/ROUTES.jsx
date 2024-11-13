@@ -12,6 +12,10 @@ export const ROUTES = [
         children: [
             {
                 index: true,
+                element: <></>
+            },
+            {
+                path: '/main',
                 element: <UserPage/>
             },
             {

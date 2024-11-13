@@ -5,7 +5,7 @@ import {
     MenuUnfoldOutlined,
 } from '@ant-design/icons';
 import {Button, Layout, Menu, theme} from 'antd';
-import {MdLogout} from "react-icons/md";
+import {MdLogout, MdOutlinePendingActions, MdPersonAddAlt1} from "react-icons/md";
 import Swal from "sweetalert2";
 import {IoPeople} from "react-icons/io5";
 import 'react-toastify/dist/ReactToastify.css';
@@ -17,6 +17,7 @@ import SecurityProfileSection from "../SecurityProfileSection/index.jsx";
 import AdminTable from "../AdminTable/index.jsx";
 import {useGetAdminProfileDataQuery} from "../../services/usersApi.jsx";
 import AdminVisitorRequests from "../AdminVisitorRequests/index.jsx";
+import AddAVisitor from "../AddAVisitor/index.jsx";
 
 const {Header, Sider, Content} = Layout;
 
@@ -38,6 +39,8 @@ const AdminMenu = () => {
                 return <AdminTable/>
             case '2':
                 return <AdminVisitorRequests/>
+            case '3':
+                return <AddAVisitor/>
             case '6':
                 return <SecurityProfileSection/>
             default:
@@ -81,8 +84,13 @@ const AdminMenu = () => {
                         },
                         {
                             key: '2',
-                            icon: <IoPeople className={"icon"}/>,
+                            icon: <MdOutlinePendingActions className={"icon"}/>,
                             label: 'Visitor Requests',
+                        },
+                        {
+                            key: '3',
+                            icon: <MdPersonAddAlt1 className={"icon"}/>,
+                            label: 'Add a visitor',
                         },
                         {
                             key: '6',
@@ -109,7 +117,7 @@ const AdminMenu = () => {
                                     showCancelButton: true,
                                     confirmButtonColor: "#3085d6",
                                     cancelButtonColor: "#d33",
-                                    confirmButtonText: "Yes, delete it!"
+                                    confirmButtonText: "Yes!"
                                 }).then((result) => {
                                     if (result.isConfirmed) {
                                         Cookies.set("token", "null");

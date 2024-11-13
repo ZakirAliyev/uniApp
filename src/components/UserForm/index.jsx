@@ -4,7 +4,7 @@ import {useGetAllAdminsQuery, usePostNewVisitorMutation} from "../../services/us
 import {useFormik} from "formik";
 import {Bounce, toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {PulseLoader} from "react-spinners";
 
 function UserForm() {
@@ -16,6 +16,13 @@ function UserForm() {
 
     const [postNewVisitor] = usePostNewVisitorMutation();
     const [loading, setLoading] = useState(false);
+    const [comingByCar, setComingByCar] = useState(false);
+
+    useEffect(() => {
+        if (!comingByCar) {
+            formik.setFieldValue("carNumber", "");
+        }
+    }, [comingByCar]);
 
     const formik = useFormik({
         initialValues: {
@@ -32,7 +39,6 @@ function UserForm() {
         },
         validate: values => {
             const errors = {};
-            const emailRegex = /^[a-zA-Z0-9._%+-]+@bsu\.edu\.az$/;
 
             if (!values.email) {
                 errors.email = 'Email is required';
@@ -41,18 +47,6 @@ function UserForm() {
             return errors;
         },
         onSubmit: async values => {
-            const emailRegex = /^[a-zA-Z0-9._%+-]+@bsu\.edu\.az$/;
-            if (!emailRegex.test(values.email)) {
-                toast.error('Only @bsu.edu.az emails are allowed', {
-                    position: "bottom-right",
-                    autoClose: 2500,
-                    theme: "dark",
-                    transition: Bounce,
-                });
-                setLoading(false);
-                return;
-            }
-
             setLoading(true);
             const date = new Date(values.visitedDate);
             const formattedDate = date.toLocaleDateString('tr-TR') + ' ' + date.toLocaleTimeString('tr-TR', {
@@ -71,7 +65,7 @@ function UserForm() {
                     adminId: values.adminId,
                     isRepeated,
                     visitedDate: formattedDate,
-                    phoneNumber: values.phoneNumber,
+                    phoneNumber: "+994" + values.phoneNumber,
                     finCode: values.finCode,
                 }).unwrap();
 
@@ -108,7 +102,7 @@ function UserForm() {
                         height: '100%'
                     }}/>
                 </div>
-                <div className={"col-4 col-md-6 col-sm-12 col-xs-12"}>
+                <div className={"col-4"}>
                     <div className={"image"}>
                         <h2>Giriş və icazə sisteminə qeydiyyat</h2>
                         <div className={"span"}>
@@ -120,14 +114,14 @@ function UserForm() {
                         </div>
                     </div>
                 </div>
-                <div className={"col-5 col-md-6 col-sm-12 col-xs-12"} style={{
+                <div className={"col-5"} style={{
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center'
                 }}>
                     <form onSubmit={formik.handleSubmit}>
                         <div className={"row"}>
-                            <div className={"col-6 col-md-6 col-sm-12 col-xs-12 wrapper"}>
+                            <div className={"col-6 wrapper"}>
                                 <label>Ad</label>
                                 <input
                                     placeholder={"Ad"}
@@ -137,7 +131,7 @@ function UserForm() {
                                     value={formik.values.name}
                                 />
                             </div>
-                            <div className={"col-6 col-md-6 col-sm-12 col-xs-12 wrapper"}>
+                            <div className={"col-6 wrapper"}>
                                 <label>Soyad</label>
                                 <input
                                     placeholder={"Soyad"}
@@ -149,7 +143,7 @@ function UserForm() {
                             </div>
                         </div>
                         <div className={"row"}>
-                            <div className={"col-6 col-md-6 col-sm-12 col-xs-12 wrapper"}>
+                            <div className={"col-6 wrapper"}>
                                 <label>Email</label>
                                 <input
                                     placeholder={"Email"}
@@ -160,7 +154,7 @@ function UserForm() {
                                     value={formik.values.email}
                                 />
                             </div>
-                            <div className={"col-6 col-md-6 col-sm-12 col-xs-12 wrapper"}>
+                            <div className={"col-6 wrapper"}>
                                 <label>Müəllim</label>
                                 <select
                                     required
@@ -182,7 +176,7 @@ function UserForm() {
                             </div>
                         </div>
                         <div className={"row"}>
-                            <div className={"col-6 col-md-6 col-sm-12 col-xs-12 wrapper"}>
+                            <div className={"col-6 wrapper"}>
                                 <label>FIN</label>
                                 <input
                                     placeholder={"Fin"}
@@ -194,20 +188,39 @@ function UserForm() {
                                     minLength={7}
                                 />
                             </div>
-                            <div className={"col-6 col-md-6 col-sm-12 col-xs-12 wrapper"}>
+                            <div className={"col-6 wrapper"}>
                                 <label>Mobil nömrə</label>
-                                <input
-                                    placeholder={"Mobil nömrə"}
-                                    required
-                                    name="phoneNumber"
-                                    maxLength={13}
-                                    onChange={formik.handleChange}
-                                    value={formik.values.phoneNumber}
-                                />
+                                <div style={{
+                                    position: 'relative'
+                                }}>
+                                    <span style={{
+                                        position: 'absolute',
+                                        top: '10px',
+                                        left: '20px',
+                                        fontSize: '14px',
+                                        color: '#A99674',
+                                        fontWeight: '500',
+                                        zIndex: -1
+                                    }}>+994</span>
+                                    <input
+                                        style={{
+                                            width: '100%',
+                                            paddingLeft: '60px',
+                                            position: 'absolute',
+                                            zIndex: -2
+                                        }}
+                                        placeholder={"Mobil nömrə"}
+                                        required
+                                        name="phoneNumber"
+                                        maxLength={9}
+                                        onChange={formik.handleChange}
+                                        value={formik.values.phoneNumber}
+                                    />
+                                </div>
                             </div>
                         </div>
                         <div className={"row"}>
-                            <div className={"col-6 col-md-6 col-sm-12 col-xs-12 wrapper"}>
+                            <div className={"col-6 wrapper"}>
                                 <label>Gəliş tarixi və saatı</label>
                                 <input
                                     type={"datetime-local"}
@@ -216,10 +229,9 @@ function UserForm() {
                                     onChange={formik.handleChange}
                                     value={formik.values.visitedDate}
                                     min={formattedDate.slice(0, 10) + "T08:00"}
-                                    max={formattedDate.slice(0, 10) + "T17:00"}
                                 />
                             </div>
-                            <div className={"col-6 col-md-6 col-sm-12 col-xs-12 wrapper"}>
+                            <div className={"col-6 wrapper"}>
                                 <label>Təkrarla</label>
                                 <select
                                     required
@@ -233,7 +245,36 @@ function UserForm() {
                             </div>
                         </div>
                         <div className={"row"}>
-                            <div className={"col-12 col-md-12 col-sm-12 col-xs-12 wrapper"}>
+                            <div className={"col-6 wrapper"} style={{
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                justifyContent: 'start',
+                                gap: '15px',
+                            }}>
+                                <input
+                                    type={"checkbox"}
+                                    checked={comingByCar}
+                                    onChange={(e) => setComingByCar(e.target.checked)}
+                                />
+                                <label style={{
+                                    marginTop: "5px"
+                                }}>Maşınla gələcəkmi?</label>
+                            </div>
+                            {comingByCar && (
+                                <div className={"col-6 wrapper"}>
+                                    <label>Maşın Nömrəsi</label>
+                                    <input
+                                        placeholder={"Maşın nömrəsi"}
+                                        required
+                                        name="carNumber"
+                                        onChange={formik.handleChange}
+                                        value={formik.values.carNumber}
+                                    />
+                                </div>
+                            )}
+                        </div>
+                        <div className={"row"}>
+                            <div className={"col-12 wrapper"}>
                                 <label>Gəliş səbəbi</label>
                                 <textarea
                                     placeholder={"Təsvir"}
