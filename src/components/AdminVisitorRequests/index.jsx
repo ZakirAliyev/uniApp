@@ -155,7 +155,7 @@ const AdminVisitorRequests = () => {
                             }
                         }}
                     >
-                        {loading[record.id]?.reject ? <PulseLoader color="#ff3333" size={8}/> :
+                        {loading[record.id]?.reject ? <PulseLoader color="white" size={8}/> :
                             <ImCross className={"icon"}/>}
                     </button>
                 </div>

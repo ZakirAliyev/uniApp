@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import './index.scss';
-import { Button, Form, Input } from "antd";
-import { useGetSecurityProfileDataQuery, usePutAdminProfileDataMutation } from "../../services/usersApi.jsx";
+import {Button, Form, Input} from "antd";
+import {useGetSecurityProfileDataQuery, usePutAdminProfileDataMutation} from "../../services/usersApi.jsx";
 import {Bounce, toast, ToastContainer} from "react-toastify";
 
 const SecurityProfileSection = () => {
     const [form] = Form.useForm(); // Create form instance
-    const { data: getSecurityProfileData } = useGetSecurityProfileDataQuery();
+    const {data: getSecurityProfileData} = useGetSecurityProfileDataQuery();
     const [putAdminProfileData] = usePutAdminProfileDataMutation();
 
     useEffect(() => {
@@ -21,6 +21,7 @@ const SecurityProfileSection = () => {
                 position: getSecurityProfileData.position,
                 imgUrl: getSecurityProfileData.imgUrl,
                 createdDateFormatted: getSecurityProfileData.createdDateFormatted,
+                roomNumber: getSecurityProfileData.roomNumber,
             });
         }
     }, [getSecurityProfileData, form]);
@@ -57,19 +58,19 @@ const SecurityProfileSection = () => {
                     phoneNumber: '',
                     position: '',
                     imgUrl: '',
-                    createdDateFormatted: ''
+                    createdDateFormatted: '',
                 }}
             >
                 {/* ID alanı - hidden */}
                 <Form.Item name="id" hidden>
-                    <Input type="hidden" />
+                    <Input type="hidden"/>
                 </Form.Item>
 
                 <div className="labelWrapper">
                     <label>Name</label>
                     <Form.Item
                         name="name"
-                        rules={[{ required: true, message: 'Name is required' }]}
+                        rules={[{required: true, message: 'Name is required'}]}
                     >
                         <Input size="large" placeholder="Name" className="profileInput"/>
                     </Form.Item>
@@ -79,7 +80,7 @@ const SecurityProfileSection = () => {
                     <label>Surname</label>
                     <Form.Item
                         name="surname"
-                        rules={[{ required: true, message: 'Surname is required' }]}
+                        rules={[{required: true, message: 'Surname is required'}]}
                     >
                         <Input size="large" placeholder="Surname" className="profileInput"/>
                     </Form.Item>
@@ -89,7 +90,7 @@ const SecurityProfileSection = () => {
                     <label>Father's Name</label>
                     <Form.Item
                         name="fatherName"
-                        rules={[{ required: true, message: "Father's name is required" }]}
+                        rules={[{required: true, message: "Father's name is required"}]}
                     >
                         <Input size="large" placeholder="Father's Name" className="profileInput"/>
                     </Form.Item>
@@ -100,8 +101,8 @@ const SecurityProfileSection = () => {
                     <Form.Item
                         name="email"
                         rules={[
-                            { required: true, message: 'Email is required' },
-                            { type: 'email', message: 'Email format is invalid' },
+                            {required: true, message: 'Email is required'},
+                            {type: 'email', message: 'Email format is invalid'},
                         ]}
                     >
                         <Input size="large" placeholder="Email" className="profileInput"/>
@@ -112,7 +113,7 @@ const SecurityProfileSection = () => {
                     <label>Phone Number</label>
                     <Form.Item
                         name="phoneNumber"
-                        rules={[{ required: true, message: 'Phone number is required' }]}
+                        rules={[{required: true, message: 'Phone number is required'}]}
                     >
                         <Input size="large" placeholder="Phone Number" className="profileInput"/>
                     </Form.Item>
@@ -122,7 +123,7 @@ const SecurityProfileSection = () => {
                     <label>Position</label>
                     <Form.Item
                         name="position"
-                        rules={[{ required: true, message: 'Position is required' }]}
+                        rules={[{required: true, message: 'Position is required'}]}
                     >
                         <Input size="large" placeholder="Position" className="profileInput"/>
                     </Form.Item>
@@ -132,7 +133,7 @@ const SecurityProfileSection = () => {
                     <label>Image URL</label>
                     <Form.Item
                         name="imgUrl"
-                        rules={[{ required: true, message: 'Image URL is required' }]}
+                        rules={[{required: true, message: 'Image URL is required'}]}
                     >
                         <Input size="large" placeholder="Image URL" className="profileInput"/>
                     </Form.Item>
@@ -144,6 +145,15 @@ const SecurityProfileSection = () => {
                         name="createdDateFormatted"
                     >
                         <Input size="large" disabled placeholder="Created Date" className="profileInput"/>
+                    </Form.Item>
+                </div>
+
+                <div className="labelWrapper">
+                    <label>Room Number</label>
+                    <Form.Item
+                        name="roomNumber"
+                    >
+                        <Input size="large" disabled placeholder="Room Number" className="profileInput"/>
                     </Form.Item>
                 </div>
 

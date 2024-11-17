@@ -6,26 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="961267e0-c208-4c58-8422-ddfcc3e85879" name="Changes" comment="3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AddAVisitor/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddAVisitor/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AddAVisitor/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddAVisitor/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AdminMenu/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AdminMenu/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AdminTable/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AdminTable/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/AdminVisitorRequests/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AdminVisitorRequests/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/LoginTabs/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LoginTabs/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/SecurityProfileSection/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SecurityProfileSection/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SuperAdminMenu/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SuperAdminMenu/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SuperAdminTable/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SuperAdminTable/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SuperAdminTable/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SuperAdminTable/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/UserForm/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserForm/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/LoginPage/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/LoginPage/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/LoginPage/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/LoginPage/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/UserPage/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/UserPage/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/ROUTES.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/ROUTES.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/usersApi.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/usersApi.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SecurityTable/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SecurityTable/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,6 +116,9 @@
       <workItem from="1731353754059" duration="5780000" />
       <workItem from="1731435229636" duration="8647000" />
       <workItem from="1731535454425" duration="16000" />
+      <workItem from="1731719990928" duration="631000" />
+      <workItem from="1731871117385" duration="3203000" />
+      <workItem from="1731875306107" duration="512000" />
     </task>
     <servers />
   </component>

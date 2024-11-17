@@ -3,23 +3,23 @@ import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import { Button, TextField } from "@mui/material";
+import {Button, TextField} from "@mui/material";
 import {
     usePostAdminLoginMutation,
     usePostSecurityLoginMutation,
     usePostSubAdminLoginMutation
 } from "../../services/usersApi.jsx";
-import { useFormik } from "formik";
-import { Bounce, toast, ToastContainer } from "react-toastify";
+import {useFormik} from "formik";
+import {Bounce, toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from "react-router";
+import {useNavigate} from "react-router";
 import Cookies from 'js-cookie';
-import { PulseLoader } from "react-spinners";
+import {PulseLoader} from "react-spinners";
 import './index.scss';
 
 // Reusable TabPanel component for displaying tab content conditionally
 function CustomTabPanel(props) {
-    const { children, value, index, ...other } = props;
+    const {children, value, index, ...other} = props;
 
     return (
         <div
@@ -29,7 +29,7 @@ function CustomTabPanel(props) {
             aria-labelledby={`simple-tab-${index}`}
             {...other}
         >
-            {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+            {value === index && <Box sx={{p: 3}}>{children}</Box>}
         </div>
     );
 }
@@ -54,13 +54,13 @@ export default function LoginTabs() {
     const navigate = useNavigate();
 
     // API mutation hooks for login actions
-    const [postAdminLogin, { isLoading: isAdminLoading }] = usePostAdminLoginMutation();
-    const [postSecurityLogin, { isLoading: isSecurityLoading }] = usePostSecurityLoginMutation();
-    const [postSubAdminLogin, { isLoading: isSubAdminLoading }] = usePostSubAdminLoginMutation();
+    const [postAdminLogin, {isLoading: isAdminLoading}] = usePostAdminLoginMutation();
+    const [postSecurityLogin, {isLoading: isSecurityLoading}] = usePostSecurityLoginMutation();
+    const [postSubAdminLogin, {isLoading: isSubAdminLoading}] = usePostSubAdminLoginMutation();
 
     // Formik setup for form handling
     const formik = useFormik({
-        initialValues: { email: '', password: '' },
+        initialValues: {email: '', password: ''},
         onSubmit: async (values) => handleLoginSubmit(values),
     });
 
@@ -99,10 +99,10 @@ export default function LoginTabs() {
     const handleLoginSuccess = (response, superAdminPath, adminPath) => {
         if (response?.statusCode === 200) {
             toast.success('Login successful!', toastOptions());
-            Cookies.set('token', response?.data?.token, { expires: 7 });
-            Cookies.set('role', response?.data?.role, { expires: 7 });
+            Cookies.set('token', response?.data?.token, {expires: 7});
+            Cookies.set('role', response?.data?.role, {expires: 7});
             setTimeout(() => {
-                const path = response?.data?.role === 'SuperAdmin' ? superAdminPath : adminPath;
+                const path = response?.data?.role === 'SuperAdmin' ? '/scp' : response?.data?.role === 'Admin' ? '/cp' : response?.data?.role === 'Security' ? '/security' : '/main'
                 navigate(path);
             }, 3500);
         }
@@ -127,13 +127,13 @@ export default function LoginTabs() {
     });
 
     return (
-        <Box sx={{ width: '100%' }}>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Box sx={{width: '100%'}}>
+            <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
                 <Tabs
                     value={value}
                     onChange={handleChange}
                     aria-label="login tabs"
-                    TabIndicatorProps={{ style: { backgroundColor: "#a99674" } }}
+                    TabIndicatorProps={{style: {backgroundColor: "#a99674"}}}
                 >
                     <Tab label="ADMİN KİMİ" {...a11yProps(0)} />
                     <Tab label="MÜHAVİZƏ KİMİ" {...a11yProps(1)} />
@@ -141,21 +141,21 @@ export default function LoginTabs() {
                 </Tabs>
             </Box>
             <CustomTabPanel value={value} index={0}>
-                <LoginForm isLoading={isLoading} formik={formik} />
+                <LoginForm isLoading={isLoading} formik={formik}/>
             </CustomTabPanel>
             <CustomTabPanel value={value} index={1}>
-                <LoginForm isLoading={isLoading} formik={formik} />
+                <LoginForm isLoading={isLoading} formik={formik}/>
             </CustomTabPanel>
             <CustomTabPanel value={value} index={2}>
-                <LoginForm isLoading={isLoading} formik={formik} />
+                <LoginForm isLoading={isLoading} formik={formik}/>
             </CustomTabPanel>
-            <ToastContainer />
+            <ToastContainer/>
         </Box>
     );
 }
 
 // Reusable LoginForm component to reduce redundancy
-function LoginForm({ isLoading, formik }) {
+function LoginForm({isLoading, formik}) {
     return (
         <form onSubmit={formik.handleSubmit}>
             <TextField
@@ -188,10 +188,10 @@ function LoginForm({ isLoading, formik }) {
                 className="buttonForLoginTabs"
                 variant="contained"
                 fullWidth
-                style={{ marginTop: '16px', backgroundColor: '#a99674' }}
+                style={{marginTop: '16px', backgroundColor: '#a99674'}}
                 disabled={isLoading}
             >
-                {isLoading ? <PulseLoader size={10} color={'white'} style={{ margin: '0' }} /> : "Login"}
+                {isLoading ? <PulseLoader size={10} color={'white'} style={{margin: '0'}}/> : "Login"}
             </Button>
         </form>
     );
@@ -199,12 +199,12 @@ function LoginForm({ isLoading, formik }) {
 
 // Input field styling
 const inputStyles = {
-    '& .MuiInputLabel-root': { color: '#a99674' },
+    '& .MuiInputLabel-root': {color: '#a99674'},
     '& .MuiOutlinedInput-root': {
-        '&.Mui-focused fieldset': { borderColor: '#a99674' },
+        '&.Mui-focused fieldset': {borderColor: '#a99674'},
     },
-    '& .MuiInputLabel-root.Mui-focused': { color: '#a99674' },
-    '&:hover .MuiInputLabel-root': { color: '#a99674' },
+    '& .MuiInputLabel-root.Mui-focused': {color: '#a99674'},
+    '&:hover .MuiInputLabel-root': {color: '#a99674'},
 };
 
 LoginForm.propTypes = {

@@ -61,12 +61,16 @@ const SecurityTable = () => {
             dataIndex: 'carNumber',
         },
         {
-            title: 'Coming Date',
-            dataIndex: 'comingDate',
-        },
-        {
             title: 'Visited Date',
             dataIndex: 'visitedDate',
+        },
+        {
+            title: 'Coming Date',
+            dataIndex: 'commingDate',
+        },
+        {
+            title: 'Exit Date',
+            dataIndex: 'goIngDate',
         },
         {
             title: 'Actions',
@@ -75,7 +79,7 @@ const SecurityTable = () => {
                 <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '17px'}}
                      className={"isVisited"}>
                     {record.isVisited === 1 ? (
-                        <button onClick={() => handleActionClick(record.id)}>Gəldi</button>
+                        <button onClick={() => handleActionClick(record.id)}>Gəlir</button>
                     ) : record.isVisited === 2 ? (
                         <button className="yel" onClick={() => handleActionClick(record.id)}>İçəridə</button>
                     ) : record.isVisited === 3 ? (
@@ -89,11 +93,11 @@ const SecurityTable = () => {
     const dataSource = data?.data?.map((item) => ({
         adminId: item.adminId,
         carNumber: item.carNumber || 'N/A',
-        comingDate: item.comingDate || 'N/A',
+        commingDate: item.commingDate || 'N/A',
         createdDate: item.createdDate,
         description: item.description || 'N/A',
         email: item.email || 'N/A',
-        goingDate: item.goingDate || 'N/A',
+        goIngDate: item.goIngDate || 'N/A',
         id: item.id,
         isVisited: item.isVisited,
         name: item.name,
