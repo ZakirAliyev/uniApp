@@ -28,6 +28,11 @@ tr, th, td, thead {
     margin: 0 auto;
 }
 
+.container2 {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
 .ant-menu {
     margin-top: 50px;
 }

@@ -4,6 +4,7 @@ import Pages from "../pages/index.jsx";
 import SuperAdminPage from "../pages/SuperAdminPage/index.jsx";
 import UserPage from "../pages/UserPage/index.jsx";
 import AdminPage from "../pages/AdminPage/index.jsx";
+import HomePage from "../pages/HomePage/index.jsx";
 
 export const ROUTES = [
     {
@@ -12,7 +13,7 @@ export const ROUTES = [
         children: [
             {
                 index: true,
-                element: <></>
+                element: <HomePage/>
             },
             {
                 path: '/main',
