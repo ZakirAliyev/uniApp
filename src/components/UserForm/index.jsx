@@ -6,6 +6,7 @@ import {Bounce, toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import {useEffect, useState} from "react";
 import {PulseLoader} from "react-spinners";
+import {Link} from "react-router-dom";
 
 function UserForm() {
     const {data: getAllAdmins} = useGetAllAdminsQuery();
@@ -103,6 +104,7 @@ function UserForm() {
                     }}/>
                 </div>
                 <div className={"col-4"}>
+                    <Link to={`/`} className={"logOut"}>Çıxış</Link>
                     <div className={"image"}>
                         <h2>Giriş və icazə sisteminə qeydiyyat</h2>
                         <div className={"span"}>

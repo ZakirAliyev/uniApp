@@ -23,6 +23,8 @@ import {useGetAdminProfileDataQuery} from "../../services/usersApi.jsx";
 import SuperAdminProfile from "../SuperAdminProfile/index.jsx";
 import {FaCircleUser} from "react-icons/fa6";
 import GuardiansMenu from "../GuardiansMenu/index.jsx";
+import AddASubadmin from "../AddASubadmin/index.jsx";
+import SubadminsMenu from "../SubadminsMenu/index.jsx";
 
 const {Header, Sider, Content} = Layout;
 
@@ -52,6 +54,10 @@ const SuperAdminMenu = () => {
                 return <TeachersMenu/>;
             case '7':
                 return <AddATeacher/>
+            case '8':
+                return <SubadminsMenu/>
+            case '9':
+                return <AddASubadmin/>
             case '11':
                 return <SuperAdminProfile/>
             default:
@@ -119,6 +125,16 @@ const SuperAdminMenu = () => {
                             key: '7',
                             icon: <IoPersonAddSharp className={"icon"}/>,
                             label: 'Add a teacher',
+                        },
+                        {
+                            key: '8',
+                            icon: <IoPersonAddSharp className={"icon"}/>,
+                            label: 'Subadmins',
+                        },
+                        {
+                            key: '9',
+                            icon: <IoPersonAddSharp className={"icon"}/>,
+                            label: 'Add a subadmin',
                         },
                         {
                             key: '11',

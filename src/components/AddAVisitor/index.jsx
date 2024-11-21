@@ -55,6 +55,7 @@ function AddAVisitor() {
         values.visitedDate = formattedVisitedDate;
 
         values.phoneNumber = '+994' + values.phoneNumber;  // Ensure phone number is formatted
+        values.isRepeated = values.isRepeated === "true" || values.isRepeated === true;
         try {
             const response = await postVisitor(values).unwrap();
             if (response?.statusCode === 200) {

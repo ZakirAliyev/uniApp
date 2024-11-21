@@ -254,6 +254,18 @@ export const usersApi = createApi({
                 headers: {'Content-Type': 'application/json'}
             }),
         }),
+
+        addASubAdminPost: builder.mutation({
+            query: (id) => ({
+                url: `/SubAdmin/add/Subadmin`,
+                method: 'POST',
+                body: id,
+                headers: {'Content-Type': 'application/json'}
+            }),
+        }),
+        getAllSubadmins: builder.query({
+            query: () => `/SubAdmin/all/SubAdmin`,
+        }),
     }),
 });
 
@@ -312,5 +324,8 @@ export const {
 
     useGetAllVisitorRequestsQuery,
 
-    useCreateVisitorPostMutation
+    useCreateVisitorPostMutation,
+
+    useAddASubAdminPostMutation,
+    useGetAllSubadminsQuery
 } = usersApi;

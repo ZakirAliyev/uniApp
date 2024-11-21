@@ -33,6 +33,11 @@ tr, th, td, thead {
     margin: 0 auto;
 }
 
+.container3 {
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
 .ant-menu {
     margin-top: 50px;
 }
