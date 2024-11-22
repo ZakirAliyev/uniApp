@@ -57,6 +57,10 @@ const SecurityTable = () => {
             dataIndex: 'description',
         },
         {
+            title: 'FIN Code',
+            dataIndex: 'finCode',
+        },
+        {
             title: 'Car Number',
             dataIndex: 'carNumber',
         },
@@ -103,6 +107,7 @@ const SecurityTable = () => {
         name: item.name,
         surname: item.surname,
         visitedDate: item.visitedDate,
+        finCode: item.finCode,
     })) || [];
 
     const filteredDataSource = dataSource.filter((item) => {

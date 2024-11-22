@@ -61,7 +61,7 @@ const SuperAdminMenu = () => {
     const excelFile1 = excelFile?.data;
 
     const {data: pdfFile} = useGetPdfFileQuery();
-    const pdfFile1 = pdfFile?.data;
+    const pdfFile1 = pdfFile;
 
     const {data: printFile} = useGetPrintFileQuery();
     const printFile1 = printFile?.data;
@@ -128,19 +128,34 @@ const SuperAdminMenu = () => {
                             icon: <FaFilePdf className={"icon"}/>,
                             label: 'Export as PDF',
                             onClick: () => {
-                                if (pdfFile1 && pdfFile1.fileContents) {
-                                    const byteCharacters = atob(pdfFile1.fileContents);
-                                    const byteNumbers = new Array(byteCharacters.length);
-                                    for (let i = 0; i < byteCharacters.length; i++) {
-                                        byteNumbers[i] = byteCharacters.charCodeAt(i);
+                                if (pdfFile1 && pdfFile1.data) {
+                                    try {
+                                        // Decode base64 data
+                                        const byteCharacters = atob(pdfFile1.data);
+                                        const byteNumbers = new Array(byteCharacters.length);
+                                        for (let i = 0; i < byteCharacters.length; i++) {
+                                            byteNumbers[i] = byteCharacters.charCodeAt(i);
+                                        }
+                                        const byteArray = new Uint8Array(byteNumbers);
+
+                                        // Create a Blob with the correct file type
+                                        const blob = new Blob([byteArray], {type: pdfFile1.fileType || "application/pdf"});
+
+                                        // Download the file using FileSaver.js
+                                        saveAs(blob, pdfFile1.fileName || "export.pdf");
+
+                                        // Success alert
+                                        Swal.fire("Success", "PDF file downloaded successfully!", "success");
+
+                                        // Optional: Reset the menu item or state
+                                        resetMenuItem();
+                                    } catch (error) {
+                                        console.error("Error processing PDF file:", error);
+                                        Swal.fire("Error", "An unexpected error occurred while downloading the PDF.", "error");
                                     }
-                                    const byteArray = new Uint8Array(byteNumbers);
-                                    const blob = new Blob([byteArray], {type: pdfFile1.contentType});
-                                    saveAs(blob, pdfFile1.fileDownloadName || 'export.pdf');
-                                    Swal.fire("Success", "PDF file downloaded successfully!", "success");
-                                    resetMenuItem(); // Reset after download
                                 } else {
-                                    Swal.fire("Error", "Failed to load PDF file", "error");
+                                    // Error alert for missing or invalid data
+                                    Swal.fire("Error", "Failed to load PDF file. Please try again.", "error");
                                 }
                             }
                         },

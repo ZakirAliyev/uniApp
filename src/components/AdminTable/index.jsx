@@ -1,7 +1,7 @@
 import './index.scss';
 
 import {Input, Table} from 'antd';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {
     useGetAllAdminsVisitorsQuery,
     useGetVisitorsDataForSecurityQuery, usePostVisitorAcceptMutation, usePostVisitorRejectMutation,
@@ -16,6 +16,10 @@ const AdminTable = () => {
 
     const [putChangeIsVisited] = usePutChangeIsVisitedMutation();
     const {data, refetch} = useGetAllAdminsVisitorsQuery();
+
+    useEffect(() => {
+        refetch()
+    }, []);
 
     const handleActionClick = async (id) => {
         Swal.fire({

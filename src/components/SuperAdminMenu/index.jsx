@@ -25,6 +25,8 @@ import {FaCircleUser} from "react-icons/fa6";
 import GuardiansMenu from "../GuardiansMenu/index.jsx";
 import AddASubadmin from "../AddASubadmin/index.jsx";
 import SubadminsMenu from "../SubadminsMenu/index.jsx";
+import {RiAdminLine} from "react-icons/ri";
+import {GrUserAdmin} from "react-icons/gr";
 
 const {Header, Sider, Content} = Layout;
 
@@ -128,12 +130,12 @@ const SuperAdminMenu = () => {
                         },
                         {
                             key: '8',
-                            icon: <IoPersonAddSharp className={"icon"}/>,
+                            icon: <RiAdminLine className={"icon"}/>,
                             label: 'Subadmins',
                         },
                         {
                             key: '9',
-                            icon: <IoPersonAddSharp className={"icon"}/>,
+                            icon: <GrUserAdmin className={"icon"}/>,
                             label: 'Add a subadmin',
                         },
                         {

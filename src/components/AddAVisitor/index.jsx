@@ -198,7 +198,7 @@ function AddAVisitor() {
                                 <ErrorMessage name="isRepeated" component="div" style={{ color: 'red', marginTop: '5px' }} />
                             </div>
                             <div className="col-6">
-                                <label>Phone Number <span style={{ color: 'red' }}>*</span></label>
+                                <label>Phone Number (məs: 501234567)<span style={{ color: 'red' }}>*</span></label>
                                 <Field
                                     type="text"
                                     name="phoneNumber"
