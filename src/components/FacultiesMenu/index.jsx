@@ -109,7 +109,7 @@ function FacultiesMenu() {
                     throw new Error();
                 }
             } catch (error) {
-                toast.error('An error occurred', {
+                toast.error('Xəta baş verdi.', {
                     position: "bottom-right",
                     autoClose: 2500,
                     theme: "dark",
@@ -146,7 +146,7 @@ function FacultiesMenu() {
                 throw new Error();
             }
         } catch (error) {
-            toast.error('Please fill in the required fields.', {
+            toast.error('Zəhmət olmasa xanaları doldurun.', {
                 position: "bottom-right",
                 autoClose: 2500,
                 theme: "dark",
@@ -174,7 +174,7 @@ function FacultiesMenu() {
                 throw new Error();
             }
         } catch (error) {
-            toast.error('An error occurred while changing availability.', {
+            toast.error('Mövcudluğu dəyişdirərkən xəta baş verdi.', {
                 position: "bottom-right",
                 autoClose: 2500,
                 theme: "dark",
@@ -192,37 +192,37 @@ function FacultiesMenu() {
             render: text => <span style={{fontWeight: 500, textDecoration: "underline"}}>{text}</span>,
         },
         {
-            title: 'Faculty Name',
+            title: 'Fakültə adı',
             dataIndex: 'name',
             render: text => <span
                 style={{color: '#1677FF', fontSize: "15px", fontWeight: 600, cursor: 'pointer'}}>{text}</span>,
         },
         {
-            title: 'Building ID',
+            title: 'Bina ID',
             dataIndex: 'buildingId',
             render: text => <span style={{fontWeight: 500, textDecoration: "underline"}}>{text}</span>,
         },
         {
-            title: 'Building Name',
+            title: 'Bina adı',
             dataIndex: 'buildingName',
             render: text => <span
                 style={{color: '#109eb1', fontSize: "15px", fontWeight: 600, cursor: 'pointer'}}>{text}</span>,
         },
         {
-            title: 'Department Count',
+            title: 'Şöbə sayı',
             dataIndex: 'departmentCount',
         },
         {
-            title: 'Create Date',
+            title: 'Yaradılma tarixi',
             dataIndex: 'createdDateFormatted',
         },
         {
-            title: 'Last Edit Date',
+            title: 'Son redaktə tarixi',
             dataIndex: 'updatedDateFormatted',
             render: text => text || 'N/A',
         },
         {
-            title: 'Availability in the system',
+            title: 'Sistemdə mövcudluğu',
             render: (text, record) => (
                 loadingFaculties[record.id] ? (
                     <span><PulseLoader size={8}/></span>
@@ -235,7 +235,7 @@ function FacultiesMenu() {
             ),
         },
         {
-            title: 'Actions',
+            title: 'Əməliyyatlar',
             render: (text, record) => (
                 <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '17px'}}>
                     <FiEdit
@@ -252,7 +252,7 @@ function FacultiesMenu() {
         <div id={"buildingsMenu"}>
             <div className={"wrapper1"}>
                 <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-                    <h2>Faculties</h2>
+                    <h2>Fakültələr</h2>
                     <div style={{display: 'flex', gap: '10px'}}>
                         {/* Filter by Building */}
                         <select
@@ -261,7 +261,7 @@ function FacultiesMenu() {
                             }}
                             value={selectedBuildingForFilter}
                         >
-                            <option value="">All Buildings</option>
+                            <option value="">Bütün binalar</option>
                             {/* Optional: To show all faculties */}
                             {buildings.map((building) => (
                                 <option key={building.id} value={String(building.id)}>
@@ -280,13 +280,13 @@ function FacultiesMenu() {
                             }}
                             value={sortOrder}
                         >
-                            <option value="" disabled>Sort by</option>
-                            <option value="oldest">Oldest</option>
-                            <option value="newest">Newest</option>
+                            <option value="" disabled>Sırala</option>
+                            <option value="oldest">Ən köhnə</option>
+                            <option value="newest">Ən təzə</option>
                             <option value="a-z">A-Z</option>
                             <option value="z-a">Z-A</option>
-                            <option value="available">Available</option>
-                            <option value="deleted">Deleted</option>
+                            <option value="available">Mövcuddur</option>
+                            <option value="deleted">Silinmiş</option>
                         </select>
                     </div>
                 </div>
@@ -298,7 +298,7 @@ function FacultiesMenu() {
                                 size="large"
                                 name="search"
                                 value={searchTerm}
-                                placeholder={"Search faculty"}
+                                placeholder={"Fakültə axtar"}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                             />
                         </div>
@@ -313,7 +313,7 @@ function FacultiesMenu() {
                                     size={"large"}
                                     className={"input"}
                                     value={newFacultyName}
-                                    placeholder="Add new faculty"
+                                    placeholder="Yeni fakültə əlavə et"
                                     onChange={(e) => setNewFacultyName(e.target.value)}
                                 />
                             </div>
@@ -327,7 +327,7 @@ function FacultiesMenu() {
                                     value={selectedBuildingId}
                                     onChange={(e) => setSelectedBuildingId(e.target.value)}
                                 >
-                                    <option value="" disabled>Select a building</option>
+                                    <option value="" disabled>Bina seç</option>
                                     {buildings.map((building) => (
                                         <option key={building.id} value={String(building.id)}>
                                             {building.name}
@@ -343,7 +343,7 @@ function FacultiesMenu() {
                                 className={"addFacultyButton"}
                                 size={"large"}
                             >
-                                Add
+                                Əlavə et
                             </Button>
                         </div>
                     </div>
@@ -361,19 +361,19 @@ function FacultiesMenu() {
             </div>
             <ToastContainer/>
             <Modal
-                title="Edit Faculty"
+                title="Fakültəni redaktə et"
                 open={isModalOpen}
                 onOk={handleOk}
                 onCancel={handleCancel}
             >
                 <Form form={form}>
                     <Form.Item
-                        label="Faculty Name"
+                        label="Fakültə adı"
                         name="name"
                         rules={[
                             {
                                 required: true,
-                                message: 'Please input the faculty name!',
+                                message: 'Zəhmət olmasa fakültə adını daxil edin!',
                             },
                         ]}
                     >

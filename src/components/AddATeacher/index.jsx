@@ -28,7 +28,6 @@ function AddATeacher() {
             email: '',
             password: '',
             phoneNumber: '',
-            imgUrl: '' // Yeni imgUrl alanı
         },
         validationSchema: Yup.object({
             name: Yup.string().required('Adı daxil edin!'),
@@ -42,7 +41,6 @@ function AddATeacher() {
             phoneNumber: Yup.string()
                 .matches(/^\+994\d{9}$/, 'Telefon nömrəsi +994XXXXXXXXX formatında olmalıdır')
                 .required('Telefon nömrəsini daxil edin!'),
-            imgUrl: Yup.string().url('Doğru bir URL daxil edin').required('Şəkli yükləyin!'), // imgUrl doğrulaması
         }),
         onSubmit: async (values) => {
             const dataToSend = {
@@ -112,18 +110,6 @@ function AddATeacher() {
                         </div>
                     </Form.Item>
                 ))}
-
-                {/* Şəkil URL-i üçün Form.Item */}
-                <Form.Item name="imgUrl"
-                           validateStatus={formik.touched.imgUrl && formik.errors.imgUrl ? 'error' : ''}
-                           help={formik.touched.imgUrl && formik.errors.imgUrl}>
-                    <div className="box">
-                        <label><span style={{ color: 'red' }}>* </span>Şəkil URL-i</label>
-                        <Input className="input" size="large" name="imgUrl" placeholder="Şəkil URL-i"
-                               onChange={formik.handleChange} onBlur={formik.handleBlur}
-                               value={formik.values.imgUrl} />
-                    </div>
-                </Form.Item>
 
                 <Form.Item name="facultyId"
                            validateStatus={formik.touched.facultyId && formik.errors.facultyId ? 'error' : ''}

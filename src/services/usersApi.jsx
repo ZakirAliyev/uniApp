@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 export const usersApi = createApi({
     reducerPath: 'usersApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'https://zakir20-001-site1.gtempurl.com/api/',
+        baseUrl: 'https://bsuapp-001-site1.otempurl.com/api/',
         prepareHeaders: (headers) => {
             const token = Cookies.get('token');
             if (token) {
