@@ -11,22 +11,22 @@ function AddASubadmin() {
 
     const SignupSchema = Yup.object().shape({
         name: Yup.string()
-            .min(2, 'Too Short!')
-            .max(50, 'Too Long!')
-            .required('Required'),
+            .min(2, 'Çox qısadır!')
+            .max(50, 'Çox uzundur!')
+            .required('Vacibdir'),
         surname: Yup.string()
-            .min(2, 'Too Short!')
-            .max(50, 'Too Long!')
-            .required('Required'),
+            .min(2, 'Çox qısadır!')
+            .max(50, 'Çox uzundur!')
+            .required('Vacibdir'),
         fatherName: Yup.string()
-            .min(2, 'Too Short!')
-            .max(50, 'Too Long!')
-            .required('Required'),
-        email: Yup.string().email('Invalid email').required('Required'),
+            .min(2, 'Çox qısadır!')
+            .max(50, 'Çox uzundur!')
+            .required('Vacibdir'),
+        email: Yup.string().email('Yanlış e-mail').required('Vacibdir'),
         password: Yup.string()
-            .min(2, 'Too Short!')
-            .max(50, 'Too Long!')
-            .required('Required'),
+            .min(2, 'Çox qısadır!')
+            .max(50, 'Çox uzundur!')
+            .required('Vacibdir'),
     });
 
     const formik = useFormik({
@@ -55,7 +55,7 @@ function AddASubadmin() {
                 }
                 resetForm();
             } catch (e) {
-                toast.error('An error occurred!', {
+                toast.error('Xəta baş verdi!', {
                     position: "bottom-right",
                     autoClose: 2500,
                     hideProgressBar: false,
@@ -73,25 +73,25 @@ function AddASubadmin() {
 
     return (
         <section id="addASubadmin">
-            <h2>Add a Subadmin</h2>
+            <h2>Subadmin əlavə et</h2>
             <form onSubmit={formik.handleSubmit}>
                 <div className="wrapper">
-                    <label htmlFor="name">Name</label>
+                    <label htmlFor="name">Ad</label>
                     <input
                         id="name"
                         name="name"
-                        placeholder="Name"
+                        placeholder="Ad"
                         onChange={formik.handleChange}
                         value={formik.values.name}
                     />
                     {formik.errors.name && formik.touched.name && <div id="feedback">{formik.errors.name}</div>}
                 </div>
                 <div className="wrapper">
-                    <label htmlFor="surname">Surname</label>
+                    <label htmlFor="surname">Soyad</label>
                     <input
                         id="surname"
                         name="surname"
-                        placeholder="Surname"
+                        placeholder="Soyad"
                         onChange={formik.handleChange}
                         value={formik.values.surname}
                     />
@@ -99,11 +99,11 @@ function AddASubadmin() {
                         <div id="feedback">{formik.errors.surname}</div>}
                 </div>
                 <div className="wrapper">
-                    <label htmlFor="fatherName">Father Name</label>
+                    <label htmlFor="fatherName">Ata adı</label>
                     <input
                         id="fatherName"
                         name="fatherName"
-                        placeholder="Father Name"
+                        placeholder="Ata adı"
                         onChange={formik.handleChange}
                         value={formik.values.fatherName}
                     />
@@ -123,19 +123,19 @@ function AddASubadmin() {
                     {formik.errors.email && formik.touched.email && <div id="feedback">{formik.errors.email}</div>}
                 </div>
                 <div className="wrapper">
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="password">Şifrə</label>
                     <input
                         id="password"
                         name="password"
                         type="password"
-                        placeholder="Password"
+                        placeholder="Şifrə"
                         onChange={formik.handleChange}
                         value={formik.values.password}
                     />
                     {formik.errors.password && formik.touched.password &&
                         <div id="feedback">{formik.errors.password}</div>}
                 </div>
-                <button type="submit">Add</button>
+                <button type="submit">Əlavə et</button>
             </form>
             <ToastContainer />
         </section>

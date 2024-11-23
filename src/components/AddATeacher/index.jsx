@@ -31,16 +31,18 @@ function AddATeacher() {
             imgUrl: '' // Yeni imgUrl alanı
         },
         validationSchema: Yup.object({
-            name: Yup.string().required('Please input the name!'),
-            surname: Yup.string().required('Please input the surname!'),
-            fatherName: Yup.string().required("Please input the father's name!"),
-            facultyId: Yup.number().required('Please select the faculty!'),
-            roomNumber: Yup.string().required('Please input the room number!'),
-            position: Yup.string().required('Please input the position!'),
-            email: Yup.string().email('Please input a valid email!').required('Please input the email!'),
-            password: Yup.string().required('Please input the password!'),
-            phoneNumber: Yup.string().matches(/^\+994\d{9}$/, 'Phone number must be in the format +994XXXXXXXXX').required('Please input the phone number!'),
-            imgUrl: Yup.string().url('Please provide a valid URL').required('Please upload the image!'), // imgUrl doğrulaması
+            name: Yup.string().required('Adı daxil edin!'),
+            surname: Yup.string().required('Soyadı daxil edin!'),
+            fatherName: Yup.string().required("Ata adını daxil edin!"),
+            facultyId: Yup.number().required('Fakültəni seçin!'),
+            roomNumber: Yup.string().required('Otaq nömrəsini daxil edin!'),
+            position: Yup.string().required('Vəzifəni daxil edin!'),
+            email: Yup.string().email('Doğru bir email daxil edin!').required('Email daxil edin!'),
+            password: Yup.string().required('Şifrəni daxil edin!'),
+            phoneNumber: Yup.string()
+                .matches(/^\+994\d{9}$/, 'Telefon nömrəsi +994XXXXXXXXX formatında olmalıdır')
+                .required('Telefon nömrəsini daxil edin!'),
+            imgUrl: Yup.string().url('Doğru bir URL daxil edin').required('Şəkli yükləyin!'), // imgUrl doğrulaması
         }),
         onSubmit: async (values) => {
             const dataToSend = {
@@ -66,7 +68,7 @@ function AddATeacher() {
                     formik.resetForm();
                 }
             } catch (error) {
-                toast.error(error?.data?.error || "An error occurred. Please try again.", {
+                toast.error(error?.data?.error || "Bir xəta baş verdi. Yenidən cəhd edin.", {
                     position: "bottom-right",
                     autoClose: 2500,
                     hideProgressBar: false,
@@ -84,18 +86,18 @@ function AddATeacher() {
     return (
         <>
             <Form className="wrapper" onFinish={formik.handleSubmit}>
-                <h2 style={{ marginBottom: '20px' }}>Add new teacher</h2>
+                <h2 style={{ marginBottom: '20px' }}>Yeni müəllim əlavə et</h2>
 
-                {[{ name: 'name', label: 'Name' }, { name: 'surname', label: 'Surname' }, {
+                {[{ name: 'name', label: 'Ad' }, { name: 'surname', label: 'Soyad' }, {
                     name: 'fatherName',
-                    label: "Father Name"
-                }, { name: 'roomNumber', label: 'Room Number' }, { name: 'position', label: 'Position' }, {
+                    label: "Ata adı"
+                }, { name: 'roomNumber', label: 'Otaq nömrəsi' }, { name: 'position', label: 'Vəzifə' }, {
                     name: 'email',
                     label: 'Email',
                     type: 'email'
-                }, { name: 'password', label: 'Password', type: 'password' }, {
+                }, { name: 'password', label: 'Şifrə', type: 'password' }, {
                     name: 'phoneNumber',
-                    label: 'Phone Number'
+                    label: 'Telefon nömrəsi'
                 }].map(({ name, label, type = 'text' }) => (
                     <Form.Item key={name} name={name}
                                validateStatus={formik.touched[name] && formik.errors[name] ? 'error' : ''}
@@ -111,13 +113,13 @@ function AddATeacher() {
                     </Form.Item>
                 ))}
 
-                {/* Resim URL'si için Form.Item */}
+                {/* Şəkil URL-i üçün Form.Item */}
                 <Form.Item name="imgUrl"
                            validateStatus={formik.touched.imgUrl && formik.errors.imgUrl ? 'error' : ''}
                            help={formik.touched.imgUrl && formik.errors.imgUrl}>
                     <div className="box">
-                        <label><span style={{ color: 'red' }}>* </span>Image URL</label>
-                        <Input className="input" size="large" name="imgUrl" placeholder="Image URL"
+                        <label><span style={{ color: 'red' }}>* </span>Şəkil URL-i</label>
+                        <Input className="input" size="large" name="imgUrl" placeholder="Şəkil URL-i"
                                onChange={formik.handleChange} onBlur={formik.handleBlur}
                                value={formik.values.imgUrl} />
                     </div>
@@ -127,11 +129,11 @@ function AddATeacher() {
                            validateStatus={formik.touched.facultyId && formik.errors.facultyId ? 'error' : ''}
                            help={formik.touched.facultyId && formik.errors.facultyId}>
                     <div className="box">
-                        <label><span style={{ color: 'red' }}>* </span>Faculty</label>
+                        <label><span style={{ color: 'red' }}>* </span>Fakültə</label>
                         <select style={{ maxWidth: '600px', width: '100%' }}
                                 onChange={e => formik.setFieldValue('facultyId', e.target.value)}
                                 value={formik.values.facultyId} size="large">
-                            <option disabled value="">Select faculty</option>
+                            <option disabled value="">Fakültəni seçin</option>
                             {faculties?.data
                                 ?.filter(faculty => !faculty.isDeleted)
                                 .map(faculty => (
@@ -143,11 +145,11 @@ function AddATeacher() {
 
                 <Form.Item name="departmentId">
                     <div className="box">
-                        <label><span style={{ color: 'red' }}>* </span>Department</label>
+                        <label><span style={{ color: 'red' }}>* </span>Kafedra</label>
                         <select style={{ maxWidth: '600px', width: '100%' }}
                                 onChange={e => formik.setFieldValue('departmentId', e.target.value)}
                                 value={formik.values.departmentId} size="large">
-                            <option value="">Select department</option>
+                            <option value="">Kafedranı seçin</option>
                             {departments?.data
                                 ?.filter(department => !department.isDeleted)
                                 .map(department => (
@@ -158,11 +160,9 @@ function AddATeacher() {
                 </Form.Item>
 
                 <div className="buttonWrapper" style={{ display: 'flex', gap: '10px', marginTop: '30px' }}>
-                    <Button size="large" type="primary" htmlType="submit">Save</Button>
-                    {/*<Button size="large" className="buttonSave" type="primary" onClick={formik.handleSubmit}>Save and*/}
-                    {/*    exit</Button>*/}
+                    <Button size="large" type="primary" htmlType="submit">Yadda saxla</Button>
                     <Button size="large" className="buttonSave" type="primary" danger
-                            onClick={() => formik.resetForm()}>Cancel</Button>
+                            onClick={() => formik.resetForm()}>Ləğv et</Button>
                 </div>
                 <ToastContainer />
             </Form>

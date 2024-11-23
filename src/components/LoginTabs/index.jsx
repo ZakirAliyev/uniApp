@@ -98,7 +98,7 @@ export default function LoginTabs() {
     // Success handler for login with role-based redirection
     const handleLoginSuccess = (response, superAdminPath, adminPath) => {
         if (response?.statusCode === 200) {
-            toast.success('Login successful!', toastOptions());
+            toast.success('Giriş uğula icra olundu!', toastOptions());
             Cookies.set('token', response?.data?.token, {expires: 7});
             Cookies.set('role', response?.data?.role, {expires: 7});
             setTimeout(() => {
@@ -135,9 +135,9 @@ export default function LoginTabs() {
                     aria-label="login tabs"
                     TabIndicatorProps={{style: {backgroundColor: "#a99674"}}}
                 >
-                    <Tab label="ADMİN KİMİ" {...a11yProps(0)} />
-                    <Tab label="MÜHAVİZƏ KİMİ" {...a11yProps(1)} />
-                    <Tab label="İŞÇİ KİMİ" {...a11yProps(2)} />
+                    <Tab label="ADMİN" {...a11yProps(0)} />
+                    <Tab label="MÜHAVİZƏ" {...a11yProps(1)} />
+                    <Tab label="İŞÇİ" {...a11yProps(2)} />
                 </Tabs>
             </Box>
             <CustomTabPanel value={value} index={0}>
@@ -173,7 +173,7 @@ function LoginForm({isLoading, formik}) {
             <TextField
                 required
                 id="outlined-required-password"
-                label="Password"
+                label="Şifrə"
                 type="password"
                 className="input"
                 fullWidth
@@ -191,7 +191,7 @@ function LoginForm({isLoading, formik}) {
                 style={{marginTop: '16px', backgroundColor: '#a99674'}}
                 disabled={isLoading}
             >
-                {isLoading ? <PulseLoader size={10} color={'white'} style={{margin: '0'}}/> : "Login"}
+                {isLoading ? <PulseLoader size={10} color={'white'} style={{margin: '0'}}/> : "Daxİl ol"}
             </Button>
         </form>
     );

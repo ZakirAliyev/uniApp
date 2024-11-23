@@ -102,7 +102,7 @@ function BuildingsMenu() {
                 form.resetFields();
                 setNewBuildingName("");
             } else {
-                toast.error('An error occurred', {
+                toast.error('Xəta baş verdi', {
                     position: "bottom-right",
                     autoClose: 2500,
                     hideProgressBar: false,
@@ -142,7 +142,7 @@ function BuildingsMenu() {
                 form.resetFields();
                 setNewBuildingName("");
             } else {
-                toast.error('An error occurred', {
+                toast.error('Xəta baş verdi', {
                     position: "bottom-right",
                     autoClose: 2500,
                     hideProgressBar: false,
@@ -155,7 +155,7 @@ function BuildingsMenu() {
                 });
             }
         } catch (error) {
-            toast.error('Please fill in the required fields.', {
+            toast.error('Zəhmət olmasa tələb olunan sahələri doldurun.', {
                 position: "bottom-right",
                 autoClose: 2500,
                 hideProgressBar: false,
@@ -192,7 +192,7 @@ function BuildingsMenu() {
             });
             refetch();
         } else {
-            toast.error('An error occurred while changing availability.', {
+            toast.error('Mövcudluğu dəyişərkən xəta baş verdi.', {
                 position: "bottom-right",
                 autoClose: 2500,
                 hideProgressBar: false,
@@ -215,26 +215,26 @@ function BuildingsMenu() {
             render: text => (<span style={{fontWeight: 500, textDecoration: "underline"}}>{text}</span>)
         },
         {
-            title: 'Building Name',
+            title: 'Bina adı',
             dataIndex: 'name',
             render: text => (
                 <span style={{color: '#1677FF', fontSize: "15px", fontWeight: 600, cursor: 'pointer'}}>{text}</span>),
         },
         {
-            title: 'Faculty Count',
+            title: 'Fakültə sayı',
             dataIndex: 'facultyCount',
         },
         {
-            title: 'Create Date',
+            title: 'Yaradılma tarixi',
             dataIndex: 'createdDateFormatted',
         },
         {
-            title: 'Last Edit Date',
+            title: 'Son dəyişdirilmə tarixi',
             dataIndex: 'updatedDateFormatted',
             render: text => text ? text : 'N/A',
         },
         {
-            title: 'Availability in the system',
+            title: 'Sistemdə mövcudluğu',
             render: (text, record) => (
                 loadingBuildings[record.id] ? (
                     <span>
@@ -249,7 +249,7 @@ function BuildingsMenu() {
             )
         },
         {
-            title: 'Actions',
+            title: 'Əməliyyatlar',
             render: (text, record) => (
                 <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '17px'}}>
                     <FiEdit
@@ -274,20 +274,20 @@ function BuildingsMenu() {
         <div id={"buildingsMenu"}>
             <div className={"wrapper1"}>
                 <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-                    <h2>Buildings</h2>
+                    <h2>Binalar</h2>
                     <select onChange={(e) => {
                         const value = e.target.value;
                         setSortOrder(value);
                         setShowAvailable(value === "available");
                         setShowDeleted(value === "deleted");
                     }}>
-                        <option value="" disabled selected>Sort by</option>
-                        <option value="oldest">Oldest</option>
-                        <option value="newest">Newest</option>
+                        <option value="" disabled selected>Sıralama</option>
+                        <option value="oldest">Ən köhnə</option>
+                        <option value="newest">Ən yeni</option>
                         <option value="a-z">A-Z</option>
                         <option value="z-a">Z-A</option>
-                        <option value="available">Available</option>
-                        <option value="deleted">Deleted</option>
+                        <option value="available">Mövcud</option>
+                        <option value="deleted">Silinmiş</option>
                     </select>
                 </div>
                 <Form form={form}>
@@ -298,7 +298,7 @@ function BuildingsMenu() {
                                 size="large"
                                 name="search"
                                 value={searchTerm}
-                                placeholder={"Search building"}
+                                placeholder={"Bina axtar"}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                             />
                         </div>
@@ -309,7 +309,7 @@ function BuildingsMenu() {
                                         className={"input"}
                                         size="large"
                                         value={newBuildingName}
-                                        placeholder={"Add new building"}
+                                        placeholder={"Yeni bina əlavə et"}
                                         onChange={(e) => setNewBuildingName(e.target.value)}
                                         style={{
                                             marginTop: '25px'
@@ -323,7 +323,7 @@ function BuildingsMenu() {
                                             margin: '0'
                                         }}/>
                                     ) : (
-                                        <span>Add</span>
+                                        <span>Əlavə et</span>
                                     )}
                                 </Button>
                             </div>
@@ -340,26 +340,26 @@ function BuildingsMenu() {
                         rowKey={'id'}
                     />
                     <Modal
-                        title="Change Building Info"
+                        title="Bina Məlumatını Dəyiş"
                         open={isModalOpen}
                         onOk={handleOk}
                         onCancel={handleCancel}
                     >
                         <Form layout="vertical" form={form} initialValues={selectedBuilding}>
                             <Form.Item
-                                label="Building Name"
+                                label="Bina adı"
                                 name="name"
-                                rules={[{required: true, message: 'Please input the building name!'}]}
+                                rules={[{required: true, message: 'Zəhmət olmasa bina adını daxil edin!'}]}
                                 style={{marginTop: '20px'}}
                             >
-                                <Input placeholder="Building name"/>
+                                <Input placeholder="Bina adı"/>
                             </Form.Item>
 
                             <Form.Item
-                                label="Faculty Count"
+                                label="Fakültə Sayı"
                                 name="facultyCount"
                             >
-                                <Input placeholder="Faculty count" disabled/>
+                                <Input placeholder="Fakültə Sayı" disabled/>
                             </Form.Item>
                         </Form>
                     </Modal>

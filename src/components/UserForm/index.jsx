@@ -260,11 +260,11 @@ function UserForm() {
                                 />
                                 <label style={{
                                     marginTop: "5px"
-                                }}>Maşınla gələcəkmi?</label>
+                                }}>Avtomobil ilə gələcəkmi?</label>
                             </div>
                             {comingByCar && (
                                 <div className={"col-6 wrapper"}>
-                                    <label>Maşın Nömrəsi</label>
+                                    <label>Avtomobil Nömrəsi</label>
                                     <input
                                         placeholder={"Maşın nömrəsi"}
                                         required

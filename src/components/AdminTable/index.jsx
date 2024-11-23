@@ -23,13 +23,13 @@ const AdminTable = () => {
 
     const handleActionClick = async (id) => {
         Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
+            title: "Əminsiniz?",
+            text: "Bunu geri qaytara bilməyəcəksiniz!",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!",
+            confirmButtonText: "Bəli, silin!",
         }).then(async (result) => {
             const response = await putChangeIsVisited({id}).unwrap();
             if (result.isConfirmed) {
@@ -53,19 +53,19 @@ const AdminTable = () => {
             render: (text, record, index) => index + 1,
         },
         {
-            title: 'Name',
+            title: 'Ad',
             dataIndex: 'name',
         },
         {
-            title: 'Surname',
+            title: 'Soyad',
             dataIndex: 'surname',
         },
         {
-            title: 'Description',
+            title: 'Təsvir',
             dataIndex: 'description',
         },
         {
-            title: 'Car Number',
+            title: 'Avtomobil Nömrəsi',
             dataIndex: 'carNumber',
         },
         {
@@ -73,11 +73,11 @@ const AdminTable = () => {
             dataIndex: 'email',
         },
         {
-            title: 'Visited Date',
+            title: 'Ziyarət Tarixi',
             dataIndex: 'visitedDate',
         },
         {
-            title: 'Actions',
+            title: 'Əməliyyatlar',
             dataIndex: 'isVisited',
             render: (text, record) => (
                 <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '17px'}}
@@ -146,15 +146,15 @@ const AdminTable = () => {
             }}>
                 <Input
                     size="large"
-                    placeholder="Search visitor"
+                    placeholder="Ziyarətçi axtarın"
                     style={{maxWidth: '300px', width: '100%'}}
                     value={searchTerm}
                     onChange={onSearchChange}
                 />
                 <select onChange={onFilterChange} value={filterBy}>
-                    <option value="">All visitors</option>
-                    <option value="With car">With car</option>
-                    <option value="Without car">Without car</option>
+                    <option value="">Bütün ziyarətçilər</option>
+                    <option value="With car">Avtomobillə</option>
+                    <option value="Without car">Avtomobilsiz</option>
                 </select>
             </div>
             <Table

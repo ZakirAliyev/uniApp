@@ -61,7 +61,7 @@ const AdminMenu = () => {
                         textAlign: 'center',
                         fontSize: '16px'
                     }}>
-                        {collapsed ? "BSU" : "Baku State University"}
+                        {collapsed ? "BSU" : "Bakı Dövlət Universiteti"}
                     </span>
                 </div>
                 <div className="demo-logo-vertical"/>
@@ -80,22 +80,22 @@ const AdminMenu = () => {
                         {
                             key: '1',
                             icon: <IoPeople className={"icon"}/>,
-                            label: 'All visitors',
+                            label: 'Bütün ziyarətçilər',
                         },
                         {
                             key: '2',
                             icon: <MdOutlinePendingActions className={"icon"}/>,
-                            label: 'Visitor Requests',
+                            label: 'Ziyarətçi Sorğuları',
                         },
                         {
                             key: '3',
                             icon: <MdPersonAddAlt1 className={"icon"}/>,
-                            label: 'Add a visitor',
+                            label: 'Ziyarətçi əlavə et',
                         },
                         {
                             key: '6',
                             icon: <FaCircleUser className={"icon"}/>,
-                            label: 'Profile',
+                            label: 'Profil',
                             style: {
                                 position: 'absolute',
                                 bottom: '42px',
@@ -104,20 +104,20 @@ const AdminMenu = () => {
                         {
                             key: '7',
                             icon: <MdLogout className={"icon"}/>,
-                            label: 'Log out',
+                            label: 'Çıxış',
                             style: {
                                 position: 'absolute',
                                 bottom: 0,
                             },
                             onClick: () => {
                                 Swal.fire({
-                                    title: "Are you sure?",
-                                    text: "You won't be able to revert this!",
+                                    title: "Əminsiniz?",
+                                    text: "Bunu geri qaytara bilməyəcəksiniz!",
                                     icon: "warning",
                                     showCancelButton: true,
                                     confirmButtonColor: "#3085d6",
                                     cancelButtonColor: "#d33",
-                                    confirmButtonText: "Yes!"
+                                    confirmButtonText: "Bəli!"
                                 }).then((result) => {
                                     if (result.isConfirmed) {
                                         Cookies.set("token", "null");

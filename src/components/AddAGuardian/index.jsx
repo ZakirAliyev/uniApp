@@ -30,16 +30,16 @@ function AddATeacher() {
             phoneNumber: '',
         },
         validationSchema: Yup.object({
-            name: Yup.string().required('Please input the name!'),
-            surname: Yup.string().required('Please input the surname!'),
-            fatherName: Yup.string().required("Please input the father's name!"),
-            departmentId: Yup.number().required('Please select the department!'),
-            facultyId: Yup.number().required('Please select the faculty!'),
-            roomNumber: Yup.string().required('Please input the room number!'),
-            position: Yup.string().required('Please input the position!'),
-            email: Yup.string().email('Please input a valid email!').required('Please input the email!'),
-            password: Yup.string().required('Please input the password!'),
-            phoneNumber: Yup.string().required('Please input the phone number!'),
+            name: Yup.string().required('Zəhmət olmasa adı daxil edin!'),
+            surname: Yup.string().required('Zəhmət olmasa soyadı daxil edin!'),
+            fatherName: Yup.string().required("Zəhmət olmasa ata adını daxil edin!"),
+            departmentId: Yup.number().required('Zəhmət olmasa bölməni seçin!'),
+            facultyId: Yup.number().required('Zəhmət olmasa fakültəni seçin!'),
+            roomNumber: Yup.string().required('Zəhmət olmasa otaq nömrəsini daxil edin!'),
+            position: Yup.string().required('Zəhmət olmasa vəzifəni daxil edin!'),
+            email: Yup.string().email('Zəhmət olmasa düzgün e-poçt daxil edin!').required('Zəhmət olmasa e-poçtu daxil edin!'),
+            password: Yup.string().required('Zəhmət olmasa parolu daxil edin!'),
+            phoneNumber: Yup.string().required('Zəhmət olmasa telefon nömrəsini daxil edin!'),
         }),
         onSubmit: async (values) => {
             const dataToSend = {
@@ -81,9 +81,9 @@ function AddATeacher() {
     return (
         <>
             <Form className="wrapper" onFinish={formik.handleSubmit}>
-                <h2 style={{ marginBottom: '20px' }}>Add new teacher</h2>
+                <h2 style={{ marginBottom: '20px' }}>Yeni müəllim əlavə et</h2>
 
-                {[{ name: 'name', label: 'Name' }, { name: 'surname', label: 'Surname' }, { name: 'fatherName', label: "Father Name" }, { name: 'roomNumber', label: 'Room Number' }, { name: 'position', label: 'Position' }, { name: 'email', label: 'Email', type: 'email' }, { name: 'password', label: 'Password', type: 'password' }, { name: 'phoneNumber', label: 'Phone Number' }].map(({ name, label, type = 'text' }) => (
+                {[{ name: 'name', label: 'Ad' }, { name: 'surname', label: 'Soyad' }, { name: 'fatherName', label: "Ata adı" }, { name: 'roomNumber', label: 'Otaq nömrəsi' }, { name: 'position', label: 'Vəzifə' }, { name: 'email', label: 'E-poçt', type: 'email' }, { name: 'password', label: 'Parol', type: 'password' }, { name: 'phoneNumber', label: 'Telefon nömrəsi' }].map(({ name, label, type = 'text' }) => (
                     <Form.Item key={name} name={name} validateStatus={formik.touched[name] && formik.errors[name] ? 'error' : ''} help={formik.touched[name] && formik.errors[name]}>
                         <div className="box" style={{ marginTop: '15px' }}>
                             <label>
@@ -97,11 +97,11 @@ function AddATeacher() {
 
                 <Form.Item name="facultyId" validateStatus={formik.touched.facultyId && formik.errors.facultyId ? 'error' : ''} help={formik.touched.facultyId && formik.errors.facultyId}>
                     <div className="box" style={{ marginTop: '15px' }}>
-                        <label><span style={{ color: 'red' }}>* </span>Faculty</label>
+                        <label><span style={{ color: 'red' }}>* </span>Fakültə</label>
                         <select style={{ maxWidth: '600px', width: '100%' }} onChange={e => formik.setFieldValue('facultyId', e.target.value)} value={formik.values.facultyId} size="large">
-                            <option disabled value="">Select faculty</option>
+                            <option disabled value="">Fakültəni seçin</option>
                             {faculties?.data
-                                ?.filter(faculty => !faculty.isDeleted) // Only include faculties where isDeleted is false
+                                ?.filter(faculty => !faculty.isDeleted) // Yalnız silinməmiş fakültələr daxildir
                                 .map(faculty => (
                                     <option key={faculty.id} value={faculty.id}>{faculty.name}</option>
                                 ))}
@@ -111,11 +111,11 @@ function AddATeacher() {
 
                 <Form.Item name="departmentId" validateStatus={formik.touched.departmentId && formik.errors.departmentId ? 'error' : ''} help={formik.touched.departmentId && formik.errors.departmentId}>
                     <div className="box" style={{ marginTop: '15px' }}>
-                        <label><span style={{ color: 'red' }}>* </span>Department</label>
+                        <label><span style={{ color: 'red' }}>* </span>Bölmə</label>
                         <select style={{ maxWidth: '600px', width: '100%' }} onChange={e => formik.setFieldValue('departmentId', e.target.value)} value={formik.values.departmentId} size="large">
-                            <option disabled value="">Select department</option>
+                            <option disabled value="">Bölməni seçin</option>
                             {departments?.data
-                                ?.filter(department => !department.isDeleted) // Only include departments where isDeleted is false
+                                ?.filter(department => !department.isDeleted) // Yalnız silinməmiş bölmələr daxildir
                                 .map(department => (
                                     <option key={department.id} value={department.id}>{department.name}</option>
                                 ))}
@@ -125,9 +125,9 @@ function AddATeacher() {
 
 
                 <div className="buttonWrapper" style={{ display: 'flex', gap: '10px', marginTop: '60px' }}>
-                    <Button size="large" type="primary" htmlType="submit">Save</Button>
-                    <Button size="large" className="buttonSave" type="primary" onClick={formik.handleSubmit}>Save and exit</Button>
-                    <Button size="large" className="buttonSave" type="primary" danger onClick={() => formik.resetForm()}>Cancel</Button>
+                    <Button size="large" type="primary" htmlType="submit">Yadda saxla</Button>
+                    <Button size="large" className="buttonSave" type="primary" onClick={formik.handleSubmit}>Yadda saxla və çıx</Button>
+                    <Button size="large" className="buttonSave" type="primary" danger onClick={() => formik.resetForm()}>Ləğv et</Button>
                 </div>
                 <ToastContainer />
             </Form>

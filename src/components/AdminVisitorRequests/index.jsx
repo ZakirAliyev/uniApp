@@ -24,13 +24,13 @@ const AdminVisitorRequests = () => {
 
     const handleActionClick = async (id) => {
         Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
+            title: "Əminsinizmi?",
+            text: "Bu əməliyyatı geri qaytara bilməyəcəksiniz!",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!",
+            confirmButtonText: "Bəli, silinsin!",
         }).then(async (result) => {
             const response = await putChangeIsVisited({id}).unwrap();
             if (result.isConfirmed) {
@@ -67,19 +67,19 @@ const AdminVisitorRequests = () => {
             render: (text, record, index) => index + 1,
         },
         {
-            title: 'Name',
+            title: 'Ad',
             dataIndex: 'name',
         },
         {
-            title: 'Surname',
+            title: 'Soyad',
             dataIndex: 'surname',
         },
         {
-            title: 'Description',
+            title: 'Təsvir',
             dataIndex: 'description',
         },
         {
-            title: 'Car Number',
+            title: 'Avtomobil Nömrəsi',
             dataIndex: 'carNumber',
         },
         {
@@ -87,11 +87,11 @@ const AdminVisitorRequests = () => {
             dataIndex: 'email',
         },
         {
-            title: 'Visited Date',
+            title: 'Ziyarət Edilən Tarix',
             dataIndex: 'visitedDate',
         },
         {
-            title: 'Actions',
+            title: 'Əməliyyatlar',
             dataIndex: 'isVisited',
             render: (text, record) => (
                 <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}
@@ -102,7 +102,7 @@ const AdminVisitorRequests = () => {
                             setLoadingState(record.id, 'accept', true);
                             try {
                                 const response = await postVisitorAccept(record.id).unwrap();
-                                toast.success(response?.message || "Visitor accepted successfully", {
+                                toast.success(response?.message || "Ziyarətçi uğurla qəbul edildi", {
                                     position: "bottom-right",
                                     autoClose: 2500,
                                     theme: "dark",
@@ -110,7 +110,7 @@ const AdminVisitorRequests = () => {
                                 });
                                 refetch();
                             } catch (error) {
-                                toast.error("Failed to accept visitor", {
+                                toast.error("Ziyarətçi qəbul edilmədi", {
                                     position: "bottom-right",
                                     autoClose: 2500,
                                     theme: "dark",
@@ -136,7 +136,7 @@ const AdminVisitorRequests = () => {
                             setLoadingState(record.id, 'reject', true);
                             try {
                                 const response = await postVisitorReject(record.id).unwrap();
-                                toast.success(response?.message || "Visitor rejected successfully", {
+                                toast.success(response?.message || "Ziyarətçi rədd edildi", {
                                     position: "bottom-right",
                                     autoClose: 2500,
                                     theme: "dark",
@@ -144,7 +144,7 @@ const AdminVisitorRequests = () => {
                                 });
                                 refetch();
                             } catch (error) {
-                                toast.error("Failed to reject visitor", {
+                                toast.error("Ziyarətçi rədd edilmədi", {
                                     position: "bottom-right",
                                     autoClose: 2500,
                                     theme: "dark",
@@ -207,15 +207,15 @@ const AdminVisitorRequests = () => {
             }}>
                 <Input
                     size="large"
-                    placeholder="Search visitor"
+                    placeholder="Ziyarətçi axtar"
                     style={{maxWidth: '300px', width: '100%'}}
                     value={searchTerm}
                     onChange={onSearchChange}
                 />
                 <select onChange={onFilterChange} value={filterBy}>
-                    <option value="">All visitors</option>
-                    <option value="With car">With car</option>
-                    <option value="Without car">Without car</option>
+                    <option value="">Bütün ziyarətçilər</option>
+                    <option value="With car">Avtomobili olan</option>
+                    <option value="Without car">Avtomobili olmayan</option>
                 </select>
             </div>
             <Table
