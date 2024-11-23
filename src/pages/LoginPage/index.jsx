@@ -1,10 +1,14 @@
 import './index.scss';
 import {Col, Row} from "antd";
 import LoginTabs from "../../components/LoginTabs/index.jsx";
+import {Helmet} from "react-helmet-async";
 
 function LoginPage() {
     return (
         <section id={"loginPage"}>
+            <Helmet>
+                <title>BSU - Giriş səhifəsi</title>
+            </Helmet>
             <div className={"lane"}></div>
             <div className={"container"}>
                 <Row gutter={[16, 16]} justify="center" align="middle">

@@ -1,7 +1,22 @@
 #userForm {
 
   .logOut {
-    background-color: red;
+    background-color: white;
+    padding: 10px 20px;
+    color: #003A68;
+    border-radius: 5px;
+    margin-top: 20px;
+    border: 1px solid #003A68;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    gap: 10px;
+
+    &:hover {
+      background-color: #4478a8;
+      color: white;
+    }
   }
 
   h2 {
@@ -25,12 +40,13 @@
     flex-direction: column;
     height: 100%;
     gap: 10px;
-    line-height: 2.5;
+    line-height: 2.2;
     text-align: center;
 
     h2 {
       font-weight: 600;
       color: #004879;
+      margin-top: -100px;
     }
 
     .span {

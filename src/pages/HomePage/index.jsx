@@ -3,10 +3,14 @@ import UserNavbar from "../../components/UserNavbar/index.jsx";
 import video1 from "/src/assets/video.mp4"
 import banner from "/src/assets/banner.jpeg"
 import {Link} from "react-router-dom";
+import {Helmet} from "react-helmet-async";
 
 function HomePage() {
     return (
         <section id={"homePage"}>
+            <Helmet>
+                <title>BDU - Giriş və icazə sistemi</title>
+            </Helmet>
             <UserNavbar/>
             <div className={"container3"}>
                 <div className={"main"}>

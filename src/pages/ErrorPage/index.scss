@@ -1,0 +1,52 @@
+#homePage {
+  .text1 {
+    color: #a99674;
+    font-size: 1.25em;
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .text2 {
+    font-size: 15px;
+    line-height: 1.73;
+    margin-top: 7px;
+    text-align: center;
+    color: #243749;
+  }
+
+  .button1 {
+    width: 200px;
+    margin: 15px auto 0;
+    padding: 10px;
+    border: 1px solid #0F507D;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #243749;
+    font-weight: 500;
+
+    .icon1 {
+      margin-top: 2px;
+      color: #243749;
+      transition: none;
+
+      &:hover {
+        color: white !important;
+      }
+    }
+
+    &:hover {
+      background-color: #0F507D;
+      color: white;
+      border: 1px solid #0F507D;
+
+      .icon1 {
+        color: white;
+      }
+    }
+  }
+}

@@ -5,6 +5,7 @@ import SuperAdminPage from "../pages/SuperAdminPage/index.jsx";
 import UserPage from "../pages/UserPage/index.jsx";
 import AdminPage from "../pages/AdminPage/index.jsx";
 import HomePage from "../pages/HomePage/index.jsx";
+import ErrorPage from "../pages/ErrorPage/index.jsx";
 
 export const ROUTES = [
     {
@@ -34,6 +35,10 @@ export const ROUTES = [
             {
                 path: 'scp',
                 element: <SuperAdminPage/>
+            },
+            {
+                path: '*',
+                element: <ErrorPage/>
             },
         ]
     }

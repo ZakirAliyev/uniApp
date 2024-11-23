@@ -46,11 +46,9 @@ function TeachersMenu() {
             let response;
 
             if (currentRecord) {
-                // Redaktə əməliyyatı
                 values.id = currentRecord.id;
                 response = await putOneTeacher(values).unwrap();
             } else {
-                // Yeni mühafizəçi əlavə əməliyyatı
                 response = await postNewAdmin(values).unwrap();
             }
 
@@ -173,7 +171,8 @@ function TeachersMenu() {
                 ]}
             >
                 <Form form={form} layout="vertical">
-                    <Form.Item name="name" label="Ad" rules={[{ required: true, message: "Zəhmət olmasa adı daxil edin." }]}>
+                    <Form.Item name="name" label="Ad"
+                               rules={[{ required: true, message: "Zəhmət olmasa adı daxil edin." }]}>
                         <Input />
                     </Form.Item>
                     <Form.Item name="surname" label="Soyad"

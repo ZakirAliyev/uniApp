@@ -7,6 +7,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import {useEffect, useState} from "react";
 import {PulseLoader} from "react-spinners";
 import {Link} from "react-router-dom";
+import {FaArrowLeftLong} from "react-icons/fa6";
+import Cookies from "js-cookie";
 
 function UserForm() {
     const {data: getAllAdmins} = useGetAllAdminsQuery();
@@ -104,7 +106,16 @@ function UserForm() {
                     }}/>
                 </div>
                 <div className={"col-4"}>
-                    <Link to={`/`} className={"logOut"}>Çıxış</Link>
+
+                    <Link to={`/`}
+                          className={"logOut"}
+                          onClick={() => {
+                              Cookies.set('token', null, { path: '/' });
+                              Cookies.set('role', null, { path: '/' });
+                          }}>
+                        <FaArrowLeftLong style={{ marginTop: '2px' }} className={"icon1"} />
+                        Çıxış
+                    </Link>
                     <div className={"image"}>
                         <h2>Giriş və icazə sisteminə qeydiyyat</h2>
                         <div className={"span"}>
