@@ -23,14 +23,14 @@ function ErrorPage() {
                         justifyContent: "center",
                         marginTop: '-250px'
                     }}>
-                        <img src={"https://innews.media/uploads/news/2024-01/_innews_5516bb3343f08a1381fcd09db_o.jpg"}
+                        <img src={"src/assets/bdu1919-removebg.png"}
                              alt={"Image"} style={{
-                                 height: '250px'
+                            height: '250px'
                         }}/>
                         <div className={"text1"}>Səhifə tapılmadı</div>
                         <div className={"text2"}>Axtardığınız səhifə tapılmadı.</div>
                         <div className={"text2"}>Aşağıdan ana səhifəyə qayıda bilərsiniz.</div>
-                        <Link  className={"button1"}><FaArrowLeftLong className={"icon1"}/>
+                        <Link className={"button1"} to={""}><FaArrowLeftLong className={"icon1"}/>
                             Ana səhifəyə qayıt</Link>
                     </div>
                     <div>

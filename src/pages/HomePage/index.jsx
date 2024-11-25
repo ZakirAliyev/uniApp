@@ -14,12 +14,9 @@ function HomePage() {
             <UserNavbar/>
             <div className={"container3"}>
                 <div className={"main"}>
-                    <div>
-                        <img src={banner} alt={"Image"}/>
-                    </div>
+
                     <div className={"container2"}>
                         <div className={"wrapper"}>
-                            <video src={video1} controls/>
                             <div className={"wrapper1"}>
                                 <div>
                                     <h2>Giriş və icazə sistemi'nə xoş gəlmisiniz</h2>
@@ -40,11 +37,10 @@ function HomePage() {
                                     <Link to={`/login`} className={"button"}>Giriş üçün</Link>
                                 </div>
                             </div>
+                            <video src={video1} controls/>
                         </div>
                     </div>
-                    <div>
-                        <img src={banner} alt={"Image"}/>
-                    </div>
+
                 </div>
             </div>
         </section>
