@@ -354,22 +354,18 @@ body {
     }
 }
 
-:where(.css-dev-only-do-not-override-qnu6hi).ant-checkbox-checked .ant-checkbox-inner:after {
-    margin-top: 5px;
-}
-
-:where(.css-dev-only-do-not-override-qnu6hi).ant-layout .ant-layout-sider {
+:where(.css-qnu6hi).ant-layout .ant-layout-sider-children {
     background-color: #252D37;
 }
 
-:where(.css-dev-only-do-not-override-qnu6hi).ant-menu-dark.ant-menu-root.ant-menu-inline, :where(.css-dev-only-do-not-override-qnu6hi).ant-menu-dark > .ant-menu.ant-menu-root.ant-menu-inline, :where(.css-dev-only-do-not-override-qnu6hi).ant-menu-dark.ant-menu-root.ant-menu-vertical, :where(.css-dev-only-do-not-override-qnu6hi).ant-menu-dark > .ant-menu.ant-menu-root.ant-menu-vertical {
+:where(.css-qnu6hi).ant-menu-dark, :where(.css-qnu6hi).ant-menu-dark > .ant-menu {
     background-color: #252D37;
 }
 
-:where(.css-dev-only-do-not-override-qnu6hi).ant-menu-dark .ant-menu-item-selected, :where(.css-dev-only-do-not-override-qnu6hi).ant-menu-dark > .ant-menu .ant-menu-item-selected {
+:where(.css-qnu6hi).ant-menu-dark .ant-menu-item-selected, :where(.css-qnu6hi).ant-menu-dark > .ant-menu .ant-menu-item-selected {
     background-color: #495464;
 }
 
-:where(.css-dev-only-do-not-override-qnu6hi).ant-layout  {
+:where(.css-qnu6hi).ant-layout {
     background-color: #EEF1F4;
 }

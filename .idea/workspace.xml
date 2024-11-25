@@ -5,49 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="961267e0-c208-4c58-8422-ddfcc3e85879" name="Changes" comment="3">
-      <change afterPath="$PROJECT_DIR$/src/assets/bduBlackLogo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Chart1/index.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Chart1/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Chart2/index.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Chart2/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/SuperAdminDashboard/index.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/SuperAdminDashboard/index.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AddAGuardian/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddAGuardian/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AddASubadmin/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddASubadmin/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AddATeacher/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddATeacher/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AdminMenu/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AdminMenu/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AdminTable/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AdminTable/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AdminVisitorRequests/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AdminVisitorRequests/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/BuildingsMenu/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BuildingsMenu/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DepartmentsMenu/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DepartmentsMenu/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/FacultiesMenu/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FacultiesMenu/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/GuardiansMenu/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GuardiansMenu/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LoginTabs/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LoginTabs/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SecurityMenu/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SecurityMenu/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SecurityProfileSection/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SecurityProfileSection/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SecurityTable/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SecurityTable/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SubadminsMenu/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SubadminsMenu/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SuperAdminMenu/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SuperAdminMenu/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SuperAdminProfile/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SuperAdminProfile/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SuperAdminTable/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SuperAdminTable/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SuperAdminTable/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SuperAdminTable/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TeachersMenu/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TeachersMenu/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/UserFooter/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserFooter/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/UserFooter/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserFooter/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/UserForm/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserForm/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/UserNavbar/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserNavbar/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/UserTable/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserTable/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/AdminPage/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AdminPage/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/LoginPage/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/LoginPage/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/SecurityPage/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SecurityPage/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/SuperAdminPage/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SuperAdminPage/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/UserPage/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/UserPage/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,23 +24,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/MSI/Desktop/uniApp/src/assets",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.dev.executor": "Run",
-    "settings.editor.selected.configurable": "preferences.editor",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2024.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/MSI/Desktop/uniApp/src/assets&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2024.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\MSI\Desktop\uniApp\src\assets" />
@@ -173,6 +132,7 @@
       <workItem from="1732359405768" duration="5677000" />
       <workItem from="1732413068639" duration="96000" />
       <workItem from="1732464399141" duration="27912000" />
+      <workItem from="1732502157584" duration="206000" />
     </task>
     <servers />
   </component>
