@@ -221,7 +221,7 @@ function BuildingsMenu() {
                 <span style={{color: '#1677FF', fontSize: "15px", fontWeight: 600, cursor: 'pointer'}}>{text}</span>),
         },
         {
-            title: 'Fakültə sayı',
+            title: 'Fakültə və şöbə sayı',
             dataIndex: 'facultyCount',
         },
         {
@@ -356,10 +356,10 @@ function BuildingsMenu() {
                             </Form.Item>
 
                             <Form.Item
-                                label="Fakültə Sayı"
+                                label="Fakültə və şöbə sayı"
                                 name="facultyCount"
                             >
-                                <Input placeholder="Fakültə Sayı" disabled/>
+                                <Input placeholder="Fakültə və şöbə sayı" disabled/>
                             </Form.Item>
                         </Form>
                     </Modal>

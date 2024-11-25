@@ -53,7 +53,7 @@ function TeachersMenu() {
             }
 
             if (response?.statusCode === 200) {
-                toast.success(currentRecord ? "Teacher updated successfully!" : "Guardian added successfully!", {
+                toast.success(currentRecord ? "Mühafizəçi uğurla redaktə edildi!" : "Mühavizəçi əlavə olundu!", {
                     position: "bottom-right",
                     autoClose: 2500,
                     theme: "dark",
@@ -63,7 +63,7 @@ function TeachersMenu() {
                 setIsModalVisible(false);
                 form.resetFields();
             } else {
-                toast.error("An error occurred!", {
+                toast.error("Xəta baş verdi!", {
                     position: "bottom-right",
                     autoClose: 2500,
                     theme: "dark",
@@ -71,8 +71,7 @@ function TeachersMenu() {
                 });
             }
         } catch (error) {
-            console.error("Validation or API error:", error);
-            toast.error(currentRecord ? "Update failed." : "Adding failed.", {
+            toast.error(currentRecord ? "Xəta baş verdi!" : "Xəta baş verdi!", {
                 position: "bottom-right",
                 autoClose: 2500,
                 theme: "dark",

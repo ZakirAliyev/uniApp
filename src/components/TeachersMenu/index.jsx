@@ -103,7 +103,7 @@ function TeachersMenu() {
                 roomNumber: values.roomNumber,
                 position: values.position,
                 email: values.email,
-                password: values.password || 'defaultPassword',  // Replace with actual logic if needed
+                password: values.password,
                 phoneNumber: values.phoneNumber,
                 imgUrl: values.imgUrl
             };
@@ -127,7 +127,7 @@ function TeachersMenu() {
                 throw new Error();
             }
         } catch (error) {
-            toast.error('Please fill in the required fields.', {
+            toast.error('Zəhmət olmasa xanaları doldurun.', {
                 position: "bottom-right",
                 autoClose: 2500,
                 theme: "dark",
@@ -141,13 +141,14 @@ function TeachersMenu() {
 
     async function handleDelete(record) {
         Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
+            title: "Əminsiniz?",
+            text: "Bunu geri qaytara bilməyəcəksiniz!",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
+            confirmButtonText: "Bəli",
+            cancelButtonText: "Xeyr",
         }).then(async (result) => {
             if (result.isConfirmed) {
                 const response = await deleteTeacher(record.id).unwrap();
@@ -194,43 +195,43 @@ function TeachersMenu() {
             }}/>,
         },
         {
-            title: 'Firstname',
+            title: 'Ad',
             dataIndex: 'name',
             render: text => <span
                 style={{color: '#1677FF', fontSize: "15px", fontWeight: 600, cursor: 'pointer'}}>{text}</span>,
         },
         {
-            title: 'Lastname',
+            title: 'Soyad',
             dataIndex: 'surname',
             render: text => <span
                 style={{color: '#1677FF', fontSize: "15px", fontWeight: 600, cursor: 'pointer'}}>{text}</span>,
         },
         {
-            title: 'Father Name',
+            title: 'Ata adı',
             dataIndex: 'fatherName',
             render: text => <span
                 style={{color: '#1677FF', fontSize: "15px", fontWeight: 600, cursor: 'pointer'}}>{text}</span>,
         },
         {
-            title: 'Room Number',
+            title: 'Otaq nömrəsi',
             dataIndex: 'roomNumber',
             render: text => <span
                 style={{color: '#ff1616', fontSize: "15px", fontWeight: 600, cursor: 'pointer'}}>{text}</span>,
         },
         {
-            title: 'Faculty Name',
+            title: 'Fakültə və ya şöbə adı',
             dataIndex: 'facultyName',
             render: text => <span
                 style={{color: '#13a608', fontSize: "15px", fontWeight: 600, cursor: 'pointer'}}>{text}</span>,
         },
         {
-            title: 'Department Name',
+            title: 'Kafedra adı',
             dataIndex: 'departmentName',
             render: text => <span
-                style={{color: '#13a608', fontSize: "15px", fontWeight: 600, cursor: 'pointer'}}>{text  || 'N/A'}</span>,
+                style={{color: '#13a608', fontSize: "15px", fontWeight: 600, cursor: 'pointer'}}>{text || 'N/A'}</span>,
         },
         {
-            title: 'Position',
+            title: 'Vəzifə',
             dataIndex: 'position',
             render: text => <span
                 style={{color: '#13a608', fontSize: "15px", fontWeight: 600, cursor: 'pointer'}}>{text}</span>,
@@ -242,22 +243,22 @@ function TeachersMenu() {
                 style={{color: '#000000', fontSize: "15px", fontWeight: 600, cursor: 'pointer'}}>{text}</span>,
         },
         {
-            title: 'Phone Number',
+            title: 'Mobil nömrə',
             dataIndex: 'phoneNumber',
             render: text => <span
                 style={{color: '#000000', fontSize: "15px", fontWeight: 600, cursor: 'pointer'}}>{text}</span>,
         },
         {
-            title: 'Create Date',
+            title: 'Yaradılma tarixi',
             dataIndex: 'createdDateFormatted',
         },
         {
-            title: 'Last Edit Date',
+            title: 'Son dəyişdirilmə tarixi',
             dataIndex: 'updatedDateFormatted',
             render: text => text || 'N/A',
         },
         {
-            title: 'Actions',
+            title: 'Əməliyyatlar',
             render: (text, record) => (
                 <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '17px'}}>
                     <FaRegTrashAlt
@@ -281,7 +282,7 @@ function TeachersMenu() {
         <div id={"buildingsMenu"}>
             <div className={"wrapper1"}>
                 <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-                    <h2>Teachers</h2>
+                    <h2>Adminlər</h2>
                     <div style={{display: 'flex', gap: '10px'}}>
                         <select
                             onChange={(e) => {
@@ -289,8 +290,8 @@ function TeachersMenu() {
                             }}
                             value={selectedDepartmentForFilter}
                         >
-                            <option value="">All Departments</option>
-                            <option value="withoutDepartment">Without a department</option>
+                            <option value="">Bütün kafedralar</option>
+                            <option value="withoutDepartment">Kafedrası olmayanlar</option>
                             {/* New option */}
                             {departments
                                 .filter(department => !department.isDeleted) // Only include departments where isDeleted is false
@@ -307,9 +308,9 @@ function TeachersMenu() {
                             }}
                             value={sortOrder}
                         >
-                            <option value="" disabled>Sort by</option>
-                            <option value="oldest">Oldest</option>
-                            <option value="newest">Newest</option>
+                            <option value="" disabled>Sırala</option>
+                            <option value="oldest">Ən köhnə</option>
+                            <option value="newest">Ən yeni</option>
                             <option value="a-z">A-Z</option>
                             <option value="z-a">Z-A</option>
                         </select>
@@ -323,7 +324,7 @@ function TeachersMenu() {
                                 size="large"
                                 name="search"
                                 value={searchTerm}
-                                placeholder={"Search teacher"}
+                                placeholder={"Admin axtar"}
                                 style={{
                                     width: '400px'
                                 }}
@@ -347,19 +348,19 @@ function TeachersMenu() {
                 />
             </div>
             <Modal
-                title="Edit Department"
+                title="Kafedranı redaktə et"
                 open={isModalOpen}
                 onOk={handleOk}
                 onCancel={handleCancel}
             >
                 <Form form={form} className={"ant-form-item-required111"}>
                     <Form.Item
-                        label="Name"
+                        label="Ad"
                         name="name"
                         rules={[
                             {
                                 required: true,
-                                message: 'Please input the department name!',
+                                message: 'Zəhmət olmasa adı daxil edin!',
                             },
                         ]}
                         style={{
@@ -369,65 +370,65 @@ function TeachersMenu() {
                         <Input/>
                     </Form.Item>
                     <Form.Item
-                        label="Surname"
+                        label="Soyad"
                         name="surname"
                         rules={[
                             {
                                 required: true,
-                                message: 'Please input the department name!',
+                                message: 'Zəhmət olmasa soyadı daxil edin!',
                             },
                         ]}
                     >
                         <Input/>
                     </Form.Item>
                     <Form.Item
-                        label="Father Name"
+                        label="Ata adı"
                         name="fatherName"
                         rules={[
                             {
                                 required: true,
-                                message: 'Please input the department name!',
+                                message: 'Zəhmət olmasa ata adı daxil edin!',
                             },
                         ]}
                     >
                         <Input/>
                     </Form.Item>
                     <Form.Item
-                        label="Room Number"
+                        label="Otaq nömrəsi"
                         name="roomNumber"
                         rules={[
                             {
                                 required: true,
-                                message: 'Please input the department name!',
+                                message: 'Zəhmət olmasa otaq nömrəsi daxil edin!',
                             },
                         ]}
                     >
                         <Input/>
                     </Form.Item>
                     <Form.Item
-                        label="Position"
+                        label="Vəzifə"
                         name="position"
                         rules={[
                             {
                                 required: true,
-                                message: 'Please input the department name!',
+                                message: 'Zəhmət olmasa vəzifə daxil edin!',
                             },
                         ]}
                     >
                         <Input/>
                     </Form.Item>
                     <Form.Item
-                        label="Faculty"
+                        label="Fakültə və ya şöbə"
                         name="facultyId"
                         rules={[
                             {
                                 required: true,
-                                message: 'Please select a department!',
+                                message: 'Zəhmət olmasa fakültə və ya şöbə daxil edin!',
                             },
                         ]}
                     >
                         <select
-                            value={selectedDepartmentId}
+                            value={selectedFacultyId}
                             onChange={(e) => setSelectedFacultyId(parseInt(e.target.value, 10))}
                             style={{
                                 width: '100%',
@@ -449,12 +450,12 @@ function TeachersMenu() {
 
                     </Form.Item>
                     <Form.Item
-                        label="Department"
+                        label="Kafedra"
                         name="departmentId"
                         rules={[
                             {
                                 required: true,
-                                message: 'Please select a department!',
+                                message: 'Zəhmət olmasa kafedra daxil edin!',
                             },
                         ]}
                     >
@@ -470,14 +471,15 @@ function TeachersMenu() {
                                 paddingLeft: '8px',
                             }}
                         >
-                            {departments.map((department) =>
-                                    !department.isDeleted && (
-                                        <option key={department.id} value={department.id}>
-                                            {department.name}
+                            {departments.map((faculty) =>
+                                    !faculty.isDeleted && (
+                                        <option key={faculty.id} value={faculty.id}>
+                                            {faculty.name}
                                         </option>
                                     )
                             )}
                         </select>
+
                     </Form.Item>
                     <Form.Item
                         label="Email"
@@ -485,31 +487,19 @@ function TeachersMenu() {
                         rules={[
                             {
                                 required: true,
-                                message: 'Please input the department name!',
+                                message: 'Zəhmət olmasa email daxil edin!',
                             },
                         ]}
                     >
                         <Input/>
                     </Form.Item>
                     <Form.Item
-                        label="Phone Number"
+                        label="Mobil nömrə"
                         name="phoneNumber"
                         rules={[
                             {
                                 required: true,
-                                message: 'Please input the department name!',
-                            },
-                        ]}
-                    >
-                        <Input/>
-                    </Form.Item>
-                    <Form.Item
-                        label="Image URL"
-                        name="imgUrl"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input the department name!',
+                                message: 'Zəhmət olmasa mobil nömrə daxil edin!',
                             },
                         ]}
                     >

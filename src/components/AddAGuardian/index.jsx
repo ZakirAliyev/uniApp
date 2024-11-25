@@ -34,7 +34,7 @@ function AddATeacher() {
             surname: Yup.string().required('Zəhmət olmasa soyadı daxil edin!'),
             fatherName: Yup.string().required("Zəhmət olmasa ata adını daxil edin!"),
             departmentId: Yup.number().required('Zəhmət olmasa bölməni seçin!'),
-            facultyId: Yup.number().required('Zəhmət olmasa fakültəni seçin!'),
+            facultyId: Yup.number().required('Zəhmət olmasa şöbəni seçin!'),
             roomNumber: Yup.string().required('Zəhmət olmasa otaq nömrəsini daxil edin!'),
             position: Yup.string().required('Zəhmət olmasa vəzifəni daxil edin!'),
             email: Yup.string().email('Zəhmət olmasa düzgün e-poçt daxil edin!').required('Zəhmət olmasa e-poçtu daxil edin!'),
@@ -97,9 +97,9 @@ function AddATeacher() {
 
                 <Form.Item name="facultyId" validateStatus={formik.touched.facultyId && formik.errors.facultyId ? 'error' : ''} help={formik.touched.facultyId && formik.errors.facultyId}>
                     <div className="box" style={{ marginTop: '15px' }}>
-                        <label><span style={{ color: 'red' }}>* </span>Fakültə</label>
+                        <label><span style={{ color: 'red' }}>* </span>Fakültə və ya şöbə</label>
                         <select style={{ maxWidth: '600px', width: '100%' }} onChange={e => formik.setFieldValue('facultyId', e.target.value)} value={formik.values.facultyId} size="large">
-                            <option disabled value="">Fakültəni seçin</option>
+                            <option disabled value="">Fakültə və ya şöbəni seçin</option>
                             {faculties?.data
                                 ?.filter(faculty => !faculty.isDeleted) // Yalnız silinməmiş fakültələr daxildir
                                 .map(faculty => (

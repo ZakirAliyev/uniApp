@@ -15,13 +15,14 @@ const SecurityTable = () => {
 
     const handleActionClick = async (id) => {
         Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
+            title: "Əminsiniz?",
+            text: "Bunu geri qaytara bilməyəcəksiniz!",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!",
+            confirmButtonText: "Bəli",
+            cancelButtonText: "Xeyr",
         }).then(async (result) => {
             const response = await putChangeIsVisited({id}).unwrap();
             if (result.isConfirmed) {
@@ -45,39 +46,39 @@ const SecurityTable = () => {
             render: (text, record, index) => index + 1,
         },
         {
-            title: 'Name',
+            title: 'Ad',
             dataIndex: 'name',
         },
         {
-            title: 'Surname',
+            title: 'Soyad',
             dataIndex: 'surname',
         },
         {
-            title: 'Description',
+            title: 'Açıqlama',
             dataIndex: 'description',
         },
         {
-            title: 'FIN Code',
+            title: 'FIN Kod',
             dataIndex: 'finCode',
         },
         {
-            title: 'Car Number',
+            title: 'Avtomobil nömrəsi',
             dataIndex: 'carNumber',
         },
         {
-            title: 'Visited Date',
+            title: 'Ziyarət tarixi',
             dataIndex: 'visitedDate',
         },
         {
-            title: 'Coming Date',
+            title: 'Gəliş tarixi',
             dataIndex: 'commingDate',
         },
         {
-            title: 'Exit Date',
+            title: 'Çıxış tarixi',
             dataIndex: 'goIngDate',
         },
         {
-            title: 'Actions',
+            title: 'Əməliyyatlar',
             dataIndex: 'isVisited',
             render: (text, record) => (
                 <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '17px'}}
@@ -117,8 +118,8 @@ const SecurityTable = () => {
             item.email.toLowerCase().includes(searchTerm.toLowerCase());
 
         const matchesFilterBy =
-            filterBy === 'With car' ? item.carNumber !== 'N/A' :
-                filterBy === 'Without car' ? item.carNumber === 'N/A' :
+            filterBy === 'Avtomobil ilə' ? item.carNumber !== 'N/A' :
+                filterBy === 'Avtomobilsiz' ? item.carNumber === 'N/A' :
                     true;
 
         return matchesSearchTerm && matchesFilterBy;
@@ -129,6 +130,7 @@ const SecurityTable = () => {
 
     return (
         <section id="securityTable">
+
             <div style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -137,15 +139,15 @@ const SecurityTable = () => {
             }}>
                 <Input
                     size="large"
-                    placeholder="Search visitor"
+                    placeholder="Ziyarətçi axtar"
                     style={{maxWidth: '300px', width: '100%'}}
                     value={searchTerm}
                     onChange={onSearchChange}
                 />
                 <select onChange={onFilterChange} value={filterBy}>
-                    <option value="">All visitors</option>
-                    <option value="With car">With car</option>
-                    <option value="Without car">Without car</option>
+                    <option value="">Bütün ziyarətçilər</option>
+                    <option value="With car">Avtomobil ilə</option>
+                    <option value="Without car">Avtomobilsiz</option>
                 </select>
             </div>
             <Table

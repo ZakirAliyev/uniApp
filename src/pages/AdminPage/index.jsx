@@ -6,7 +6,7 @@ function AdminPage() {
     return (
         <section id={"adminPage"}>
             <Helmet>
-                <title>BSU - Admin səhifəsi</title>
+                <title>BDU - Admin səhifəsi</title>
             </Helmet>
             <AdminMenu/>
         </section>

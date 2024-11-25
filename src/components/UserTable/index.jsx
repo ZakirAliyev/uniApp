@@ -7,11 +7,11 @@ const columns = [
         dataIndex: 'id',
     },
     {
-        title: 'Name',
+        title: 'Ad',
         dataIndex: 'name',
     },
     {
-        title: 'Surname',
+        title: 'Soyad',
         dataIndex: 'surname',
     },
     {
@@ -19,7 +19,7 @@ const columns = [
         dataIndex: 'email',
     },
     {
-        title: 'Description',
+        title: 'Açıqlama',
         dataIndex: 'description',
     },
     {

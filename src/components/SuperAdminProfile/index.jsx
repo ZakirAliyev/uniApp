@@ -9,7 +9,19 @@ const SuperAdminProfile = () => {
     const {data: profileData, isFetching} = useGetAdminProfileDataQuery();
     const [putAdminProfileData] = usePutAdminProfileDataMutation();
 
-    // Local state to manage form inputs
+    // Azərbaycan dilində sahə başlıqları
+    const fieldLabels = {
+        email: "E-poçt",
+        name: "Ad",
+        surname: "Soyad",
+        fatherName: "Ata adı",
+        position: "Vəzifə",
+        phoneNumber: "Telefon nömrəsi",
+        roomNumber: "Otaq nömrəsi",
+        createdDateFormatted: "Yaradılma tarixi",
+    };
+
+    // Form məlumatlarını idarə etmək üçün lokal state
     const [formData, setFormData] = useState({
         id: '',
         email: '',
@@ -17,13 +29,12 @@ const SuperAdminProfile = () => {
         surname: '',
         fatherName: '',
         position: '',
-        imgUrl: '',
         phoneNumber: '',
         roomNumber: '',
         createdDateFormatted: ''
     });
 
-    // Update local state with fetched profile data
+    // Fetched məlumatlarla form state-ni yeniləyin
     useEffect(() => {
         if (profileData) {
             setFormData({
@@ -33,7 +44,6 @@ const SuperAdminProfile = () => {
                 surname: profileData.surname,
                 fatherName: profileData.fatherName || '',
                 position: profileData.position || '',
-                imgUrl: profileData.imgUrl || '',
                 phoneNumber: profileData.phoneNumber || '',
                 roomNumber: profileData.roomNumber || '',
                 createdDateFormatted: profileData.createdDateFormatted
@@ -61,8 +71,7 @@ const SuperAdminProfile = () => {
                 transition: Bounce,
             });
         } catch (error) {
-            console.log(error?.data?.error)
-            toast.error(error.data.error || "An error occurred", {
+            toast.error(error.data.error || "Xəta baş verdi!", {
                 position: "bottom-right",
                 autoClose: 2500,
                 hideProgressBar: false,
@@ -77,18 +86,18 @@ const SuperAdminProfile = () => {
     };
 
     if (isFetching) {
-        return <div>Loading...</div>;
+        return <div>Yüklənir...</div>;
     }
 
     return (
         <section id="superAdminProfile">
-            <h2>Profile</h2>
+            <h2>Profil məlumatları</h2>
             <div className="profile-info">
                 {Object.entries(formData).map(([key, value]) => (
                     <div className="profile-item" key={key} style={{
-                        display: key != 'id' ? '' : 'none',
+                        display: key !== 'id' ? '' : 'none',
                     }}>
-                        <strong>{key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, ' $1')}:</strong>
+                        <strong>{fieldLabels[key] || key}:</strong>
                         <Input
                             className="input-field"
                             name={key}
@@ -107,7 +116,7 @@ const SuperAdminProfile = () => {
                 className="save-button"
                 style={{marginTop: '20px'}}
             >
-                Save
+                Saxla
             </Button>
             <ToastContainer/>
         </section>

@@ -213,14 +213,11 @@ function UserForm() {
                                         fontSize: '14px',
                                         color: '#A99674',
                                         fontWeight: '500',
-                                        zIndex: -1
                                     }}>+994</span>
                                     <input
                                         style={{
                                             width: '100%',
                                             paddingLeft: '60px',
-                                            position: 'absolute',
-                                            zIndex: -2
                                         }}
                                         placeholder={"Mobil nömrə"}
                                         required

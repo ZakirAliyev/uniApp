@@ -7,7 +7,7 @@ function LoginPage() {
     return (
         <section id={"loginPage"}>
             <Helmet>
-                <title>BSU - Giriş səhifəsi</title>
+                <title>BDU - Giriş səhifəsi</title>
             </Helmet>
             <div className={"lane"}></div>
             <div className={"container"}>

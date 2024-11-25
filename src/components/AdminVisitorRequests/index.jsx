@@ -75,6 +75,14 @@ const AdminVisitorRequests = () => {
             dataIndex: 'surname',
         },
         {
+            title: 'FIN Kod',
+            dataIndex: 'finCode',
+        },
+        {
+            title: 'Mobil nömrə',
+            dataIndex: 'phoneNumber',
+        },
+        {
             title: 'Təsvir',
             dataIndex: 'description',
         },
@@ -176,6 +184,8 @@ const AdminVisitorRequests = () => {
         name: item.name,
         surname: item.surname,
         visitedDate: item.visitedDate,
+        finCode: item.finCode,
+        phoneNumber: item.phoneNumber,
     })) || [];
 
     const filteredDataSource = dataSource.filter((item) => {

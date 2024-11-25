@@ -73,7 +73,7 @@ function AddASubadmin() {
 
     return (
         <section id="addASubadmin">
-            <h2>Subadmin əlavə et</h2>
+            <h2>İşçi əlavə et</h2>
             <form onSubmit={formik.handleSubmit}>
                 <div className="wrapper">
                     <label htmlFor="name">Ad</label>

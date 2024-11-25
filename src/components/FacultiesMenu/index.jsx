@@ -192,7 +192,7 @@ function FacultiesMenu() {
             render: text => <span style={{fontWeight: 500, textDecoration: "underline"}}>{text}</span>,
         },
         {
-            title: 'Fakültə adı',
+            title: 'Fakültə və ya şöbə adı',
             dataIndex: 'name',
             render: text => <span
                 style={{color: '#1677FF', fontSize: "15px", fontWeight: 600, cursor: 'pointer'}}>{text}</span>,
@@ -209,7 +209,7 @@ function FacultiesMenu() {
                 style={{color: '#109eb1', fontSize: "15px", fontWeight: 600, cursor: 'pointer'}}>{text}</span>,
         },
         {
-            title: 'Şöbə sayı',
+            title: 'Kafedra sayı',
             dataIndex: 'departmentCount',
         },
         {
@@ -252,7 +252,7 @@ function FacultiesMenu() {
         <div id={"buildingsMenu"}>
             <div className={"wrapper1"}>
                 <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-                    <h2>Fakültələr</h2>
+                    <h2>Fakültə və ya şöbələr</h2>
                     <div style={{display: 'flex', gap: '10px'}}>
                         {/* Filter by Building */}
                         <select

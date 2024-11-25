@@ -81,7 +81,7 @@ const SuperAdminMenu = () => {
                         textAlign: 'center',
                         fontSize: '16px'
                     }}>
-                        {collapsed ? "BSU" : "Baku State University"}
+                        {collapsed ? "BDU" : "Bakı Dövlət Universiteti"}
                     </span>
                 </div>
                 <div className="demo-logo-vertical"/>
@@ -100,12 +100,12 @@ const SuperAdminMenu = () => {
                         {
                             key: '1',
                             icon: <IoPeople className={"icon"}/>,
-                            label: 'All visitors',
+                            label: 'Bütün ziyarətçilər',
                         },
                         {
                             key: '2',
                             icon: <FaFileExcel className={"icon"}/>,
-                            label: 'Export as Excel',
+                            label: 'Excel kimi yüklə',
                             onClick: () => {
                                 if (excelFile1 && excelFile1.fileContents) {
                                     const byteCharacters = atob(excelFile1.fileContents);
@@ -116,17 +116,16 @@ const SuperAdminMenu = () => {
                                     const byteArray = new Uint8Array(byteNumbers);
                                     const blob = new Blob([byteArray], {type: excelFile1.contentType});
                                     saveAs(blob, excelFile1.fileDownloadName || 'export.xlsx');
-                                    Swal.fire("Success", "Excel file downloaded successfully!", "success");
+                                    Swal.fire("Uğurlu!", "Excel faylı yükləndi!", "success");
                                     resetMenuItem(); // Reset after download
                                 } else {
-                                    Swal.fire("Error", "Failed to load Excel file", "error");
+                                    Swal.fire("Xəta!", "Excel faylı yüklənmədi!", "error");
                                 }
                             }
                         },
                         {
                             key: '3',
                             icon: <FaFilePdf className={"icon"}/>,
-                            label: 'Export as PDF',
                             onClick: () => {
                                 if (pdfFile1 && pdfFile1.data) {
                                     try {
@@ -145,31 +144,30 @@ const SuperAdminMenu = () => {
                                         saveAs(blob, pdfFile1.fileName || "export.pdf");
 
                                         // Success alert
-                                        Swal.fire("Success", "PDF file downloaded successfully!", "success");
+                                        Swal.fire("Uğurlu!", "PDF faylı yükləndi!", "success");
 
                                         // Optional: Reset the menu item or state
                                         resetMenuItem();
                                     } catch (error) {
-                                        console.error("Error processing PDF file:", error);
-                                        Swal.fire("Error", "An unexpected error occurred while downloading the PDF.", "error");
+                                        Swal.fire("Xəta!", "PDF faylı yüklənmədi!", "error");
                                     }
                                 } else {
-                                    // Error alert for missing or invalid data
-                                    Swal.fire("Error", "Failed to load PDF file. Please try again.", "error");
+                                    Swal.fire("Xəta!", "PDF faylı yüklənmədi!", "error");
                                 }
-                            }
+                            },
+                            label: 'PDF kimi yüklə'
                         },
                         {
                             key: '4',
                             icon: <IoMdPrint className={"icon"}/>,
-                            label: 'Print',
+                            label: 'Çap et',
                             onClick: () => {
                                 if (printFile1 && printFile1.content) {
                                     const printWindow = window.open('', '_blank');
                                     printWindow.document.write(`
                 <html>
                     <head>
-                        <title>Print</title>
+                        <title>Çap et</title>
                         <style>
                             @media print {
                                 @page {
@@ -201,17 +199,17 @@ const SuperAdminMenu = () => {
                                     printWindow.focus();
                                     printWindow.print();
                                     printWindow.close();
-                                    Swal.fire("Success", "Print initiated successfully!", "success");
+                                    Swal.fire("Uğurlu!", "Çap edildi!", "success");
                                     resetMenuItem(); // Reset after print
                                 } else {
-                                    Swal.fire("Error", "Failed to load print data", "error");
+                                    Swal.fire("Xəta!", "Çap edilmədi", "error");
                                 }
                             }
                         },
                         {
                             key: '6',
                             icon: <FaCircleUser className={"icon"}/>,
-                            label: 'Profile',
+                            label: 'Profil',
                             style: {
                                 position: 'absolute',
                                 bottom: '42px',
@@ -220,27 +218,28 @@ const SuperAdminMenu = () => {
                         {
                             key: '7',
                             icon: <MdLogout className={"icon"}/>,
-                            label: 'Log out',
+                            label: 'Çıxış',
                             style: {
                                 position: 'absolute',
                                 bottom: 0,
                             },
                             onClick: () => {
                                 Swal.fire({
-                                    title: "Are you sure?",
-                                    text: "You won't be able to revert this!",
+                                    title: "Əminsiniz?",
+                                    text: "Bunu geri qaytara bilməyəcəksiniz!",
                                     icon: "warning",
                                     showCancelButton: true,
                                     confirmButtonColor: "#3085d6",
                                     cancelButtonColor: "#d33",
-                                    confirmButtonText: "Yes, delete it!"
+                                    confirmButtonText: "Bəli",
+                                    cancelButtonText: "Xeyr"
                                 }).then((result) => {
                                     if (result.isConfirmed) {
                                         Cookies.set("token", "null");
                                         Cookies.set("role", "null");
                                         setTimeout(() => {
                                             navigate('/login');
-                                        }, 2000);
+                                        }, 0);
                                     }
                                 });
                             }
@@ -270,14 +269,16 @@ const SuperAdminMenu = () => {
                     />
                     <div className={"profile"}>
                         <span style={{
-                            color: 'red',
+                            color: '#495464',
                             padding: '5px'
-                        }}>Security: </span>
+                        }}>Xoş gəlmisiniz: </span>
                         <span>
                             {adminProfileData?.name} {adminProfileData?.surname}
                         </span>
                         <div className={"img1"}>
-                            <img src={adminProfileData?.imgUrl} alt={"Image"}/>
+                            <img style={{
+                                border: '1px solid #195464'
+                            }} src={adminProfileData?.imgUrl} alt={"Image"}/>
                         </div>
                     </div>
                 </Header>

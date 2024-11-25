@@ -38,13 +38,13 @@ const SecurityProfileSection = () => {
                 });
             }
         } catch (error) {
-            console.error("Error updating profile:", error);
+            console.error("Redaktə edərkən xəta baş verdi!", error);
         }
     };
 
     return (
         <section id="securityProfileSection">
-            <h2>Profile</h2>
+            <h2 style={{margin: '10px 0 40px'}}>Profil məlumatları</h2>
             <Form
                 form={form}
                 onFinish={handleSave}
@@ -67,32 +67,32 @@ const SecurityProfileSection = () => {
                 </Form.Item>
 
                 <div className="labelWrapper">
-                    <label>Name</label>
+                    <label>Ad</label>
                     <Form.Item
                         name="name"
-                        rules={[{required: true, message: 'Name is required'}]}
+                        rules={[{required: true, message: 'Ad tələb olunur'}]}
                     >
-                        <Input size="large" placeholder="Name" className="profileInput"/>
+                        <Input size="large" placeholder="Ad" className="profileInput"/>
                     </Form.Item>
                 </div>
 
                 <div className="labelWrapper">
-                    <label>Surname</label>
+                    <label>Soyad</label>
                     <Form.Item
                         name="surname"
-                        rules={[{required: true, message: 'Surname is required'}]}
+                        rules={[{required: true, message: 'Soyad tələb olunur'}]}
                     >
-                        <Input size="large" placeholder="Surname" className="profileInput"/>
+                        <Input size="large" placeholder="Soyad" className="profileInput"/>
                     </Form.Item>
                 </div>
 
                 <div className="labelWrapper">
-                    <label>Father's Name</label>
+                    <label>Ata adı</label>
                     <Form.Item
                         name="fatherName"
-                        rules={[{required: true, message: "Father's name is required"}]}
+                        rules={[{required: true, message: "Ata adı tələb olunur"}]}
                     >
-                        <Input size="large" placeholder="Father's Name" className="profileInput"/>
+                        <Input size="large" placeholder="Ata adı" className="profileInput"/>
                     </Form.Item>
                 </div>
 
@@ -101,8 +101,8 @@ const SecurityProfileSection = () => {
                     <Form.Item
                         name="email"
                         rules={[
-                            {required: true, message: 'Email is required'},
-                            {type: 'email', message: 'Email format is invalid'},
+                            {required: true, message: 'Email tələb olunur'},
+                            {type: 'email', message: 'Email yalnışdır'},
                         ]}
                     >
                         <Input size="large" placeholder="Email" className="profileInput"/>
@@ -110,50 +110,40 @@ const SecurityProfileSection = () => {
                 </div>
 
                 <div className="labelWrapper">
-                    <label>Phone Number</label>
+                    <label>Mobil nömrə</label>
                     <Form.Item
                         name="phoneNumber"
-                        rules={[{required: true, message: 'Phone number is required'}]}
+                        rules={[{required: true, message: 'Mobil nömrə tələb olunur'}]}
                     >
-                        <Input size="large" placeholder="Phone Number" className="profileInput"/>
+                        <Input size="large" placeholder="Mobil nömrə" className="profileInput"/>
                     </Form.Item>
                 </div>
 
                 <div className="labelWrapper">
-                    <label>Position</label>
+                    <label>Vəzifə</label>
                     <Form.Item
                         name="position"
-                        rules={[{required: true, message: 'Position is required'}]}
+                        rules={[{required: true, message: 'Vəzifə tələb olunur'}]}
                     >
-                        <Input size="large" placeholder="Position" className="profileInput"/>
+                        <Input size="large" placeholder="Vəzifə" className="profileInput"/>
                     </Form.Item>
                 </div>
 
                 <div className="labelWrapper">
-                    <label>Image URL</label>
-                    <Form.Item
-                        name="imgUrl"
-                        rules={[{required: true, message: 'Image URL is required'}]}
-                    >
-                        <Input size="large" placeholder="Image URL" className="profileInput"/>
-                    </Form.Item>
-                </div>
-
-                <div className="labelWrapper">
-                    <label>Created Date</label>
+                    <label>Yaradılma tarixi</label>
                     <Form.Item
                         name="createdDateFormatted"
                     >
-                        <Input size="large" disabled placeholder="Created Date" className="profileInput"/>
+                        <Input size="large" disabled placeholder="Yaradılma tarixi" className="profileInput"/>
                     </Form.Item>
                 </div>
 
                 <div className="labelWrapper">
-                    <label>Room Number</label>
+                    <label>Otaq nömrəsi</label>
                     <Form.Item
                         name="roomNumber"
                     >
-                        <Input size="large" disabled placeholder="Room Number" className="profileInput"/>
+                        <Input size="large" disabled placeholder="Otaq nömrəsi" className="profileInput"/>
                     </Form.Item>
                 </div>
 
@@ -164,7 +154,7 @@ const SecurityProfileSection = () => {
                         className="saveButton"
                         size="large"
                     >
-                        Save
+                        Yadda saxla
                     </Button>
                 </Form.Item>
             </Form>

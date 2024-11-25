@@ -48,29 +48,23 @@ function a11yProps(index) {
     };
 }
 
-// Main LoginTabs component
 export default function LoginTabs() {
     const [value, setValue] = React.useState(0); // State to track selected tab
     const navigate = useNavigate();
 
-    // API mutation hooks for login actions
     const [postAdminLogin, {isLoading: isAdminLoading}] = usePostAdminLoginMutation();
     const [postSecurityLogin, {isLoading: isSecurityLoading}] = usePostSecurityLoginMutation();
     const [postSubAdminLogin, {isLoading: isSubAdminLoading}] = usePostSubAdminLoginMutation();
 
-    // Formik setup for form handling
     const formik = useFormik({
         initialValues: {email: '', password: ''},
         onSubmit: async (values) => handleLoginSubmit(values),
     });
 
-    // Determine loading state based on selected tab
     const isLoading = value === 0 ? isAdminLoading : value === 1 ? isSecurityLoading : isSubAdminLoading;
 
-    // Function to handle tab change
     const handleChange = (event, newValue) => setValue(newValue);
 
-    // Login submission handler with toast notifications and role-based navigation
     const handleLoginSubmit = async (values) => {
         try {
             let response;
@@ -108,12 +102,10 @@ export default function LoginTabs() {
         }
     };
 
-    // Error handler for login
     const handleLoginError = (error) => {
         toast.error(`${error?.data?.error}`, toastOptions());
     };
 
-    // Toast notification options
     const toastOptions = () => ({
         position: "bottom-right",
         autoClose: 2500,
@@ -197,7 +189,6 @@ function LoginForm({isLoading, formik}) {
     );
 }
 
-// Input field styling
 const inputStyles = {
     '& .MuiInputLabel-root': {color: '#a99674'},
     '& .MuiOutlinedInput-root': {

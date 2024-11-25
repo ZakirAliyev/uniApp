@@ -195,18 +195,18 @@ function DepartmentsMenu() {
             render: text => <span style={{fontWeight: 500, textDecoration: "underline"}}>{text}</span>,
         },
         {
-            title: 'Şöbənin adı',
+            title: 'Kafedra adı',
             dataIndex: 'name',
             render: text => <span
                 style={{color: '#1677FF', fontSize: "15px", fontWeight: 600, cursor: 'pointer'}}>{text}</span>,
         },
         {
-            title: 'Fakültə ID',
+            title: 'Fakültə və ya şöbə ID',
             dataIndex: 'facultyId',
             render: text => <span style={{fontWeight: 500, textDecoration: "underline"}}>{text}</span>,
         },
         {
-            title: 'Fakültə adı',
+            title: 'Fakültə və ya şöbə adı',
             dataIndex: 'facultyName',
             render: text => <span
                 style={{color: '#109eb1', fontSize: "15px", fontWeight: 600, cursor: 'pointer'}}>{text}</span>,
@@ -255,7 +255,7 @@ function DepartmentsMenu() {
         <div id={"buildingsMenu"}>
             <div className={"wrapper1"}>
                 <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-                    <h2>Şöbələr</h2>
+                    <h2>Kafedralar</h2>
                     <div style={{display: 'flex', gap: '10px'}}>
                         <select
                             onChange={(e) => {
@@ -298,7 +298,7 @@ function DepartmentsMenu() {
                                 size="large"
                                 name="search"
                                 value={searchTerm}
-                                placeholder={"Şöbə axtar"}
+                                placeholder={"Kafedra axtar"}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                             />
                         </div>
@@ -313,7 +313,7 @@ function DepartmentsMenu() {
                                     size={"large"}
                                     className={"input"}
                                     value={newDepartmentName}
-                                    placeholder="Yeni şöbə əlavə et"
+                                    placeholder="Yeni kafedra əlavə et"
                                     onChange={(e) => setNewDepartmentName(e.target.value)}
                                 />
                             </div>
@@ -361,19 +361,19 @@ function DepartmentsMenu() {
             </div>
             <ToastContainer/>
             <Modal
-                title="Şöbəni redaktə et"
+                title="Kafedranı redaktə et"
                 open={isModalOpen}
                 onOk={handleOk}
                 onCancel={handleCancel}
             >
                 <Form form={form}>
                     <Form.Item
-                        label="Şöbə adı"
+                        label="Kafedra adı"
                         name="name"
                         rules={[
                             {
                                 required: true,
-                                message: 'Zəhmət olmasa şöbə adını daxil edin!',
+                                message: 'Zəhmət olmasa kafedra adını daxil edin!',
                             },
                         ]}
                     >

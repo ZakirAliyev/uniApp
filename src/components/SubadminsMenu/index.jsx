@@ -8,7 +8,6 @@ import {
     usePutOneTeacherMutation, usePutSubAdminDataMutation,
 } from "../../services/usersApi.jsx";
 import {useEffect, useState} from 'react';
-import {FaRegTrashAlt} from "react-icons/fa";
 import Swal from "sweetalert2";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -82,7 +81,7 @@ function SubadminsMenu() {
                 throw new Error();
             }
         } catch (error) {
-            toast.error('Please fill in the required fields.', {
+            toast.error('Zəhmət olmasa bütün xanaları doldurun!', {
                 position: "bottom-right",
                 autoClose: 2500,
                 theme: "dark",
@@ -96,13 +95,14 @@ function SubadminsMenu() {
 
     async function handleDelete(record) {
         Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
+            title: "Əminsiniz?",
+            text: "Bunu geri qaytara bilməyəcəksiniz!",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
+            confirmButtonText: "Bəli",
+            cancelButtonText: "Xeyr"
         }).then(async (result) => {
             if (result.isConfirmed) {
                 const response = await deleteTeacher(record.id).unwrap();
@@ -139,19 +139,19 @@ function SubadminsMenu() {
 
     const columns = [
         {
-            title: 'Firstname',
+            title: 'Ad',
             dataIndex: 'name',
             render: text => <span
                 style={{color: '#1677FF', fontSize: "15px", fontWeight: 600, cursor: 'pointer'}}>{text}</span>,
         },
         {
-            title: 'Lastname',
+            title: 'Soyad',
             dataIndex: 'surname',
             render: text => <span
                 style={{color: '#1677FF', fontSize: "15px", fontWeight: 600, cursor: 'pointer'}}>{text}</span>,
         },
         {
-            title: 'Father Name',
+            title: 'Ata adı',
             dataIndex: 'fatherName',
             render: text => <span
                 style={{color: '#1677FF', fontSize: "15px", fontWeight: 600, cursor: 'pointer'}}>{text}</span>,
@@ -163,7 +163,7 @@ function SubadminsMenu() {
                 style={{color: '#000000', fontSize: "15px", fontWeight: 600, cursor: 'pointer'}}>{text}</span>,
         },
         {
-            title: 'Actions',
+            title: 'Əməliyyatlar',
             render: (text, record) => (
                 <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '17px'}}>
                     <FiEdit
@@ -180,7 +180,7 @@ function SubadminsMenu() {
         <div id={"buildingsMenu"}>
             <div className={"wrapper1"}>
                 <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-                    <h2>Subadmins</h2>
+                    <h2>İşçilər</h2>
                     <Form form={form}>
                         <div className={"box"}>
                             <div style={{display: 'flex', alignItems: 'center'}}>
@@ -189,7 +189,7 @@ function SubadminsMenu() {
                                     size="large"
                                     name="search"
                                     value={searchTerm}
-                                    placeholder={"Search teacher"}
+                                    placeholder={"İşçi axtar"}
                                     style={{
                                         width: '400px'
                                     }}
@@ -214,19 +214,19 @@ function SubadminsMenu() {
                 />
             </div>
             <Modal
-                title="Edit subadmin"
+                title="İşçini redaktə et"
                 open={isModalOpen}
                 onOk={handleOk}
                 onCancel={handleCancel}
             >
                 <Form form={form} className={"ant-form-item-required111"}>
                     <Form.Item
-                        label="Name"
+                        label="Ad"
                         name="name"
                         rules={[
                             {
                                 required: true,
-                                message: 'Please input the department name!',
+                                message: 'Zəhmət olmasa ad daxil edin!',
                             },
                         ]}
                         style={{
@@ -236,24 +236,24 @@ function SubadminsMenu() {
                         <Input/>
                     </Form.Item>
                     <Form.Item
-                        label="Surname"
+                        label="Soyad"
                         name="surname"
                         rules={[
                             {
                                 required: true,
-                                message: 'Please input the department name!',
+                                message: 'Zəhmət olmasa soyad daxil edin!',
                             },
                         ]}
                     >
                         <Input/>
                     </Form.Item>
                     <Form.Item
-                        label="Father Name"
+                        label="Ata adı"
                         name="fatherName"
                         rules={[
                             {
                                 required: true,
-                                message: 'Please input the department name!',
+                                message: 'Zəhmət olmasa ata adı daxil edin!',
                             },
                         ]}
                     >
@@ -265,19 +265,19 @@ function SubadminsMenu() {
                         rules={[
                             {
                                 required: true,
-                                message: 'Please input the department name!',
+                                message: 'Zəhmət olmasa email daxil edin!',
                             },
                         ]}
                     >
                         <Input/>
                     </Form.Item>
                     <Form.Item
-                        label="Password"
+                        label="Şifrə"
                         name="password"
                         rules={[
                             {
                                 required: true,
-                                message: 'Please input the department name!',
+                                message: 'Zəhmət olmasa şifrə daxil edin!',
                             },
                         ]}
                     >

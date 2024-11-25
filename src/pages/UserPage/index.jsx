@@ -9,7 +9,7 @@ function UserPage() {
     return (
         <section id={"userPage"}>
             <Helmet>
-                <title>BSU - Qeydiyyat səhifəsi</title>
+                <title>BDU - Qeydiyyat səhifəsi</title>
             </Helmet>
             <UserNavbar/>
             <UserBanner/>

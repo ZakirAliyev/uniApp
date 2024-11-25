@@ -20,3 +20,20 @@
 .reBtn {
   background-color: #F70E0D;
 }
+
+
+.wrapperWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+
+  .filter-section {
+    input {
+      border: 1px solid #979595;
+      padding: 5px 20px;
+      border-radius: 10px;
+      margin-left: 20px;
+    }
+  }
+}

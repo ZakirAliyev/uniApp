@@ -117,14 +117,14 @@ const AdminMenu = () => {
                                     showCancelButton: true,
                                     confirmButtonColor: "#3085d6",
                                     cancelButtonColor: "#d33",
-                                    confirmButtonText: "Bəli!"
+                                    confirmButtonText: "Bəli"
                                 }).then((result) => {
                                     if (result.isConfirmed) {
                                         Cookies.set("token", "null");
                                         Cookies.set("role", "null");
                                         setTimeout(() => {
                                             navigate('/login');
-                                        }, 2000);
+                                        }, 0);
                                     }
                                 });
                             }
@@ -154,14 +154,16 @@ const AdminMenu = () => {
                     />
                     <div className={"profile"}>
                         <span style={{
-                            color: 'red',
+                            color: '#495464',
                             padding: '5px'
-                        }}>Admin: </span>
+                        }}>Xoş gəlmisiniz: </span>
                         <span>
                             {profileData?.name} {profileData?.surname}
                         </span>
                         <div className={"img1"}>
-                            <img src={profileData?.imgUrl} alt={"Image"}/>
+                            <img style={{
+                                border: '1px solid #195464'
+                            }} src={profileData?.imgUrl} alt={"Image"}/>
                         </div>
                     </div>
                 </Header>

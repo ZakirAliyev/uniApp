@@ -33,14 +33,11 @@ function AddATeacher() {
             name: Yup.string().required('Adı daxil edin!'),
             surname: Yup.string().required('Soyadı daxil edin!'),
             fatherName: Yup.string().required("Ata adını daxil edin!"),
-            facultyId: Yup.number().required('Fakültəni seçin!'),
+            facultyId: Yup.number().required('Fakültə və ya şöbəni seçin!'),
             roomNumber: Yup.string().required('Otaq nömrəsini daxil edin!'),
             position: Yup.string().required('Vəzifəni daxil edin!'),
             email: Yup.string().email('Doğru bir email daxil edin!').required('Email daxil edin!'),
             password: Yup.string().required('Şifrəni daxil edin!'),
-            phoneNumber: Yup.string()
-                .matches(/^\+994\d{9}$/, 'Telefon nömrəsi +994XXXXXXXXX formatında olmalıdır')
-                .required('Telefon nömrəsini daxil edin!'),
         }),
         onSubmit: async (values) => {
             const dataToSend = {
@@ -115,11 +112,11 @@ function AddATeacher() {
                            validateStatus={formik.touched.facultyId && formik.errors.facultyId ? 'error' : ''}
                            help={formik.touched.facultyId && formik.errors.facultyId}>
                     <div className="box">
-                        <label><span style={{ color: 'red' }}>* </span>Fakültə</label>
+                        <label><span style={{ color: 'red' }}>* </span>Fakültə və ya şöbə</label>
                         <select style={{ maxWidth: '600px', width: '100%' }}
                                 onChange={e => formik.setFieldValue('facultyId', e.target.value)}
                                 value={formik.values.facultyId} size="large">
-                            <option disabled value="">Fakültəni seçin</option>
+                            <option disabled value="">Fakültə və ya şöbəni seçin</option>
                             {faculties?.data
                                 ?.filter(faculty => !faculty.isDeleted)
                                 .map(faculty => (

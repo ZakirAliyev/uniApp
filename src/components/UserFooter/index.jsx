@@ -3,6 +3,7 @@ import {FaFacebook, FaPhoneAlt, FaPhoneVolume, FaTelegram, FaTwitter, FaYoutube}
 import {IoMdMail} from "react-icons/io";
 import {IoLocationSharp} from "react-icons/io5";
 import {PiMailboxFill} from "react-icons/pi";
+import {Link} from "react-router-dom";
 
 function UserFooter() {
     return (
@@ -41,7 +42,7 @@ function UserFooter() {
                             </div>
                             <div className={"box"}>
                                 <IoMdMail/>
-                                <span>zakiraliyev@bsu.edu.az</span>
+                                <span>rafail@bsu.edu.az</span>
                             </div>
                         </div>
 
@@ -52,11 +53,11 @@ function UserFooter() {
                         qonaqların sistemdən asanlıqla istifadə etməsinə imkan tanıyır.
                     </div>
                     <div className={"icons"}>
-                        <div className={"icon"}><FaFacebook/></div>
-                        <div className={"icon"}><FaTelegram/></div>
-                        <div className={"icon"}><FaTwitter/></div>
-                        <div className={"icon"}><FaYoutube/></div>
-                        <div className={"icon"}><IoMdMail/></div>
+                        <Link to={"https://www.facebook.com/bdu.eduaz1919"} className={"icon"}><FaFacebook/></Link>
+                        <Link to={"https://t.me/s/bdu_eduaz"} className={"icon"}><FaTelegram/></Link>
+                        <Link to={"https://x.com/bdu_eduaz"} className={"icon"}><FaTwitter/></Link>
+                        <Link to={"https://www.youtube.com/@BakuStateUniversity"} className={"icon"}><FaYoutube/></Link>
+                        <Link to={"http://bsu.edu.az/az/content/laq_vasitlri"} v className={"icon"}><IoMdMail/></Link>
                     </div>
                 </div>
             </div>

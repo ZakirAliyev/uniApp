@@ -6,7 +6,7 @@ function SecurityPage() {
     return (
         <section id={"securityPage"}>
             <Helmet>
-                <title>BSU - Mühafizə səhifəsi</title>
+                <title>BDU - Mühafizə səhifəsi</title>
             </Helmet>
             <SecurityMenu/>
         </section>
