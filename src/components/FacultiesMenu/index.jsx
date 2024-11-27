@@ -298,7 +298,7 @@ function FacultiesMenu() {
                                 size="large"
                                 name="search"
                                 value={searchTerm}
-                                placeholder={"Fakültə axtar"}
+                                placeholder={"Fakültə və ya şöbə axtar"}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                             />
                         </div>
@@ -313,7 +313,7 @@ function FacultiesMenu() {
                                     size={"large"}
                                     className={"input"}
                                     value={newFacultyName}
-                                    placeholder="Yeni fakültə əlavə et"
+                                    placeholder="Yeni fakültə və şöbə əlavə et"
                                     onChange={(e) => setNewFacultyName(e.target.value)}
                                 />
                             </div>
@@ -361,14 +361,14 @@ function FacultiesMenu() {
             </div>
             <ToastContainer/>
             <Modal
-                title="Fakültəni redaktə et"
+                title="Fakültə və ya şöbəni redaktə et"
                 open={isModalOpen}
                 onOk={handleOk}
                 onCancel={handleCancel}
             >
                 <Form form={form}>
                     <Form.Item
-                        label="Fakültə adı"
+                        label="Fakültə və ya şöbə adı"
                         name="name"
                         rules={[
                             {

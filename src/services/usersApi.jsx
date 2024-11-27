@@ -274,6 +274,14 @@ export const usersApi = createApi({
                 headers: {'Content-Type': 'application/json'}
             }),
         }),
+        putAdminPassword: builder.mutation({
+            query: (buildingData) => ({
+                url: `/Admin/change-passoword`,
+                method: 'PUT',
+                body: buildingData,
+                headers: {'Content-Type': 'application/json'}
+            }),
+        }),
     }),
 });
 
@@ -336,5 +344,7 @@ export const {
 
     useAddASubAdminPostMutation,
     useGetAllSubadminsQuery,
-    usePutSubAdminDataMutation
+    usePutSubAdminDataMutation,
+
+    usePutAdminPasswordMutation
 } = usersApi;

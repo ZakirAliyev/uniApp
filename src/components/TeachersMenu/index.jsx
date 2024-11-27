@@ -6,17 +6,19 @@ import {
     useDeleteTeacherMutation,
     useGetAllDepartmentsQuery,
     useGetAllFacultiesQuery,
-    useGetAllTeachersQuery,
+    useGetAllTeachersQuery, usePutAdminPasswordMutation,
     usePutOneTeacherMutation,
 } from "../../services/usersApi.jsx";
 import {useEffect, useState} from 'react';
 import {FaRegTrashAlt} from "react-icons/fa";
 import Swal from "sweetalert2";
 import 'react-toastify/dist/ReactToastify.css';
+import {RiLockPasswordLine} from "react-icons/ri";
 
 function TeachersMenu() {
     const [form] = Form.useForm();
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
     const [selectedTeacher, setSelectedTeacher] = useState(null);
     const [searchTerm, setSearchTerm] = useState("");
     const [newTeacherName, setNewTeacherName] = useState("");
@@ -44,6 +46,13 @@ function TeachersMenu() {
         form.setFieldsValue(teacher);
         setIsModalOpen(true);
     };
+
+    const showPasswordModal = (teacher) => {
+        setIsPasswordModalOpen(true)
+        setSelectedTeacher(teacher)
+    };
+    const handlePasswordModalCancel = () => setIsPasswordModalOpen(false);
+
 
     const handleCancel = () => {
         setIsModalOpen(false);
@@ -91,26 +100,29 @@ function TeachersMenu() {
         try {
             const values = await form.validateFields();
 
-            const departmentIdToUse = selectedDepartmentId || selectedTeacher.departmentId;
+            const departmentIdToUse = selectedDepartmentId !== ""
+                ? selectedDepartmentId
+                : selectedTeacher?.departmentId || 0;
+
             const facultyIdToUse = selectedFacultyId || selectedTeacher.facultyId;
 
             const payload = {
                 name: values.name,
                 surname: values.surname,
                 fatherName: values.fatherName,
-                departmentId: departmentIdToUse,  // Ensure this comes from form or selection
-                facultyId: facultyIdToUse || 0,  // Replace with actual facultyId or set to 0
+                departmentId: departmentIdToUse, // Correctly resolve departmentId
+                facultyId: facultyIdToUse, // Correctly resolve facultyId
                 roomNumber: values.roomNumber,
                 position: values.position,
                 email: values.email,
                 password: values.password,
                 phoneNumber: values.phoneNumber,
-                imgUrl: values.imgUrl
+                imgUrl: values.imgUrl,
             };
 
             const response = await updateTeacher({
                 id: selectedTeacher.id,
-                ...payload
+                ...payload,
             }).unwrap();
 
             if (response?.statusCode === 200) {
@@ -127,7 +139,7 @@ function TeachersMenu() {
                 throw new Error();
             }
         } catch (error) {
-            toast.error('Zəhmət olmasa xanaları doldurun.', {
+            toast.error("Zəhmət olmasa xanaları doldurun.", {
                 position: "bottom-right",
                 autoClose: 2500,
                 theme: "dark",
@@ -181,6 +193,47 @@ function TeachersMenu() {
             }
         });
     }
+
+    const [putAdminPassword] = usePutAdminPasswordMutation()
+
+    const handlePasswordChange = async () => {
+        try {
+            const values = await form.validateFields(["newPassword"]);
+
+            const payload = {
+                newPassword: values.newPassword,
+            }
+
+            const response = await putAdminPassword({
+                adminId: selectedTeacher.id,
+                ...payload,
+            }).unwrap();
+
+            if (response?.statusCode === 200) {
+                toast.success(response?.message || "Şifrə uğurla dəyişdirildi.", {
+                    position: "bottom-right",
+                    autoClose: 2500,
+                    theme: "dark",
+                    transition: Bounce,
+                });
+
+                setIsPasswordModalOpen(false); // Close the modal
+                form.resetFields(); // Reset form fields
+            } else {
+                throw new Error(response?.message || "Şifrə dəyişdirilmədi.");
+            }
+        } catch (error) {
+            toast.error(
+                error.message || "Zəhmət olmasa xanaları düzgün doldurun.",
+                {
+                    position: "bottom-right",
+                    autoClose: 2500,
+                    theme: "dark",
+                    transition: Bounce,
+                }
+            );
+        }
+    };
 
 
     const columns = [
@@ -261,6 +314,20 @@ function TeachersMenu() {
             title: 'Əməliyyatlar',
             render: (text, record) => (
                 <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '17px'}}>
+                    <FiEdit
+                        className={"facultyEditIcons"}
+                        style={{fontSize: '20px', color: 'gray', cursor: record.isDeleted ? 'not-allowed' : 'pointer'}}
+                        onClick={() => !record.isDeleted && showModal(record)}
+                    />
+                    <RiLockPasswordLine
+                        style={{
+                            fontSize: "20px",
+                            color: "gray",
+                            cursor: record.isDeleted ? "not-allowed" : "pointer",
+                        }}
+                        onClick={() => !record.isDeleted && showPasswordModal(record)}
+                    />
+
                     <FaRegTrashAlt
                         className={"facultyEditIcons"}
                         style={{
@@ -268,11 +335,6 @@ function TeachersMenu() {
                             color: 'gray',
                             cursor: record.isDeleted ? 'not-allowed' : 'pointer'
                         }} onClick={() => handleDelete(record)}/>
-                    <FiEdit
-                        className={"facultyEditIcons"}
-                        style={{fontSize: '20px', color: 'gray', cursor: record.isDeleted ? 'not-allowed' : 'pointer'}}
-                        onClick={() => !record.isDeleted && showModal(record)}
-                    />
                 </div>
             ),
         },
@@ -292,7 +354,6 @@ function TeachersMenu() {
                         >
                             <option value="">Bütün kafedralar</option>
                             <option value="withoutDepartment">Kafedrası olmayanlar</option>
-                            {/* New option */}
                             {departments
                                 .filter(department => !department.isDeleted) // Only include departments where isDeleted is false
                                 .map((department) => (
@@ -352,6 +413,8 @@ function TeachersMenu() {
                 open={isModalOpen}
                 onOk={handleOk}
                 onCancel={handleCancel}
+                cancelText={"Ləğv et"}
+                okText={"Yadda saxla"}
             >
                 <Form form={form} className={"ant-form-item-required111"}>
                     <Form.Item
@@ -429,7 +492,9 @@ function TeachersMenu() {
                     >
                         <select
                             value={selectedFacultyId}
-                            onChange={(e) => setSelectedFacultyId(parseInt(e.target.value, 10))}
+                            onChange={(e) =>
+                                setSelectedFacultyId(parseInt(e.target.value, 10))
+                            }
                             style={{
                                 width: '100%',
                                 border: '1px solid #D9D9D9',
@@ -455,7 +520,7 @@ function TeachersMenu() {
                         rules={[
                             {
                                 required: true,
-                                message: 'Zəhmət olmasa kafedra daxil edin!',
+                                message: "Zəhmət olmasa kafedra daxil edin!",
                             },
                         ]}
                     >
@@ -463,14 +528,17 @@ function TeachersMenu() {
                             value={selectedDepartmentId}
                             onChange={(e) => setSelectedDepartmentId(parseInt(e.target.value, 10))}
                             style={{
-                                width: '100%',
-                                border: '1px solid #D9D9D9',
-                                outline: 'none',
-                                height: '32px',
-                                borderRadius: '5px',
-                                paddingLeft: '8px',
+                                width: "100%",
+                                border: "1px solid #D9D9D9",
+                                outline: "none",
+                                height: "32px",
+                                borderRadius: "5px",
+                                paddingLeft: "8px",
                             }}
                         >
+                            <option key={0} value={0}>
+                                Kafedrasız
+                            </option>
                             {departments.map((faculty) =>
                                     !faculty.isDeleted && (
                                         <option key={faculty.id} value={faculty.id}>
@@ -479,8 +547,8 @@ function TeachersMenu() {
                                     )
                             )}
                         </select>
-
                     </Form.Item>
+
                     <Form.Item
                         label="Email"
                         name="email"
@@ -507,6 +575,37 @@ function TeachersMenu() {
                     </Form.Item>
                 </Form>
             </Modal>
+            <Modal
+                title="Şifrəni Dəyişdir"
+                open={isPasswordModalOpen}
+                onOk={handlePasswordChange} // Call handler when OK is clicked
+                onCancel={() => {
+                    setIsPasswordModalOpen(false); // Close modal
+                    form.resetFields(); // Reset form fields on cancel
+                }}
+                cancelText={"Ləğv et"}
+                okText={"Yadda saxla"}
+            >
+                <Form form={form}>
+                    <Form.Item
+                        label="Yeni Şifrə"
+                        name="newPassword"
+                        rules={[
+                            {
+                                required: true,
+                                message: "Zəhmət olmasa yeni şifrəni daxil edin!",
+                            },
+                            {
+                                min: 6,
+                                message: "Şifrə ən azı 6 simvoldan ibarət olmalıdır!",
+                            },
+                        ]}
+                    >
+                        <Input.Password/>
+                    </Form.Item>
+                </Form>
+            </Modal>
+
             <ToastContainer/>
         </div>
     );

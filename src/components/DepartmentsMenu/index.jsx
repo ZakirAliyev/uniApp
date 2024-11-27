@@ -263,7 +263,7 @@ function DepartmentsMenu() {
                             }}
                             value={selectedFacultyForFilter}
                         >
-                            <option value="">Bütün fakültələr</option>
+                            <option value="">Bütün fakültə və ya şöbələr</option>
                             {faculties.map((faculty) => (
                                 <option key={faculty.id} value={String(faculty.id)}>
                                     {faculty.name}
@@ -327,7 +327,7 @@ function DepartmentsMenu() {
                                     value={selectedFacultyId}
                                     onChange={(e) => setSelectedFacultyId(e.target.value)}
                                 >
-                                    <option value="" disabled>Fakültə seç</option>
+                                    <option value="" disabled>Fakültə və ya şöbə seç</option>
                                     {faculties.map((faculty) => (
                                         <option key={faculty.id} value={String(faculty.id)}>
                                             {faculty.name}

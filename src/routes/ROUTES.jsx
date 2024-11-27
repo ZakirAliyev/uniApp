@@ -6,6 +6,7 @@ import UserPage from "../pages/UserPage/index.jsx";
 import AdminPage from "../pages/AdminPage/index.jsx";
 import HomePage from "../pages/HomePage/index.jsx";
 import ErrorPage from "../pages/ErrorPage/index.jsx";
+import {ProtectedRoute} from "../auth/ProtectedRoute/index.jsx";
 
 export const ROUTES = [
     {
@@ -18,7 +19,7 @@ export const ROUTES = [
             },
             {
                 path: '/main',
-                element: <UserPage/>
+                element: <ProtectedRoute><UserPage/></ProtectedRoute>
             },
             {
                 path: 'login',
@@ -26,15 +27,15 @@ export const ROUTES = [
             },
             {
                 path: 'security',
-                element: <SecurityPage/>
+                element: <ProtectedRoute><SecurityPage/></ProtectedRoute>
             },
             {
                 path: 'cp',
-                element: <AdminPage/>
+                element: <ProtectedRoute><AdminPage/></ProtectedRoute>
             },
             {
                 path: 'scp',
-                element: <SuperAdminPage/>
+                element: <ProtectedRoute><SuperAdminPage/></ProtectedRoute>
             },
             {
                 path: '*',
