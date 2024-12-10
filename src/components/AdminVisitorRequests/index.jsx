@@ -67,16 +67,8 @@ const AdminVisitorRequests = () => {
             render: (text, record, index) => index + 1,
         },
         {
-            title: 'Ad',
-            dataIndex: 'name',
-        },
-        {
-            title: 'Soyad',
-            dataIndex: 'surname',
-        },
-        {
-            title: 'FIN Kod',
-            dataIndex: 'finCode',
+            title: 'Ziyarətçi',
+            render: (text, record) => `${record.name} ${record.surname}`,
         },
         {
             title: 'Mobil nömrə',
@@ -87,15 +79,11 @@ const AdminVisitorRequests = () => {
             dataIndex: 'description',
         },
         {
-            title: 'Avtomobil Nömrəsi',
+            title: 'Avtomobil nömrəsi',
             dataIndex: 'carNumber',
         },
         {
-            title: 'E-mail',
-            dataIndex: 'email',
-        },
-        {
-            title: 'Ziyarət Edilən Tarix',
+            title: 'Ziyarət edilən tarix',
             dataIndex: 'visitedDate',
         },
         {
@@ -118,7 +106,7 @@ const AdminVisitorRequests = () => {
                                 });
                                 refetch();
                             } catch (error) {
-                                toast.error("Ziyarətçi qəbul edilmədi", {
+                                toast.error("Ziyarətçi istəyi rədd edildi", {
                                     position: "bottom-right",
                                     autoClose: 2500,
                                     theme: "dark",

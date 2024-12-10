@@ -11,20 +11,12 @@ const columns = [
         dataIndex: 'id',
     },
     {
-        title: 'Ad',
-        dataIndex: 'name',
+        title: 'Ziyarətçi',
+        render: (text, record) => `${record.name} ${record.surname}`,
     },
     {
-        title: 'Soyad',
-        dataIndex: 'surname',
-    },
-    {
-        title: 'FIN Kod',
-        dataIndex: 'finCode',
-    },
-    {
-        title: 'Email',
-        dataIndex: 'email',
+        title: 'Məsul şəxs',
+        render: (text, record) => `${record.adminName} ${record.adminSurname}`,
     },
     {
         title: 'Mobil nömrə',
@@ -35,13 +27,13 @@ const columns = [
         dataIndex: 'description',
     },
     {
-        title: 'Ziyarət tarixi',
-        dataIndex: 'visitedDate',
+        title: 'Avtomobil nömrəsi',
+        dataIndex: 'carNumber',
         render: (text) => text || "N/A",
     },
     {
-        title: 'Avtomobil nömrəsi',
-        dataIndex: 'carNumber',
+        title: 'Ziyarət tarixi',
+        dataIndex: 'visitedDate',
         render: (text) => text || "N/A",
     },
     {

@@ -20,7 +20,7 @@ function UserNavbar() {
                     <div className={"name"}>
                         <span className={"first"}>AZƏRBAYCAN RESPUBLIKASININ ELM VƏ TƏHSİL NAZİRLİYİ</span>
                         <span className={"last"}>BAKI DÖVLƏT UNİVERSİTETİ</span>
-                        <span className={"first1"}>Giriş və icazə sistemi</span>
+                        <span className={"first1"}>Giriş-çıxış nəzarət sistemi</span>
                     </div>
                     <div className={"logo1"}>
                         <img

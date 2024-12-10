@@ -15,34 +15,25 @@ function UserFooter() {
                             <h2>Ünvan</h2>
                             <div className={"box"}>
                                 <PiMailboxFill/>
-                                <span>AZ1148</span>
+                                <span>AZ 1148</span>
                             </div>
                             <div className={"box"}>
                                 <IoLocationSharp/>
-                                <span>Akademik Zahid Xəlilov küçəsi-33</span>
+                                <span>Akademik Zahid Xəlilov küçəsi - 33</span>
                             </div>
                         </div>
                         <div className={"col-4 col-md-4 col-sm-4 col-xs-12"}>
                             <h2>Əlaqə</h2>
                             <div className={"box"}>
                                 <FaPhoneAlt/>
-                                <span>(+994 12)539 05 17</span>
-                            </div>
-                            <div className={"box"}>
-                                <FaPhoneVolume/>
-                                <span>Fax</span>
-                                <span>(+9942 12)598 33 76</span>
+                                <span>+994 (012) 539 11 46</span>
                             </div>
                         </div>
                         <div className={"col-4 col-md-4 col-sm-4 col-xs-12"}>
                             <h2>E-Mail</h2>
                             <div className={"box"}>
                                 <IoMdMail/>
-                                <span>info@bsu.edu.az</span>
-                            </div>
-                            <div className={"box"}>
-                                <IoMdMail/>
-                                <span>rafail@bsu.edu.az</span>
+                                <span>cit@bsu.edu.az</span>
                             </div>
                         </div>
 
@@ -50,7 +41,7 @@ function UserFooter() {
                     </div>
                     <div className={"text"}>
                         Bu veb sayt, Bakı Dövlət Universiteti binasına giriş icazəsi üçün nəzərdə tutulmuşdur və bütün
-                        qonaqların sistemdən asanlıqla istifadə etməsinə imkan tanıyır.
+                        səlahiyyətli şəxslərin sistemdən asanlıqla istifadə etməsinə imkan tanıyır.
                     </div>
                     <div className={"icons"}>
                         <Link to={"https://www.facebook.com/bdu.eduaz1919"} className={"icon"}><FaFacebook/></Link>

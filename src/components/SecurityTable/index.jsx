@@ -50,16 +50,12 @@ const SecurityTable = () => {
             render: (text, record) => `${record.name} ${record.surname}`,
         },
         {
-            title: 'Qonaq qəbul edən',
+            title: 'Məsul şəxs',
             render: (text, record) => `${record.adminName} ${record.adminSurname}`,
         },
         {
             title: 'Açıqlama',
             dataIndex: 'description',
-        },
-        {
-            title: 'FIN Kod',
-            dataIndex: 'finCode',
         },
         {
             title: 'Avtomobil nömrəsi',

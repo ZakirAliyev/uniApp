@@ -9,7 +9,7 @@ function HomePage() {
     return (
         <section id={"homePage"}>
             <Helmet>
-                <title>BDU - Giriş və icazə sistemi</title>
+                <title>BDU Giriş-çıxış nəzarət sistemi</title>
             </Helmet>
             <UserNavbar/>
             <div className={"container3"}>
@@ -19,7 +19,7 @@ function HomePage() {
                         <div className={"wrapper"}>
                             <div className={"wrapper1"}>
                                 <div>
-                                    <h2>Giriş və icazə sistemi'nə xoş gəlmisiniz</h2>
+                                    <h2>Giriş-çıxış nəzarət sistemi'nə xoş gəlmisiniz</h2>
                                     <p>Giriş sistemi, müasir təhlükəsizlik tələblərinə cavab verən innovativ bir həll
                                         yoludur.
                                         Giriş-çıxış fəaliyyətləri sistem tərəfindən izlənilir, bu da təhlükəsizlik

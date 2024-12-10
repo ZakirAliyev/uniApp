@@ -53,16 +53,8 @@ const AdminTable = () => {
             render: (text, record, index) => index + 1,
         },
         {
-            title: 'Ad',
-            dataIndex: 'name',
-        },
-        {
-            title: 'Soyad',
-            dataIndex: 'surname',
-        },
-        {
-            title: 'FIN Kod',
-            dataIndex: 'finCode',
+            title: 'Ziyarətçi',
+            render: (text, record) => `${record.name} ${record.surname}`,
         },
         {
             title: 'Mobil nömrə',
@@ -75,10 +67,6 @@ const AdminTable = () => {
         {
             title: 'Avtomobil Nömrəsi',
             dataIndex: 'carNumber',
-        },
-        {
-            title: 'E-mail',
-            dataIndex: 'email',
         },
         {
             title: 'Ziyarət Tarixi',

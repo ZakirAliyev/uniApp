@@ -10,12 +10,8 @@ function AddAVisitor() {
     const validationSchema = Yup.object({
         name: Yup.string().required('Ziyarətçinin adı tələb olunur'),
         surname: Yup.string().required('Ziyarətçinin soyadı tələb olunur'),
-        email: Yup.string().email('Yanlış email formatı').required('Ziyarətçinin e-maili tələb olunur'),
         description: Yup.string().required('Təsvir tələb olunur'),
         visitedDate: Yup.string().required('Ziyarət tarixi tələb olunur'),
-        finCode: Yup.string()
-            .length(7, 'FIN kodu mütləq 7 simvol olmalıdır')
-            .required('FIN kodu tələb olunur'),
         phoneNumber: Yup.string()
             .matches(/^\d{9}$/, 'Telefon nömrəsi 9 rəqəmdən ibarət olmalıdır')
             .required('Telefon nömrəsi tələb olunur'),
@@ -27,7 +23,6 @@ function AddAVisitor() {
     const initialValues = {
         name: '',
         surname: '',
-        email: '',
         description: '',
         carCheck: false,
         carNumber: '',
@@ -35,7 +30,6 @@ function AddAVisitor() {
         adminId: '',
         isRepeated: false,
         phoneNumber: '',
-        finCode: '',
     };
 
     const [postVisitor] = useCreateVisitorPostMutation();
@@ -108,7 +102,7 @@ function AddAVisitor() {
                                 <Field
                                     type="text"
                                     name="name"
-                                    placeholder="Ziyarətçinin adı"
+                                    placeholder="Ad"
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     value={values.name}
@@ -120,7 +114,7 @@ function AddAVisitor() {
                                 <Field
                                     type="text"
                                     name="surname"
-                                    placeholder="Ziyarətçinin soyadı"
+                                    placeholder="Soyad"
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     value={values.surname}
@@ -131,19 +125,7 @@ function AddAVisitor() {
 
                         <div className="row">
                             <div className="col-6">
-                                <label>Ziyarətçinin E-maili <span style={{color: 'red'}}>*</span></label>
-                                <Field
-                                    type="email"
-                                    name="email"
-                                    placeholder="Ziyarətçinin e-maili"
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    value={values.email}
-                                />
-                                <ErrorMessage name="email" component="div" style={{color: 'red', marginTop: '5px'}}/>
-                            </div>
-                            <div className="col-6">
-                                <label>Təsvir <span style={{color: 'red'}}>*</span></label>
+                                <label>Gəliş səbəbi <span style={{color: 'red'}}>*</span></label>
                                 <Field
                                     type="text"
                                     name="description"
@@ -155,9 +137,6 @@ function AddAVisitor() {
                                 <ErrorMessage name="description" component="div"
                                               style={{color: 'red', marginTop: '5px'}}/>
                             </div>
-                        </div>
-
-                        <div className="row">
                             <div className="col-6">
                                 <label>Ziyarət Tarixi <span style={{color: 'red'}}>*</span></label>
                                 <Field
@@ -171,23 +150,10 @@ function AddAVisitor() {
                                 <ErrorMessage name="visitedDate" component="div"
                                               style={{color: 'red', marginTop: '5px'}}/>
                             </div>
-                            <div className="col-6">
-                                <label>FIN Kodu <span style={{color: 'red'}}>*</span></label>
-                                <Field
-                                    type="text"
-                                    name="finCode"
-                                    placeholder="FIN Kodu"
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    value={values.finCode}
-                                />
-                                <ErrorMessage name="finCode" component="div" style={{color: 'red', marginTop: '5px'}}/>
-                            </div>
                         </div>
-
                         <div className="row">
                             <div className="col-6">
-                                <label>Bu, təkrarlanan bir ziyarət midir?</label>
+                                <label>Ziyarət təkrarlanır?</label>
                                 <Field
                                     as="select"
                                     name="isRepeated"
@@ -201,11 +167,11 @@ function AddAVisitor() {
                                               style={{color: 'red', marginTop: '5px'}}/>
                             </div>
                             <div className="col-6">
-                                <label>Telefon Nömrəsi (məs: 501234567)<span style={{color: 'red'}}>*</span></label>
+                                <label>Mobil nömrə<span style={{color: 'red'}}>*</span></label>
                                 <Field
                                     type="text"
                                     name="phoneNumber"
-                                    placeholder="Telefon nömrəsi"
+                                    placeholder="Məsələn: 501234567"
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     value={values.phoneNumber}
@@ -225,15 +191,15 @@ function AddAVisitor() {
                                     onChange={handleChange}
                                     style={{width: 'max-content'}}
                                 />
-                                <label style={{marginTop: '5px'}}>Avtomobillə gələcəklər?</label>
+                                <label style={{marginTop: '5px'}}>Avtomobil ilə gələcək?</label>
                             </div>
                             {values.carCheck && (
                                 <div className="col-6">
-                                    <label>Avtomobil Nömrəsi</label>
+                                    <label>Avtomobil nömrəsi</label>
                                     <Field
                                         type="text"
                                         name="carNumber"
-                                        placeholder="Avtomobil nömrəsi"
+                                        placeholder="Məsələn: 77-AA-777"
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                         value={values.carNumber}
