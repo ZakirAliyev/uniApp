@@ -53,7 +53,7 @@ function TeachersMenu() {
             }
 
             if (response?.statusCode === 200) {
-                toast.success(currentRecord ? "Mühafizəçi uğurla redaktə edildi!" : "Mühavizəçi əlavə olundu!", {
+                toast.success(currentRecord ? "Mühafizəçi uğurla redaktə edildi!" : "Mühafizəçi əlavə olundu!", {
                     position: "bottom-right",
                     autoClose: 2500,
                     theme: "dark",
@@ -161,7 +161,7 @@ function TeachersMenu() {
                 />
             </div>
             <Modal
-                title={currentRecord ? "Mühavizəçini redaktə et" : "Mühafizəçi əlavə et"}
+                title={currentRecord ? "Mühafizəçini redaktə et" : "Mühafizəçi əlavə et"}
                 visible={isModalVisible}
                 onCancel={handleCancel}
                 footer={[

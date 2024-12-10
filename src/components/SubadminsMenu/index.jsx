@@ -180,7 +180,7 @@ function SubadminsMenu() {
         <div id={"buildingsMenu"}>
             <div className={"wrapper1"}>
                 <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-                    <h2>İşçilər</h2>
+                    <h2>Əməkdaşlar</h2>
                     <Form form={form}>
                         <div className={"box"}>
                             <div style={{display: 'flex', alignItems: 'center'}}>
@@ -189,7 +189,7 @@ function SubadminsMenu() {
                                     size="large"
                                     name="search"
                                     value={searchTerm}
-                                    placeholder={"İşçi axtar"}
+                                    placeholder={"Əməkdaş axtar"}
                                     style={{
                                         width: '400px'
                                     }}
@@ -214,7 +214,7 @@ function SubadminsMenu() {
                 />
             </div>
             <Modal
-                title="İşçini redaktə et"
+                title="Əməkdaşı redaktə et"
                 open={isModalOpen}
                 onOk={handleOk}
                 onCancel={handleCancel}

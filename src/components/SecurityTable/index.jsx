@@ -46,12 +46,12 @@ const SecurityTable = () => {
             render: (text, record, index) => index + 1,
         },
         {
-            title: 'Ad',
-            dataIndex: 'name',
+            title: 'Ziyarətçi',
+            render: (text, record) => `${record.name} ${record.surname}`,
         },
         {
-            title: 'Soyad',
-            dataIndex: 'surname',
+            title: 'Qonaq qəbul edən',
+            render: (text, record) => `${record.adminName} ${record.adminSurname}`,
         },
         {
             title: 'Açıqlama',
@@ -109,6 +109,8 @@ const SecurityTable = () => {
         surname: item.surname,
         visitedDate: item.visitedDate,
         finCode: item.finCode,
+        adminName: item.adminName,
+        adminSurname: item.adminSurname,
     })) || [];
 
     const filteredDataSource = dataSource.filter((item) => {

@@ -139,12 +139,12 @@ const SuperAdminMenu = () => {
                         {
                             key: '9',
                             icon: <RiAdminLine className={"icon"}/>,
-                            label: 'İşçilər',
+                            label: 'Əməkdaşlar',
                         },
                         {
                             key: '10',
                             icon: <GrUserAdmin className={"icon"}/>,
-                            label: 'İşçi əlavə et',
+                            label: 'Əməkdaş əlavə et',
                         },
                         {
                             key: '11',

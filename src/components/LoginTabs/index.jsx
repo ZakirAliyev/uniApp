@@ -128,8 +128,8 @@ export default function LoginTabs() {
                     TabIndicatorProps={{style: {backgroundColor: "#a99674"}}}
                 >
                     <Tab label="ADMİN" {...a11yProps(0)} />
-                    <Tab label="MÜHAVİZƏ" {...a11yProps(1)} />
-                    <Tab label="İŞÇİ" {...a11yProps(2)} />
+                    <Tab label="MÜHAFİZƏ" {...a11yProps(1)} />
+                    <Tab label="ƏMƏKDAŞ" {...a11yProps(2)} />
                 </Tabs>
             </Box>
             <CustomTabPanel value={value} index={0}>
