@@ -1,6 +1,14 @@
 #userForm {
 
-  margin-top: 13ID5px;
+  .btntbn {
+    width: 100%;
+  }
+
+  form {
+    width: 100%;
+  }
+
+  margin-top: 124px;
 
   .logOut {
     background-color: white;
@@ -87,6 +95,9 @@
       font-size: 16px;
       padding: 10px 20px;
       border-radius: 10px;
+      max-width: 400px;
+      width: 100%;
+      margin: 0 auto;
     }
   }
 }

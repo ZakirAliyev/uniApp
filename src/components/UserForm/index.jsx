@@ -92,31 +92,9 @@ function UserForm() {
 
     return (
         <section id={"userForm"}>
-            <div className={"container3"}>
+            <div className={"container1"}>
                 <div className={"row"}>
-                    <div className={"col-6"}>
-
-                        <Link to={`/`}
-                              className={"logOut"}
-                              onClick={() => {
-                                  Cookies.set('token', null, {path: '/'});
-                                  Cookies.set('role', null, {path: '/'});
-                              }}>
-                            <FaArrowLeftLong style={{marginTop: '2px'}} className={"icon1"}/>
-                            Çıxış
-                        </Link>
-                        <div className={"image"}>
-                            <h2>Giriş-çıxış nəzarət sisteminə qeydiyyat</h2>
-                            <div className={"span"}>
-                                Giriş sistemi, müasir təhlükəsizlik tələblərinə cavab verən innovativ bir həll yoludur.
-                                Giriş-çıxış fəaliyyətləri sistem tərəfindən izlənilir, bu da təhlükəsizlik vəziyyətinin
-                                real vaxtda monitorinqinə imkan tanıyır. İstifadəçi interfeysi ilə, qapıdan giriş
-                                sistemimiz asanlıqla idarə olunur. Daha təhlükəsiz və rahat bir mühit
-                                üçün bizim "Giriş-çıxış nəzarət" sistemimizdən istifadə edin!
-                            </div>
-                        </div>
-                    </div>
-                    <div className={"col-6"} style={{
+                    <div className={"col-12"} style={{
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center'
@@ -260,7 +238,7 @@ function UserForm() {
                                 </div>
                             </div>
                             <div className={"row"}>
-                                <div className={"col-12 wrapper"}>
+                                <div className={"col-12 wrapper btntbn"}>
                                     <button type="submit">
                                         {loading ? (
                                             <PulseLoader size={8} color={'white'}/>

@@ -92,7 +92,7 @@ export default function LoginTabs() {
     // Success handler for login with role-based redirection
     const handleLoginSuccess = (response, superAdminPath, adminPath) => {
         if (response?.statusCode === 200) {
-            toast.success('Giriş uğula icra olundu!', toastOptions());
+            toast.success('Giriş uğurla icra olundu!', toastOptions());
             Cookies.set('token', response?.data?.token, {expires: 7});
             Cookies.set('role', response?.data?.role, {expires: 7});
             setTimeout(() => {
