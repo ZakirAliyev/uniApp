@@ -6,14 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="961267e0-c208-4c58-8422-ddfcc3e85879" name="Changes" comment="3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LoginTabs/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LoginTabs/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/UserFooter/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserFooter/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/UserFooter/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserFooter/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/UserForm/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserForm/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/UserForm/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserForm/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/UserNavbar/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserNavbar/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,6 +146,8 @@
       <workItem from="1733875473582" duration="23000" />
       <workItem from="1733917381067" duration="2044000" />
       <workItem from="1733922093671" duration="682000" />
+      <workItem from="1734317493365" duration="616000" />
+      <workItem from="1734320537112" duration="38000" />
     </task>
     <servers />
   </component>
